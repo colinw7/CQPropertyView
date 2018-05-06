@@ -1,0 +1,2 @@
+# CQPropertyView
+Qt Property Editor
