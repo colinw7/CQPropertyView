@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -m64 -pipe -std=c++14 -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I. -I../include -I../../CQUtil/include -I../../CImageLib/include -I../../CFont/include -I../../CFile/include -I../../CMath/include -I../../CStrUtil/include -I../../CUtil/include -I../../COS/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtSvg -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
+INCPATH       = -I. -I. -I../include -I../../CQUtil/include -I../../CImageLib/include -I../../CFont/include -I../../CFile/include -I../../CMath/include -I../../CStrUtil/include -I../../CUtil/include -I../../COS/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtSvg -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I.moc -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -48,7 +48,7 @@ OBJECTS_DIR   = ../obj/
 
 ####### Files
 
-SOURCES       = CQPropertyViewTest.cpp moc_CQPropertyViewTest.cpp
+SOURCES       = CQPropertyViewTest.cpp .moc/moc_CQPropertyViewTest.cpp
 OBJECTS       = ../obj/CQPropertyViewTest.o \
 		../obj/moc_CQPropertyViewTest.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -330,10 +330,10 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_CQPropertyViewTest.cpp
+compiler_moc_header_make_all: .moc/moc_CQPropertyViewTest.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_CQPropertyViewTest.cpp
-moc_CQPropertyViewTest.cpp: ../../CQUtil/include/CQUtil.h \
+	-$(DEL_FILE) .moc/moc_CQPropertyViewTest.cpp
+.moc/moc_CQPropertyViewTest.cpp: ../../CQUtil/include/CQUtil.h \
 		../../CUtil/include/CEvent.h \
 		../../CMath/include/CIPoint2D.h \
 		../../CUtil/include/CKeyType.h \
@@ -388,7 +388,7 @@ moc_CQPropertyViewTest.cpp: ../../CQUtil/include/CQUtil.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		CQPropertyViewTest.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/colinw/git/CQPropertyView/test -I/home/colinw/git/CQPropertyView/test -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include CQPropertyViewTest.h -o moc_CQPropertyViewTest.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/colinw/git/CQPropertyView/test -I/home/colinw/git/CQPropertyView/test -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include CQPropertyViewTest.h -o .moc/moc_CQPropertyViewTest.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -469,8 +469,8 @@ compiler_clean: compiler_moc_header_clean
 		svg/search_svg.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewTest.o CQPropertyViewTest.cpp
 
-../obj/moc_CQPropertyViewTest.o: moc_CQPropertyViewTest.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/moc_CQPropertyViewTest.o moc_CQPropertyViewTest.cpp
+../obj/moc_CQPropertyViewTest.o: .moc/moc_CQPropertyViewTest.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/moc_CQPropertyViewTest.o .moc/moc_CQPropertyViewTest.cpp
 
 ####### Install
 

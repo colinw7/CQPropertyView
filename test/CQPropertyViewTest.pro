@@ -2,11 +2,13 @@ TEMPLATE = app
 
 TARGET = CQPropertyViewTest
 
-DEPENDPATH += .
-
 QT += widgets svg
 
+DEPENDPATH += .
+
 QMAKE_CXXFLAGS += -std=c++14
+
+MOC_DIR = .moc
 
 SOURCES += \
 CQPropertyViewTest.cpp \
