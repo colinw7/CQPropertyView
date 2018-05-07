@@ -1,2 +1,1 @@
-# CQPropertyView
-Qt Property Editor
+doc/README.md
