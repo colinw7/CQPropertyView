@@ -259,6 +259,8 @@ removeProperties(const QString &path, QObject *)
 
   if (item && item->parent())
     item->parent()->removeChild(item);
+
+  endResetModel();
 }
 
 CQPropertyViewItem *
