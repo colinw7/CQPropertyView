@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CQPropertyViewItem.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.5)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,12 +12,14 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'CQPropertyViewItem.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.1. It"
+#error "This file was generated using the moc from 5.9.5. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CQPropertyViewItem_t {
     QByteArrayData data[14];
     char stringdata0[134];
@@ -93,18 +95,18 @@ void CQPropertyViewItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 0: _t->valueChanged((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 1: _t->updateValue(); break;
         case 2: { bool _r = _t->enumIndToString((*reinterpret_cast< const CQUtil::PropInfo(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 3: { bool _r = _t->enumStringToInd((*reinterpret_cast< const CQUtil::PropInfo(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (CQPropertyViewItem::*_t)(QObject * , const QString & );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&CQPropertyViewItem::valueChanged)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&CQPropertyViewItem::valueChanged)) {
                 *result = 0;
+                return;
             }
         }
     }
@@ -112,7 +114,7 @@ void CQPropertyViewItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
 
 const QMetaObject CQPropertyViewItem::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_CQPropertyViewItem.data,
-      qt_meta_data_CQPropertyViewItem,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+      qt_meta_data_CQPropertyViewItem,  qt_static_metacall, nullptr, nullptr}
 };
 
 
@@ -123,9 +125,9 @@ const QMetaObject *CQPropertyViewItem::metaObject() const
 
 void *CQPropertyViewItem::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_CQPropertyViewItem.stringdata0))
-        return static_cast<void*>(const_cast< CQPropertyViewItem*>(this));
+        return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
@@ -149,7 +151,8 @@ int CQPropertyViewItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void CQPropertyViewItem::valueChanged(QObject * _t1, const QString & _t2)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE
