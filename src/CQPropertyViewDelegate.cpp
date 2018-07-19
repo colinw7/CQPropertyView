@@ -189,8 +189,8 @@ drawBackground(QPainter *painter, const QStyleOptionViewItem &option,
 
 void
 CQPropertyViewDelegate::
-drawCheck(QPainter *painter, const QStyleOptionViewItem &option,
-          bool checked, const QModelIndex &index, bool inside) const
+drawCheckInside(QPainter *painter, const QStyleOptionViewItem &option,
+                bool checked, const QModelIndex &index, bool inside) const
 {
   drawBackground(painter, option, index, inside);
 

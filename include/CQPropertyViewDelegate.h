@@ -38,8 +38,9 @@ class CQPropertyViewDelegate : public QItemDelegate {
   void drawBackground(QPainter *painter, const QStyleOptionViewItem &option,
                       const QModelIndex &index, bool inside) const;
 
-  void drawCheck(QPainter *painter, const QStyleOptionViewItem &option,
-                 bool checked, const QModelIndex &index, bool inside) const;
+  void drawCheckInside(QPainter *painter, const QStyleOptionViewItem &option,
+                       bool checked, const QModelIndex &index, bool inside) const;
+
   void drawColor(QPainter *painter, const QStyleOptionViewItem &option,
                  const QColor &c, const QModelIndex &index, bool inside) const;
   void drawFont (QPainter *painter, const QStyleOptionViewItem &option,

@@ -433,7 +433,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
     type->draw(delegate, painter, option, index, var, inside);
   }
   else if (typeName == "bool") {
-    delegate->drawCheck(painter, option, var.toBool(), index, inside);
+    delegate->drawCheckInside(painter, option, var.toBool(), index, inside);
   }
   else if (propInfo.isEnumType()) {
     int ind = var.toInt();
