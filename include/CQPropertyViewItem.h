@@ -58,6 +58,9 @@ class CQPropertyViewItem : public QObject {
   bool isInside() const { return inside_; }
   void setInside(bool b) { inside_ = b; }
 
+  const QStringList &values() const { return values_; }
+  void setValues(const QStringList &v) { values_ = v; }
+
   QString aliasName() const;
 
   QString path(const QString &sep="/", bool alias=false) const;
@@ -91,6 +94,11 @@ class CQPropertyViewItem : public QObject {
   bool paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
              const QStyleOptionViewItem &option, const QModelIndex &index);
 
+ private:
+  QWidget *createDefaultEdit(QWidget *parent, const QString &valueStr);
+
+  QString getDefaultValue() const;
+
  signals:
   void valueChanged(QObject *obj, const QString &name);
 
@@ -112,6 +120,7 @@ class CQPropertyViewItem : public QObject {
   bool                         inside_   { false };
   QWidget*                     widget_   { nullptr };
   CQPropertyViewEditorFactory *editor_   { nullptr }; //! editor interface
+  QStringList                  values_;
 };
 
 #endif

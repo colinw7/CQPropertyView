@@ -504,6 +504,8 @@ compiler_moc_header_clean:
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -607,6 +609,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -670,6 +674,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -727,6 +733,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -789,6 +797,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -850,6 +860,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -911,6 +923,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -973,6 +987,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -1035,6 +1051,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -1097,6 +1115,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -1158,6 +1178,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -1220,6 +1242,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -1282,6 +1306,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -1344,6 +1370,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \
@@ -1404,6 +1432,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CBBox2D.h \
 		../../CMath/include/CVector2D.h \
+		../../CMath/include/CMathUtil.h \
+		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CBrush.h \

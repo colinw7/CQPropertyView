@@ -188,6 +188,8 @@ createEditor(QWidget *parent)
 
     QComboBox *combo = new QComboBox(parent);
 
+    combo->setObjectName("combo");
+
     combo->addItems(names);
     combo->setCurrentIndex(combo->findText(valueStr));
 
@@ -199,6 +201,8 @@ createEditor(QWidget *parent)
   // TODO: use button press (no need to edit) see CQCheckTree.cpp
   else if (typeName == "bool") {
     QCheckBox *check = new QCheckBox(parent);
+
+    check->setObjectName("check");
 
     check->setChecked(var.toBool());
 
@@ -212,41 +216,54 @@ createEditor(QWidget *parent)
     widget_ = check;
   }
   else if (var.type() == QVariant::UserType) {
-    QLineEdit *edit = new QLineEdit(parent);
-
-    edit->setObjectName("edit");
-
     QString valueStr;
 
     if (! CQUtil::userVariantToString(var, valueStr)) {
       //std::cerr << "Failed to convert to string" << std::endl;
     }
 
-    edit->setText(valueStr);
-
-    connect(edit, SIGNAL(editingFinished()), this, SLOT(updateValue()));
-
-    widget_ = edit;
+    widget_ = createDefaultEdit(parent, valueStr);
   }
   else {
-    QLineEdit *edit = new QLineEdit(parent);
-
-    edit->setObjectName("edit");
-
     QString valueStr;
 
     if (! CQUtil::variantToString(var, valueStr)) {
       //std::cerr << "Failed to convert to string" << std::endl;
     }
 
+    widget_ = createDefaultEdit(parent, valueStr);
+  }
+
+  return widget_;
+}
+
+QWidget *
+CQPropertyViewItem::
+createDefaultEdit(QWidget *parent, const QString &valueStr)
+{
+  if (values().length()) {
+    QComboBox *combo = new QComboBox(parent);
+
+    combo->setObjectName("combo");
+
+    combo->addItems(values());
+    combo->setCurrentIndex(combo->findText(valueStr));
+
+    connect(combo, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(updateValue()));
+
+    return combo;
+  }
+  else {
+    QLineEdit *edit = new QLineEdit(parent);
+
+    edit->setObjectName("edit");
+
     edit->setText(valueStr);
 
     connect(edit, SIGNAL(editingFinished()), this, SLOT(updateValue()));
 
-    widget_ = edit;
+    return edit;
   }
-
-  return widget_;
 }
 
 /*! set property from variant
@@ -333,22 +350,37 @@ updateValue()
     setEditorData(text);
   }
   else if (propInfo.type() == QVariant::UserType) {
-    QLineEdit *edit = qobject_cast<QLineEdit *>(widget_);
-    assert(edit);
+    QString text = getDefaultValue();
 
     QVariant var = this->data();
 
-    if (CQUtil::userVariantFromString(var, edit->text()))
+    if (CQUtil::userVariantFromString(var, text))
       setEditorData(var);
   }
   else {
-    QLineEdit *edit = qobject_cast<QLineEdit *>(widget_);
-    assert(edit);
-
-    QString text = edit->text();
+    QString text = getDefaultValue();
 
     setEditorData(text);
   }
+}
+
+QString
+CQPropertyViewItem::
+getDefaultValue() const
+{
+  QLineEdit *edit = qobject_cast<QLineEdit *>(widget_);
+
+  if (edit)
+    return edit->text();
+
+  QComboBox *combo = qobject_cast<QComboBox *>(widget_);
+
+  if (combo)
+    return combo->currentText();
+
+  assert(false);
+
+  return "";
 }
 
 bool
