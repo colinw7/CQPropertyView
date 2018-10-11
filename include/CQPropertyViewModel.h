@@ -54,6 +54,8 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   void refresh();
 
+  void objectNames(QObject *object, QStringList &strs) const;
+
  private:
   CQPropertyViewItem *propertyItem(QObject *object, const QString &path,
                                    QChar splitChar, bool create, bool alias);
@@ -66,6 +68,9 @@ class CQPropertyViewModel : public QAbstractItemModel {
   CQPropertyViewItem *objectItem(const QObject *obj) const;
 
   CQPropertyViewItem *objectItem(CQPropertyViewItem *parent, const QObject *obj) const;
+
+  void itemNames(CQPropertyViewItem *rootItem, QObject *object,
+                 CQPropertyViewItem *item, QStringList &strs) const;
 
  signals:
   void valueChanged(QObject *, const QString &);

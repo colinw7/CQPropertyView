@@ -263,6 +263,38 @@ removeProperties(const QString &path, QObject *)
   endResetModel();
 }
 
+void
+CQPropertyViewModel::
+objectNames(QObject *object, QStringList &names) const
+{
+  CQPropertyViewItem *item = objectItem(object);
+  if (! item) return;
+
+  itemNames(item, object, item, names);
+}
+
+void
+CQPropertyViewModel::
+itemNames(CQPropertyViewItem *rootItem, QObject *object,
+          CQPropertyViewItem *item, QStringList &names) const
+{
+  if (item->object() && item->object() != object)
+    return;
+
+  if (item->numChildren() > 0) {
+    for (int i = 0; i < item->numChildren(); ++i) {
+      CQPropertyViewItem *item1 = item->child(i);
+
+      itemNames(rootItem, object, item1, names);
+    }
+  }
+  else {
+    QString name = item->path(".", /*alias*/true, rootItem);
+
+    names.push_back(name);
+  }
+}
+
 CQPropertyViewItem *
 CQPropertyViewModel::
 item(const QModelIndex &index) const

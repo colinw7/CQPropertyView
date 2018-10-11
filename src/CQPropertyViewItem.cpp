@@ -69,7 +69,7 @@ aliasName() const
 
 QString
 CQPropertyViewItem::
-path(const QString &sep, bool alias) const
+path(const QString &sep, bool alias, CQPropertyViewItem *root) const
 {
   QString path;
 
@@ -86,6 +86,9 @@ path(const QString &sep, bool alias) const
     }
 
     item = item->parent();
+
+    if (root && item == root)
+      break;
   }
 
   return path;

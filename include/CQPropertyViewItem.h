@@ -63,7 +63,7 @@ class CQPropertyViewItem : public QObject {
 
   QString aliasName() const;
 
-  QString path(const QString &sep="/", bool alias=false) const;
+  QString path(const QString &sep="/", bool alias=false, CQPropertyViewItem *root=nullptr) const;
 
   //! set editor
   void setEditorFactory(CQPropertyViewEditorFactory *editor) { editor_ = editor; }
