@@ -28,6 +28,10 @@ class CQPropertyViewSizeFEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewSizeFEditor(double max=1000, double step=1.0);
 
+  double max() const { return max_; }
+
+  double step() const { return step_; }
+
   QWidget *createEdit(QWidget *parent);
 
   void connect(QWidget *w, QObject *obj, const char *method);
@@ -37,8 +41,8 @@ class CQPropertyViewSizeFEditor : public CQPropertyViewEditorFactory {
   void setValue(QWidget *w, const QVariant &var);
 
  private:
-  double max_;
-  double step_;
+  double max_  { 1.0 };
+  double step_ { 0.0 };
 };
 
 #endif
