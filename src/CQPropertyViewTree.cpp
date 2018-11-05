@@ -5,10 +5,13 @@
 #include <CQPropertyViewItem.h>
 #include <CQHeaderView.h>
 
+#include <QApplication>
 #include <QHeaderView>
 #include <QMouseEvent>
+#include <QClipboard>
 #include <QMenu>
 #include <set>
+#include <iostream>
 
 CQPropertyViewTree::
 CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
@@ -556,6 +559,38 @@ leaveEvent(QEvent *)
   unsetMouseInd();
 
   redraw();
+}
+
+void
+CQPropertyViewTree::
+keyPressEvent(QKeyEvent *ke)
+{
+  if (ke->matches(QKeySequence::Copy)) {
+    QPoint p = QCursor::pos();
+
+    QModelIndex ind = indexAt(mapFromGlobal(p));
+
+    if (ind.isValid()) {
+      CQPropertyViewItem *item = getModelItem(ind);
+      if (! item) return;
+
+      QString value;
+
+      if      (ind.column() == 0)
+        value = item->path(".", /*alias*/true);
+      else if (ind.column() == 1)
+        value = item->tip();
+      else
+        return;
+
+      QClipboard *clipboard = QApplication::clipboard();
+
+      clipboard->setText(value, QClipboard::Clipboard);
+      clipboard->setText(value, QClipboard::Selection);
+    }
+  }
+  else
+    QTreeView::keyPressEvent(ke);
 }
 
 void

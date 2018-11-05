@@ -98,6 +98,8 @@ class CQPropertyViewTree : public QTreeView {
 
   void leaveEvent(QEvent *);
 
+  void keyPressEvent(QKeyEvent *ke);
+
   void scrollToItem(CQPropertyViewItem *item);
 
   void expandItem(CQPropertyViewItem *item);

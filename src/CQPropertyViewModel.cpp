@@ -70,7 +70,9 @@ data(const QModelIndex &index, int role) const
       return QVariant();
   }
   else if (role == Qt::ToolTipRole) {
-    if (index.column() == 1)
+    if      (index.column() == 0)
+      return item->path(".", /*alias*/true);
+    else if (index.column() == 1)
       return item->tip();
   }
 
