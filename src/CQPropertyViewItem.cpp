@@ -9,6 +9,27 @@
 #include <QComboBox>
 #include <QCheckBox>
 
+namespace {
+
+QString variantToString(const QVariant &var) {
+  QString str;
+
+  if (var.type() == QVariant::UserType) {
+    if (! CQUtil::userVariantToString(var, str))
+      return "";
+  }
+  else {
+    if (! CQUtil::variantToString(var, str))
+      return "";
+  }
+
+  return str;
+}
+
+}
+
+//---
+
 CQPropertyViewItem::
 CQPropertyViewItem(CQPropertyViewItem *parent, QObject *object, const QString &name) :
  parent_(parent), object_(object), name_(name)
@@ -17,6 +38,8 @@ CQPropertyViewItem(CQPropertyViewItem *parent, QObject *object, const QString &n
 
   if (CQUtil::getPropInfo(object_, name_, &propInfo) && propInfo.isWritable())
     editable_ = true;
+
+  initValue_ = data();
 }
 
 CQPropertyViewItem::
@@ -496,6 +519,20 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
   }
 
   return true;
+}
+
+QString
+CQPropertyViewItem::
+initStr() const
+{
+  return variantToString(initValue());
+}
+
+QString
+CQPropertyViewItem::
+dataStr() const
+{
+  return variantToString(data());
 }
 
 bool

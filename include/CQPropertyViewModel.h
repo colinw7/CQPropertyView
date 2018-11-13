@@ -10,6 +10,9 @@ class CQPropertyViewModel : public QAbstractItemModel {
   Q_OBJECT
 
  public:
+  using NameValues = std::map<QString,QVariant>;
+
+ public:
   CQPropertyViewModel();
  ~CQPropertyViewModel();
 
@@ -56,6 +59,9 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   void objectNames(QObject *object, QStringList &strs) const;
 
+  void getChangedNameValues(NameValues &nameValues) const;
+  void getChangedNameValues(const QObject *object, NameValues &nameValues) const;
+
  private:
   CQPropertyViewItem *propertyItem(QObject *object, const QString &path,
                                    QChar splitChar, bool create, bool alias);
@@ -71,6 +77,11 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   void itemNames(CQPropertyViewItem *rootItem, QObject *object,
                  CQPropertyViewItem *item, QStringList &strs) const;
+
+  void getChangedItemNameValues(const QObject *object, CQPropertyViewItem *item,
+                                NameValues &nameValues) const;
+
+  void addNameValue(CQPropertyViewItem *item, NameValues &nameValues) const;
 
  signals:
   void valueChanged(QObject *, const QString &);

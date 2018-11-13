@@ -303,8 +303,6 @@ search(const QString &text)
     searchItemTree(item, regexp, items);
   }
 
-
-  // ensure selection visible
   // select matching items
   QItemSelectionModel *sm = this->selectionModel();
 
@@ -508,6 +506,15 @@ customContextMenuSlot(const QPoint &pos)
   menu->addAction(expandAction);
   menu->addAction(collapseAction);
 
+  QAction *printAction        = new QAction("Print", menu);
+  QAction *printChangedAction = new QAction("Print Changed", menu);
+
+  menu->addAction(printAction);
+  menu->addAction(printChangedAction);
+
+  connect(printAction       , SIGNAL(triggered()), this, SLOT(printSlot()));
+  connect(printChangedAction, SIGNAL(triggered()), this, SLOT(printChangedSlot()));
+
   menu->exec(mpos);
 
   delete menu;
@@ -616,7 +623,7 @@ selectItem(CQPropertyViewItem *item, bool selected)
       sm->select(ind, QItemSelectionModel::Select);
     }
     else {
-     //sm->select(ind, QItemSelectionModel::Deselect);
+    //sm->select(ind, QItemSelectionModel::Deselect);
     }
   }
 }
@@ -639,6 +646,33 @@ collapseItem(CQPropertyViewItem *item)
 
   if (ind.isValid())
     setExpanded(ind, false);
+}
+
+void
+CQPropertyViewTree::
+printSlot() const
+{
+  QModelIndexList indices = this->selectionModel()->selectedRows();
+
+  for (int i = 0; i < indices.length(); ++i) {
+    CQPropertyViewItem *item = getModelItem(indices[i]);
+
+    QString path = item->path(".", /*alias*/true);
+
+    std::cerr << path.toStdString() << "=" << item->dataStr().toStdString() << "\n";
+  }
+}
+
+void
+CQPropertyViewTree::
+printChangedSlot() const
+{
+  CQPropertyViewModel::NameValues nameValues;
+
+  model_->getChangedNameValues(nameValues);
+
+  for (const auto &nv : nameValues)
+    std::cerr << nv.first.toStdString() << "=" << nv.second.toString().toStdString() << "\n";
 }
 
 QModelIndex

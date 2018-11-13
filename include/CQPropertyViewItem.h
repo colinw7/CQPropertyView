@@ -65,6 +65,9 @@ class CQPropertyViewItem : public QObject {
 
   QString path(const QString &sep="/", bool alias=false, CQPropertyViewItem *root=nullptr) const;
 
+  QString initStr() const;
+  QString dataStr() const;
+
   //! set editor
   void setEditorFactory(CQPropertyViewEditorFactory *editor) { editor_ = editor; }
 
@@ -82,6 +85,9 @@ class CQPropertyViewItem : public QObject {
 
   //! is writable
   bool isWritable() const;
+
+  //! initial value
+  QVariant initValue() const { return initValue_; }
 
   //! get/set data
   QVariant data() const;
@@ -116,6 +122,7 @@ class CQPropertyViewItem : public QObject {
   QString                      name_;
   QString                      alias_;
   Children                     children_;
+  QVariant                     initValue_;
   bool                         editable_ { false };
   bool                         inside_   { false };
   QWidget*                     widget_   { nullptr };

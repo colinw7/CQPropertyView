@@ -18,7 +18,8 @@ class CQPropertyViewTree : public QTreeView {
 
  public:
   CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model);
- ~CQPropertyViewTree();
+
+  virtual ~CQPropertyViewTree();
 
   CQPropertyViewModel *propertyModel() const { return model_; }
 
@@ -73,7 +74,10 @@ class CQPropertyViewTree : public QTreeView {
 
   void search(const QString &text);
 
- private slots:
+  void printSlot() const;
+  void printChangedSlot() const;
+
+ protected slots:
   void modelResetSlot();
 
   void itemClickedSlot(const QModelIndex &index);
@@ -82,7 +86,7 @@ class CQPropertyViewTree : public QTreeView {
 
   void customContextMenuSlot(const QPoint &pos);
 
- private:
+ protected:
   bool selectObject(CQPropertyViewItem *item, const QObject *obj);
 
   void getItemData(CQPropertyViewItem *item, QObject* &obj, QString &path);
@@ -94,11 +98,11 @@ class CQPropertyViewTree : public QTreeView {
 
   void showContextMenu(QObject *obj, const QPoint &globalPos);
 
-  void mouseMoveEvent(QMouseEvent *);
+  void mouseMoveEvent(QMouseEvent *) override;
 
-  void leaveEvent(QEvent *);
+  void leaveEvent(QEvent *) override;
 
-  void keyPressEvent(QKeyEvent *ke);
+  void keyPressEvent(QKeyEvent *ke) override;
 
   void scrollToItem(CQPropertyViewItem *item);
 

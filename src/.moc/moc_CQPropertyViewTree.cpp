@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CQPropertyViewTree_t {
-    QByteArrayData data[23];
-    char stringdata0[242];
+    QByteArrayData data[25];
+    char stringdata0[269];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -46,22 +46,25 @@ QT_MOC_LITERAL(11, 98, 11), // "collapseAll"
 QT_MOC_LITERAL(12, 110, 14), // "expandSelected"
 QT_MOC_LITERAL(13, 125, 6), // "search"
 QT_MOC_LITERAL(14, 132, 4), // "text"
-QT_MOC_LITERAL(15, 137, 14), // "modelResetSlot"
-QT_MOC_LITERAL(16, 152, 15), // "itemClickedSlot"
-QT_MOC_LITERAL(17, 168, 5), // "index"
-QT_MOC_LITERAL(18, 174, 17), // "itemSelectionSlot"
-QT_MOC_LITERAL(19, 192, 21), // "customContextMenuSlot"
-QT_MOC_LITERAL(20, 214, 3), // "pos"
-QT_MOC_LITERAL(21, 218, 8), // "itemMenu"
-QT_MOC_LITERAL(22, 227, 14) // "mouseHighlight"
+QT_MOC_LITERAL(15, 137, 9), // "printSlot"
+QT_MOC_LITERAL(16, 147, 16), // "printChangedSlot"
+QT_MOC_LITERAL(17, 164, 14), // "modelResetSlot"
+QT_MOC_LITERAL(18, 179, 15), // "itemClickedSlot"
+QT_MOC_LITERAL(19, 195, 5), // "index"
+QT_MOC_LITERAL(20, 201, 17), // "itemSelectionSlot"
+QT_MOC_LITERAL(21, 219, 21), // "customContextMenuSlot"
+QT_MOC_LITERAL(22, 241, 3), // "pos"
+QT_MOC_LITERAL(23, 245, 8), // "itemMenu"
+QT_MOC_LITERAL(24, 254, 14) // "mouseHighlight"
 
     },
     "CQPropertyViewTree\0valueChanged\0\0"
     "itemClicked\0obj\0path\0itemSelected\0"
     "menuExec\0gpos\0redraw\0expandAll\0"
     "collapseAll\0expandSelected\0search\0"
-    "text\0modelResetSlot\0itemClickedSlot\0"
-    "index\0itemSelectionSlot\0customContextMenuSlot\0"
+    "text\0printSlot\0printChangedSlot\0"
+    "modelResetSlot\0itemClickedSlot\0index\0"
+    "itemSelectionSlot\0customContextMenuSlot\0"
     "pos\0itemMenu\0mouseHighlight"
 };
 #undef QT_MOC_LITERAL
@@ -72,29 +75,31 @@ static const uint qt_meta_data_CQPropertyViewTree[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
-       2,  114, // properties
+      15,   14, // methods
+       2,  126, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   79,    2, 0x06 /* Public */,
-       3,    2,   84,    2, 0x06 /* Public */,
-       6,    2,   89,    2, 0x06 /* Public */,
-       7,    2,   94,    2, 0x06 /* Public */,
+       1,    2,   89,    2, 0x06 /* Public */,
+       3,    2,   94,    2, 0x06 /* Public */,
+       6,    2,   99,    2, 0x06 /* Public */,
+       7,    2,  104,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       9,    0,   99,    2, 0x0a /* Public */,
-      10,    0,  100,    2, 0x0a /* Public */,
-      11,    0,  101,    2, 0x0a /* Public */,
-      12,    0,  102,    2, 0x0a /* Public */,
-      13,    1,  103,    2, 0x0a /* Public */,
-      15,    0,  106,    2, 0x08 /* Private */,
-      16,    1,  107,    2, 0x08 /* Private */,
-      18,    0,  110,    2, 0x08 /* Private */,
-      19,    1,  111,    2, 0x08 /* Private */,
+       9,    0,  109,    2, 0x0a /* Public */,
+      10,    0,  110,    2, 0x0a /* Public */,
+      11,    0,  111,    2, 0x0a /* Public */,
+      12,    0,  112,    2, 0x0a /* Public */,
+      13,    1,  113,    2, 0x0a /* Public */,
+      15,    0,  116,    2, 0x0a /* Public */,
+      16,    0,  117,    2, 0x0a /* Public */,
+      17,    0,  118,    2, 0x09 /* Protected */,
+      18,    1,  119,    2, 0x09 /* Protected */,
+      20,    0,  122,    2, 0x09 /* Protected */,
+      21,    1,  123,    2, 0x09 /* Protected */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QObjectStar, QMetaType::QString,    2,    2,
@@ -109,13 +114,15 @@ static const uint qt_meta_data_CQPropertyViewTree[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,   14,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,   17,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QPoint,   20,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QModelIndex,   19,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QPoint,   22,
 
  // properties: name, type, flags
-      21, QMetaType::Bool, 0x00095103,
-      22, QMetaType::Bool, 0x00095103,
+      23, QMetaType::Bool, 0x00095103,
+      24, QMetaType::Bool, 0x00095103,
 
        0        // eod
 };
@@ -135,10 +142,12 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 6: _t->collapseAll(); break;
         case 7: _t->expandSelected(); break;
         case 8: _t->search((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 9: _t->modelResetSlot(); break;
-        case 10: _t->itemClickedSlot((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 11: _t->itemSelectionSlot(); break;
-        case 12: _t->customContextMenuSlot((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 9: _t->printSlot(); break;
+        case 10: _t->printChangedSlot(); break;
+        case 11: _t->modelResetSlot(); break;
+        case 12: _t->itemClickedSlot((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 13: _t->itemSelectionSlot(); break;
+        case 14: _t->customContextMenuSlot((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -221,13 +230,13 @@ int CQPropertyViewTree::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 15)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 13;
+        _id -= 15;
     }
 #ifndef QT_NO_PROPERTIES
    else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty

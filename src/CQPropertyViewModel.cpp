@@ -474,3 +474,55 @@ refresh()
   beginInsertRows(QModelIndex(), 0, nr);
   endInsertRows  ();
 }
+
+void
+CQPropertyViewModel::
+getChangedNameValues(NameValues &nameValues) const
+{
+  return getChangedNameValues(nullptr, nameValues);
+}
+
+void
+CQPropertyViewModel::
+getChangedNameValues(const QObject *obj, NameValues &nameValues) const
+{
+  CQPropertyViewItem *root = this->root();
+
+  return getChangedItemNameValues(obj, root, nameValues);
+}
+
+void
+CQPropertyViewModel::
+getChangedItemNameValues(const QObject *obj, CQPropertyViewItem *parent,
+                         NameValues &nameValues) const
+{
+  for (int i = 0; i < parent->numChildren(); ++i) {
+    CQPropertyViewItem *item = parent->child(i);
+
+    if (item->numChildren()) {
+      getChangedItemNameValues(obj, item, nameValues);
+    }
+    else {
+      if (! item->isEditable())
+        continue;
+
+      if (obj && item->object() != obj)
+        continue;
+
+      QString initStr = item->initStr();
+      QString dataStr = item->dataStr();
+
+      if (initStr != dataStr)
+        addNameValue(item, nameValues);
+    }
+  }
+}
+
+void
+CQPropertyViewModel::
+addNameValue(CQPropertyViewItem *item, NameValues &nameValues) const
+{
+  QString path = item->path(".", /*alias*/true);
+
+  nameValues[path] = item->dataStr();
+}
