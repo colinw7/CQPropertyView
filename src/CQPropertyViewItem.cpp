@@ -201,6 +201,8 @@ createEditor(QWidget *parent)
     editor = CQPropertyViewMgrInst->getEditor(typeName);
 
   if      (editor) {
+    CQPropertyViewMgrInst->setEditItem(this);
+
     widget_ = editor->createEdit(parent);
 
     editor->setValue(widget_, var);

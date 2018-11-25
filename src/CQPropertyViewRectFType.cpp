@@ -37,7 +37,7 @@ tip(const QVariant &value) const
 {
   QRectF r = value.value<QRectF>();
 
-  return QString("(%1 %2 %3 %4)").arg(r.left()).arg(r.top()).arg(r.right()).arg(r.bottom());
+  return QString("{%1 %2} {%3 %4}").arg(r.left()).arg(r.top()).arg(r.right()).arg(r.bottom());
 }
 
 //------

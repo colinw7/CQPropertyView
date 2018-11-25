@@ -318,7 +318,7 @@ drawPoint(QPainter *painter, const QStyleOptionViewItem &option,
 
   //QFontMetrics fm(painter->font());
 
-  QString str = QString("(%1, %2)").arg(p.x()).arg(p.y());
+  QString str = QString("%1 %2").arg(p.x()).arg(p.y());
 
   QItemDelegate::drawDisplay(painter, option, rect, str);
 }
@@ -336,7 +336,7 @@ drawSize(QPainter *painter, const QStyleOptionViewItem &option,
 
   //QFontMetrics fm(painter->font());
 
-  QString str = QString("(%1, %2)").arg(s.width()).arg(s.height());
+  QString str = QString("%1 %2").arg(s.width()).arg(s.height());
 
   QItemDelegate::drawDisplay(painter, option, rect, str);
 }
@@ -354,8 +354,8 @@ drawRect(QPainter *painter, const QStyleOptionViewItem &option,
 
   //QFontMetrics fm(painter->font());
 
-  QString str = QString("(%1, %2) (%3 %4)").arg(r.left ()).arg(r.top   ()).
-                                            arg(r.right()).arg(r.bottom());
+  QString str = QString("{%1 %2} {%3 %4}").arg(r.left ()).arg(r.top   ()).
+                                           arg(r.right()).arg(r.bottom());
 
   QItemDelegate::drawDisplay(painter, option, rect, str);
 }

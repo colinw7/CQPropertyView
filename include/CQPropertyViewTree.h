@@ -37,6 +37,8 @@ class CQPropertyViewTree : public QTreeView {
 
   void selectObject(const QObject *obj);
 
+  void deselectAllObjects();
+
   bool setCurrentProperty(QObject *object, const QString &path);
 
   void getSelectedObjects(std::vector<QObject *> &objs);

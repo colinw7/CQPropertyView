@@ -37,7 +37,7 @@ tip(const QVariant &value) const
 {
   QPointF p = value.value<QPointF>();
 
-  return QString("(%1 %2)").arg(p.x()).arg(p.y());
+  return QString("%1 %2").arg(p.x()).arg(p.y());
 }
 
 //------

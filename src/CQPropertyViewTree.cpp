@@ -163,8 +163,10 @@ selectObject(CQPropertyViewItem *item, const QObject *obj)
   QObject *obj1 = item->object();
 
   if (obj1 == obj) {
-    selectItem(item, true);
-    return true;
+    if (item->parent()) {
+      selectItem(item->parent(), true);
+      return true;
+    }
   }
 
   for (int i = 0; i < item->numChildren(); ++i) {
@@ -175,6 +177,15 @@ selectObject(CQPropertyViewItem *item, const QObject *obj)
   }
 
   return false;
+}
+
+void
+CQPropertyViewTree::
+deselectAllObjects()
+{
+  QItemSelectionModel *sm = this->selectionModel();
+
+  sm->clear();
 }
 
 bool

@@ -37,7 +37,7 @@ tip(const QVariant &value) const
 {
   QSizeF s = value.value<QSizeF>();
 
-  return QString("(%1 %2)").arg(s.width()).arg(s.height());
+  return QString("%1 %2").arg(s.width()).arg(s.height());
 }
 
 //------
