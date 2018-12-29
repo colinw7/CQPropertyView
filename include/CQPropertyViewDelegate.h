@@ -59,7 +59,10 @@ class CQPropertyViewDelegate : public QItemDelegate {
                   const QString &str, const QModelIndex &index, bool inside) const;
 
  private:
-  CQPropertyViewTree *view_;
+  CQPropertyViewTree* view_       { nullptr };
+  QWidget*            editor      { nullptr };
+  bool                editing     { false };
+  QModelIndex         editorIndex;
 };
 
 #endif

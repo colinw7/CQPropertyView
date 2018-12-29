@@ -46,6 +46,10 @@ createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &i
 
   w->installEventFilter(th);
 
+  th->editor      = w;
+  th->editing     = true;
+  th->editorIndex = index;
+
   return w;
 }
 

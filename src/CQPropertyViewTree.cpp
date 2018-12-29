@@ -52,9 +52,9 @@ CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
 
   //--
 
-  CQPropertyViewDelegate *delegate = new CQPropertyViewDelegate(this);
+  delegate_ = new CQPropertyViewDelegate(this);
 
-  setItemDelegate(delegate);
+  setItemDelegate(delegate_);
 
   //--
 
@@ -137,7 +137,7 @@ setProperty(QObject *object, const QString &path, const QVariant &value)
 
 bool
 CQPropertyViewTree::
-getProperty(QObject *object, const QString &path, QVariant &value)
+getProperty(const QObject *object, const QString &path, QVariant &value) const
 {
   return model_->getProperty(object, path, value);
 }

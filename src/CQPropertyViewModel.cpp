@@ -219,27 +219,29 @@ bool
 CQPropertyViewModel::
 setProperty(QObject *object, const QString &path, const QVariant &value)
 {
-  CQPropertyViewItem *item = propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+  CQPropertyViewItem *item =
+    propertyItem(object, path, '.', /*create*/false, /*alias*/true);
 
   if (! item)
     return false;
 
-  bool rc = item->setData(value);
+  if (! item->setData(value))
+    return false;
 
-  if (rc) {
-    QModelIndex ind = indexFromItem(item, 1);
+  QModelIndex ind1 = indexFromItem(item, 0);
+  QModelIndex ind2 = indexFromItem(item, 1);
 
-    emit dataChanged(ind, ind);
-  }
+  emit dataChanged(ind1, ind2);
 
-  return rc;
+  return true;
 }
 
 bool
 CQPropertyViewModel::
-getProperty(QObject *object, const QString &path, QVariant &value)
+getProperty(const QObject *object, const QString &path, QVariant &value) const
 {
-  CQPropertyViewItem *item = propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+  const CQPropertyViewItem *item =
+    propertyItem(object, path, '.', /*create*/false, /*alias*/true);
 
   if (! item)
     return false;
@@ -267,7 +269,7 @@ removeProperties(const QString &path, QObject *)
 
 void
 CQPropertyViewModel::
-objectNames(QObject *object, QStringList &names) const
+objectNames(const QObject *object, QStringList &names) const
 {
   CQPropertyViewItem *item = objectItem(object);
   if (! item) return;
@@ -277,7 +279,7 @@ objectNames(QObject *object, QStringList &names) const
 
 void
 CQPropertyViewModel::
-itemNames(CQPropertyViewItem *rootItem, QObject *object,
+itemNames(CQPropertyViewItem *rootItem, const QObject *object,
           CQPropertyViewItem *item, QStringList &names) const
 {
   if (item->object() && item->object() != object)
@@ -327,11 +329,34 @@ item(const QModelIndex &index, bool &ok) const
   return item;
 }
 
+const CQPropertyViewItem *
+CQPropertyViewModel::
+propertyItem(const QObject *object, const QString &path) const
+{
+  return propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+}
+
 CQPropertyViewItem *
 CQPropertyViewModel::
 propertyItem(QObject *object, const QString &path)
 {
   return propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+}
+
+const CQPropertyViewItem *
+CQPropertyViewModel::
+propertyItem(const QObject *object, const QString &path,
+             QChar splitChar, bool create, bool alias) const
+{
+  const CQPropertyViewItem *item = objectItem(object);
+
+  if (! item)
+    return nullptr;
+
+  QStringList strs = path.split(splitChar);
+
+  return const_cast<CQPropertyViewModel *>(this)->
+           hierItem(const_cast<CQPropertyViewItem *>(item), strs, create, alias);
 }
 
 CQPropertyViewItem *
@@ -346,6 +371,14 @@ propertyItem(QObject *object, const QString &path, QChar splitChar, bool create,
   QStringList strs = path.split(splitChar);
 
   return hierItem(item, strs, create, alias);
+}
+
+const CQPropertyViewItem *
+CQPropertyViewModel::
+hierItem(const QStringList &pathParts, bool create, bool alias) const
+{
+  return const_cast<CQPropertyViewModel *>(this)->
+           hierItem(const_cast<CQPropertyViewItem *>(root()), pathParts, create, alias);
 }
 
 CQPropertyViewItem *

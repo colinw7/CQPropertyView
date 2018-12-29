@@ -44,10 +44,11 @@ class CQPropertyViewModel : public QAbstractItemModel {
                                   const QString &alias="");
 
   bool setProperty(QObject *object, const QString &path, const QVariant &value);
-  bool getProperty(QObject *object, const QString &path, QVariant &value);
+  bool getProperty(const QObject *object, const QString &path, QVariant &value) const;
 
   void removeProperties(const QString &path, QObject *object=nullptr);
 
+  const CQPropertyViewItem *propertyItem(const QObject *object, const QString &path) const;
   CQPropertyViewItem *propertyItem(QObject *object, const QString &path);
 
   CQPropertyViewItem *item(const QModelIndex &index, bool &ok) const;
@@ -57,15 +58,19 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   void refresh();
 
-  void objectNames(QObject *object, QStringList &strs) const;
+  void objectNames(const QObject *object, QStringList &strs) const;
 
   void getChangedNameValues(NameValues &nameValues) const;
   void getChangedNameValues(const QObject *object, NameValues &nameValues) const;
 
  private:
+  const CQPropertyViewItem *propertyItem(const QObject *object, const QString &path,
+                                         QChar splitChar, bool create, bool alias) const;
   CQPropertyViewItem *propertyItem(QObject *object, const QString &path,
                                    QChar splitChar, bool create, bool alias);
 
+  const CQPropertyViewItem *hierItem(const QStringList &pathPaths,
+                                     bool create=false, bool alias=false) const;
   CQPropertyViewItem *hierItem(const QStringList &pathPaths, bool create=false, bool alias=false);
 
   CQPropertyViewItem *hierItem(CQPropertyViewItem *parentRow, const QStringList &pathPaths,
@@ -75,7 +80,7 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   CQPropertyViewItem *objectItem(CQPropertyViewItem *parent, const QObject *obj) const;
 
-  void itemNames(CQPropertyViewItem *rootItem, QObject *object,
+  void itemNames(CQPropertyViewItem *rootItem, const QObject *object,
                  CQPropertyViewItem *item, QStringList &strs) const;
 
   void getChangedItemNameValues(const QObject *object, CQPropertyViewItem *item,

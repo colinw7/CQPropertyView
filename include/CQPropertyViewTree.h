@@ -6,6 +6,7 @@
 class CQPropertyViewModel;
 class CQPropertyViewItem;
 class CQPropertyViewFilter;
+class CQPropertyViewDelegate;
 
 class CQPropertyViewTree : public QTreeView {
   Q_OBJECT
@@ -33,7 +34,7 @@ class CQPropertyViewTree : public QTreeView {
                    const QString &name, const QString &alias="");
 
   bool setProperty(QObject *object, const QString &path, const QVariant &value);
-  bool getProperty(QObject *object, const QString &path, QVariant &value);
+  bool getProperty(const QObject *object, const QString &path, QVariant &value) const;
 
   void selectObject(const QObject *obj);
 
@@ -116,12 +117,13 @@ class CQPropertyViewTree : public QTreeView {
   QModelIndex indexFromItem(CQPropertyViewItem *item, int column, bool map=false) const;
 
  private:
-  CQPropertyViewModel*  model_          { nullptr };
-  CQPropertyViewFilter* filter_         { nullptr };
-  bool                  itemMenu_       { false };
-  bool                  mouseHighlight_ { false };
-  bool                  hasMouseInd_    { false };
-  QModelIndex           mouseInd_;
+  CQPropertyViewModel*    model_          { nullptr };
+  CQPropertyViewFilter*   filter_         { nullptr };
+  CQPropertyViewDelegate* delegate_       { nullptr };
+  bool                    itemMenu_       { false };
+  bool                    mouseHighlight_ { false };
+  bool                    hasMouseInd_    { false };
+  QModelIndex             mouseInd_;
 };
 
 #endif

@@ -315,15 +315,13 @@ setEditorData(const QVariant &value)
     else if (propInfo.isEnumType()) {
       QString name = CQUtil::variantToString(value);
 
-      const QStringList &names = propInfo.enumNames();
+      int ind = -1;
 
-      for (int i = 0; i < names.size(); ++i) {
-        if (name == names[i]) {
-          QVariant v(i);
+      if (enumStringToInd(propInfo, name, ind)) {
+        QVariant v(ind);
 
-          if (! this->setData(v)) {
-            //std::cerr << "Failed to set property " << name_.toStdString() << std::endl;
-          }
+        if (! this->setData(v)) {
+          //std::cerr << "Failed to set property " << name_.toStdString() << std::endl;
         }
       }
     }
