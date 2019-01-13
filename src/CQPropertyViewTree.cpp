@@ -56,6 +56,9 @@ CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
 
   setItemDelegate(delegate_);
 
+  connect(delegate_, SIGNAL(closeEditor(QWidget*, QAbstractItemDelegate::EndEditHint)),
+          this, SLOT(closeEditorSlot(QWidget*, QAbstractItemDelegate::EndEditHint)));
+
   //--
 
   connect(this, SIGNAL(clicked(const QModelIndex &)),
@@ -199,8 +202,10 @@ setCurrentProperty(QObject *object, const QString &path)
 
   QModelIndex ind = indexFromItem(item, 0, /*map*/true);
 
-  if (ind.isValid())
-    setCurrentIndex(ind);
+  if (! ind.isValid())
+    return false;
+
+  setCurrentIndex(ind);
 
   return true;
 }
@@ -661,6 +666,16 @@ collapseItem(CQPropertyViewItem *item)
 
 void
 CQPropertyViewTree::
+editItem(CQPropertyViewItem *item)
+{
+  QModelIndex ind = indexFromItem(item, 0, /*map*/true);
+
+  if (ind.isValid())
+    edit(ind);
+}
+
+void
+CQPropertyViewTree::
 printSlot() const
 {
   QModelIndexList indices = this->selectionModel()->selectedRows();
@@ -684,6 +699,41 @@ printChangedSlot() const
 
   for (const auto &nv : nameValues)
     std::cerr << nv.first.toStdString() << "=" << nv.second.toString().toStdString() << "\n";
+}
+
+void
+CQPropertyViewTree::
+closeEditor()
+{
+  QWidget *editor = delegate_->getEditor();
+  if (! editor) return;
+
+  if (! delegate_->isEditing())
+    return;
+
+  delegate_->setModelData(editor, model(), delegate_->getEditorIndex());
+
+  // turn off edit triggers so we don't start a new editor
+  QAbstractItemView::EditTriggers triggers = editTriggers();
+
+  setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+  // close editor
+  QAbstractItemView::closeEditor(editor, QAbstractItemDelegate::NoHint);
+
+  // restore edit triggers
+  setEditTriggers(triggers);
+
+  //setSelectedIndex(delegate_->getEditorIndex().row());
+
+  delegate_->setEditing(false);
+}
+
+void
+CQPropertyViewTree::
+closeEditorSlot(QWidget *, QAbstractItemDelegate::EndEditHint)
+{
+  delegate_->setEditing(false);
 }
 
 QModelIndex

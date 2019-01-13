@@ -42,7 +42,7 @@ class CQPropertyViewSizeFEditor : public CQPropertyViewEditorFactory {
 
  private:
   double max_  { 1.0 };
-  double step_ { 0.0 };
+  double step_ { 1.0 };
 };
 
 #endif

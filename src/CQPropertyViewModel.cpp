@@ -219,8 +219,7 @@ bool
 CQPropertyViewModel::
 setProperty(QObject *object, const QString &path, const QVariant &value)
 {
-  CQPropertyViewItem *item =
-    propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+  CQPropertyViewItem *item = propertyItem(object, path, '.', /*create*/false, /*alias*/true);
 
   if (! item)
     return false;
@@ -240,8 +239,7 @@ bool
 CQPropertyViewModel::
 getProperty(const QObject *object, const QString &path, QVariant &value) const
 {
-  const CQPropertyViewItem *item =
-    propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+  const CQPropertyViewItem *item = propertyItem(object, path, '.', /*create*/false, /*alias*/true);
 
   if (! item)
     return false;

@@ -42,9 +42,9 @@ class CQPropertyViewPointFEditor : public CQPropertyViewEditorFactory {
   void setValue(QWidget *w, const QVariant &var);
 
  private:
-  double min_ { 0 };
-  double max_ { 1 };
-  double step_{ 1 };
+  double min_  { 0.0 };
+  double max_  { 1.0 };
+  double step_ { 1.0 };
 };
 
 #endif

@@ -2,6 +2,7 @@
 #define CQPropertyViewTree_H
 
 #include <QTreeView>
+#include <QAbstractItemDelegate>
 
 class CQPropertyViewModel;
 class CQPropertyViewItem;
@@ -25,8 +26,6 @@ class CQPropertyViewTree : public QTreeView {
   CQPropertyViewModel *propertyModel() const { return model_; }
 
   CQPropertyViewFilter *filterModel() const { return filter_; }
-
-  void setFilter(const QString &filter);
 
   void clear();
 
@@ -59,6 +58,16 @@ class CQPropertyViewTree : public QTreeView {
   void expandAll(CQPropertyViewItem *item);
   void collapseAll(CQPropertyViewItem *item);
 
+  void scrollToItem(CQPropertyViewItem *item);
+
+  void expandItem(CQPropertyViewItem *item);
+  void collapseItem(CQPropertyViewItem *item);
+
+  void selectItem(CQPropertyViewItem *item, bool selected);
+
+  void editItem(CQPropertyViewItem *item);
+  void closeEditor();
+
  signals:
   void valueChanged(QObject *, const QString &);
 
@@ -75,6 +84,7 @@ class CQPropertyViewTree : public QTreeView {
 
   void expandSelected();
 
+  void setFilter(const QString &filter);
   void search(const QString &text);
 
   void printSlot() const;
@@ -88,6 +98,8 @@ class CQPropertyViewTree : public QTreeView {
   void itemSelectionSlot();
 
   void customContextMenuSlot(const QPoint &pos);
+
+  void closeEditorSlot(QWidget *, QAbstractItemDelegate::EndEditHint);
 
  protected:
   bool selectObject(CQPropertyViewItem *item, const QObject *obj);
@@ -106,13 +118,6 @@ class CQPropertyViewTree : public QTreeView {
   void leaveEvent(QEvent *) override;
 
   void keyPressEvent(QKeyEvent *ke) override;
-
-  void scrollToItem(CQPropertyViewItem *item);
-
-  void expandItem(CQPropertyViewItem *item);
-  void collapseItem(CQPropertyViewItem *item);
-
-  void selectItem(CQPropertyViewItem *item, bool selected);
 
   QModelIndex indexFromItem(CQPropertyViewItem *item, int column, bool map=false) const;
 

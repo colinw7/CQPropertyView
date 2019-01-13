@@ -58,11 +58,23 @@ class CQPropertyViewDelegate : public QItemDelegate {
   void drawString(QPainter *painter, const QStyleOptionViewItem &option,
                   const QString &str, const QModelIndex &index, bool inside) const;
 
+  //---
+
+  // get/set is editing
+  bool isEditing() const { return editing_ && editor_; }
+  void setEditing(bool b) { editing_ = b; }
+
+  // get current editor
+  QWidget *getEditor() const { return editor_; }
+
+  // get editor index
+  QModelIndex getEditorIndex() const { return editorIndex_; }
+
  private:
-  CQPropertyViewTree* view_       { nullptr };
-  QWidget*            editor      { nullptr };
-  bool                editing     { false };
-  QModelIndex         editorIndex;
+  CQPropertyViewTree* view_        { nullptr };
+  QWidget*            editor_      { nullptr };
+  bool                editing_     { false };
+  QModelIndex         editorIndex_;
 };
 
 #endif
