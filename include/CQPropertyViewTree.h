@@ -14,6 +14,7 @@ class CQPropertyViewTree : public QTreeView {
 
   Q_PROPERTY(bool itemMenu       READ isItemMenu       WRITE setItemMenu      )
   Q_PROPERTY(bool mouseHighlight READ isMouseHighlight WRITE setMouseHighlight)
+  Q_PROPERTY(bool resizeOnSho    READ isResizeOnShow   WRITE setResizeOnShow  )
 
  public:
   typedef std::vector<CQPropertyViewItem *> Items;
@@ -49,11 +50,16 @@ class CQPropertyViewTree : public QTreeView {
   bool isMouseHighlight() const { return mouseHighlight_; }
   void setMouseHighlight(bool b);
 
+  bool isResizeOnShow() const { return resizeOnShow_; }
+  void setResizeOnShow(bool b) { resizeOnShow_ = b; }
+
   void setMouseInd(const QModelIndex &i);
   void unsetMouseInd();
   bool isMouseInd(const QModelIndex &i);
 
   CQPropertyViewItem *getModelItem(const QModelIndex &index, bool map=true) const;
+
+  void resizeColumns();
 
   void expandAll(CQPropertyViewItem *item);
   void collapseAll(CQPropertyViewItem *item);
@@ -119,6 +125,10 @@ class CQPropertyViewTree : public QTreeView {
 
   void keyPressEvent(QKeyEvent *ke) override;
 
+  void showEvent(QShowEvent *e) override;
+
+  void resizeEvent(QResizeEvent *e) override;
+
   QModelIndex indexFromItem(CQPropertyViewItem *item, int column, bool map=false) const;
 
  private:
@@ -127,7 +137,9 @@ class CQPropertyViewTree : public QTreeView {
   CQPropertyViewDelegate* delegate_       { nullptr };
   bool                    itemMenu_       { false };
   bool                    mouseHighlight_ { false };
+  bool                    resizeOnShow_   { true };
   bool                    hasMouseInd_    { false };
+  bool                    shown_          { false };
   QModelIndex             mouseInd_;
 };
 

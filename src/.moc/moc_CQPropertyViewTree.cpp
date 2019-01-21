@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CQPropertyViewTree_t {
-    QByteArrayData data[30];
-    char stringdata0[346];
+    QByteArrayData data[31];
+    char stringdata0[358];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -60,7 +60,8 @@ QT_MOC_LITERAL(25, 262, 15), // "closeEditorSlot"
 QT_MOC_LITERAL(26, 278, 8), // "QWidget*"
 QT_MOC_LITERAL(27, 287, 34), // "QAbstractItemDelegate::EndEdi..."
 QT_MOC_LITERAL(28, 322, 8), // "itemMenu"
-QT_MOC_LITERAL(29, 331, 14) // "mouseHighlight"
+QT_MOC_LITERAL(29, 331, 14), // "mouseHighlight"
+QT_MOC_LITERAL(30, 346, 11) // "resizeOnSho"
 
     },
     "CQPropertyViewTree\0valueChanged\0\0"
@@ -72,7 +73,7 @@ QT_MOC_LITERAL(29, 331, 14) // "mouseHighlight"
     "itemClickedSlot\0index\0itemSelectionSlot\0"
     "customContextMenuSlot\0pos\0closeEditorSlot\0"
     "QWidget*\0QAbstractItemDelegate::EndEditHint\0"
-    "itemMenu\0mouseHighlight"
+    "itemMenu\0mouseHighlight\0resizeOnSho"
 };
 #undef QT_MOC_LITERAL
 
@@ -83,7 +84,7 @@ static const uint qt_meta_data_CQPropertyViewTree[] = {
        0,       // classname
        0,    0, // classinfo
       17,   14, // methods
-       2,  144, // properties
+       3,  144, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
@@ -134,6 +135,7 @@ static const uint qt_meta_data_CQPropertyViewTree[] = {
  // properties: name, type, flags
       28, QMetaType::Bool, 0x00095103,
       29, QMetaType::Bool, 0x00095103,
+      30, QMetaType::Bool, 0x00095003,
 
        0        // eod
 };
@@ -213,6 +215,7 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: *reinterpret_cast< bool*>(_v) = _t->isItemMenu(); break;
         case 1: *reinterpret_cast< bool*>(_v) = _t->isMouseHighlight(); break;
+        case 2: *reinterpret_cast< bool*>(_v) = _t->isResizeOnShow(); break;
         default: break;
         }
     } else if (_c == QMetaObject::WriteProperty) {
@@ -222,6 +225,7 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: _t->setItemMenu(*reinterpret_cast< bool*>(_v)); break;
         case 1: _t->setMouseHighlight(*reinterpret_cast< bool*>(_v)); break;
+        case 2: _t->setResizeOnShow(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
     } else if (_c == QMetaObject::ResetProperty) {
@@ -266,17 +270,17 @@ int CQPropertyViewTree::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
    else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 2;
+        _id -= 3;
     }
 #endif // QT_NO_PROPERTIES
     return _id;

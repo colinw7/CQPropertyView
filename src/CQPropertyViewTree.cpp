@@ -212,6 +212,14 @@ setCurrentProperty(QObject *object, const QString &path)
 
 void
 CQPropertyViewTree::
+resizeColumns()
+{
+  resizeColumnToContents(0);
+  resizeColumnToContents(1);
+}
+
+void
+CQPropertyViewTree::
 expandAll()
 {
   CQPropertyViewItem *root = model_->root();
@@ -266,8 +274,7 @@ expandSelected()
     expandItemTree(item);
   }
 
-  resizeColumnToContents(0);
-  resizeColumnToContents(1);
+  resizeColumns();
 
   for (int i = 0; i < indices.length(); ++i) {
     CQPropertyViewItem *item = getModelItem(indices[i]);
@@ -342,8 +349,7 @@ search(const QString &text)
   //---
 
   // make item visible
-  resizeColumnToContents(0);
-  resizeColumnToContents(1);
+  resizeColumns();
 
   for (uint i = 0; i < items.size(); ++i) {
     CQPropertyViewItem *item = items[i];
@@ -614,6 +620,24 @@ keyPressEvent(QKeyEvent *ke)
   }
   else
     QTreeView::keyPressEvent(ke);
+}
+
+void
+CQPropertyViewTree::
+showEvent(QShowEvent *)
+{
+  if (! shown_) {
+    if (isResizeOnShow())
+      resizeColumns();
+
+    shown_ = true;
+  }
+}
+
+void
+CQPropertyViewTree::
+resizeEvent(QResizeEvent *)
+{
 }
 
 void
