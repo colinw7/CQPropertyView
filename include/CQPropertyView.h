@@ -26,6 +26,9 @@ class CQPropertyViewMgr {
   CQPropertyViewItem *editItem() const { return editItem_; }
   void setEditItem(CQPropertyViewItem *editItem) { editItem_ = editItem; }
 
+  CQPropertyViewItem *drawItem() const { return drawItem_; }
+  void setDrawItem(CQPropertyViewItem *drawItem) { drawItem_ = drawItem; }
+
  private:
   CQPropertyViewMgr();
 
@@ -35,6 +38,7 @@ class CQPropertyViewMgr {
   Types                       types_;
   CQPropertyViewEditorMgr*    editorMgr_ { nullptr };
   mutable CQPropertyViewItem* editItem_  { nullptr };
+  mutable CQPropertyViewItem* drawItem_  { nullptr };
 };
 
 #endif

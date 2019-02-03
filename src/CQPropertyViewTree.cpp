@@ -216,6 +216,9 @@ resizeColumns()
 {
   resizeColumnToContents(0);
   resizeColumnToContents(1);
+
+  header()->setStretchLastSection(false);
+  header()->setStretchLastSection(true);
 }
 
 void

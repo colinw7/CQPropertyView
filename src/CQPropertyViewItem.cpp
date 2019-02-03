@@ -458,13 +458,21 @@ tip() const
   if (typeName == "bool")
     return (var.toBool() ? "true" : "false");
 
-  if (propInfo.isEnumType()) {
+  if      (propInfo.isEnumType()) {
     int ind = var.toInt();
 
     QString str;
 
     if (enumIndToString(propInfo, ind, str))
       return str;
+  }
+  else if (var.type() == QVariant::UserType) {
+    QString str;
+
+    if (! CQUtil::userVariantToString(var, str))
+      return "";
+
+    return str;
   }
 
   return var.toString();

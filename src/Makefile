@@ -617,7 +617,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAutoPtr.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
-		../../CQUtil/include/CQUtilMeta.h
+		../../CQUtil/include/CQUtilMeta.h \
+		../include/CQPropertyView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewDelegate.o CQPropertyViewDelegate.cpp
 
 ../obj/CQPropertyViewEditor.o: CQPropertyViewEditor.cpp ../include/CQPropertyViewEditor.h

@@ -2,6 +2,7 @@
 #include <CQPropertyViewTree.h>
 #include <CQPropertyViewModel.h>
 #include <CQPropertyViewItem.h>
+#include <CQPropertyView.h>
 
 #include <QApplication>
 #include <QTreeWidget>
@@ -112,6 +113,8 @@ paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &
 {
   CQPropertyViewItem *item = view_->getModelItem(index);
   assert(item);
+
+  CQPropertyViewMgrInst->setDrawItem(item);
 
   //---
 
