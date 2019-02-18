@@ -49,11 +49,15 @@ CQPropertyViewItem::
     delete child;
 }
 
+//---
+
 void
 CQPropertyViewItem::
 addChild(CQPropertyViewItem *row)
 {
   children_.push_back(row);
+
+  invalidateVisible();
 }
 
 void
@@ -75,8 +79,56 @@ removeChild(CQPropertyViewItem *row)
     std::swap(children_, children);
 
     delete row;
+
+    invalidateVisible();
   }
 }
+
+//---
+
+const CQPropertyViewItem::Children &
+CQPropertyViewItem::
+visibleChildren() const
+{
+  if (! visibleChildrenValid_) {
+    CQPropertyViewItem *th = const_cast<CQPropertyViewItem *>(this);
+
+    th->anyChildrenHidden_ = false;
+
+    for (auto &child : children_) {
+      if (child->isHidden()) {
+        th->anyChildrenHidden_ = true;
+        break;
+      }
+    }
+
+    if (anyChildrenHidden_) {
+      for (auto &child : children_) {
+        if (! child->isHidden())
+          th->visibleChildren_.push_back(child);
+      }
+    }
+
+    th->visibleChildrenValid_ = true;
+  }
+
+  if (anyChildrenHidden_)
+    return visibleChildren_;
+  else
+    return children_;
+}
+
+void
+CQPropertyViewItem::
+invalidateVisible()
+{
+  visibleChildrenValid_ = false;
+  anyChildrenHidden_    = false;
+
+  visibleChildren_.clear();
+}
+
+//---
 
 QString
 CQPropertyViewItem::

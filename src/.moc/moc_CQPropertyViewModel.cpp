@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CQPropertyViewModel_t {
-    QByteArrayData data[3];
-    char stringdata0[34];
+    QByteArrayData data[4];
+    char stringdata0[45];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,10 +33,12 @@ static const qt_meta_stringdata_CQPropertyViewModel_t qt_meta_stringdata_CQPrope
     {
 QT_MOC_LITERAL(0, 0, 19), // "CQPropertyViewModel"
 QT_MOC_LITERAL(1, 20, 12), // "valueChanged"
-QT_MOC_LITERAL(2, 33, 0) // ""
+QT_MOC_LITERAL(2, 33, 0), // ""
+QT_MOC_LITERAL(3, 34, 10) // "showHidden"
 
     },
-    "CQPropertyViewModel\0valueChanged\0"
+    "CQPropertyViewModel\0valueChanged\0\0"
+    "showHidden"
 };
 #undef QT_MOC_LITERAL
 
@@ -47,7 +49,7 @@ static const uint qt_meta_data_CQPropertyViewModel[] = {
        0,       // classname
        0,    0, // classinfo
        1,   14, // methods
-       0,    0, // properties
+       1,   24, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
@@ -58,6 +60,9 @@ static const uint qt_meta_data_CQPropertyViewModel[] = {
 
  // signals: parameters
     QMetaType::Void, QMetaType::QObjectStar, QMetaType::QString,    2,    2,
+
+ // properties: name, type, flags
+       3, QMetaType::Bool, 0x00095103,
 
        0        // eod
 };
@@ -81,6 +86,26 @@ void CQPropertyViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
             }
         }
     }
+#ifndef QT_NO_PROPERTIES
+    else if (_c == QMetaObject::ReadProperty) {
+        CQPropertyViewModel *_t = static_cast<CQPropertyViewModel *>(_o);
+        Q_UNUSED(_t)
+        void *_v = _a[0];
+        switch (_id) {
+        case 0: *reinterpret_cast< bool*>(_v) = _t->isShowHidden(); break;
+        default: break;
+        }
+    } else if (_c == QMetaObject::WriteProperty) {
+        CQPropertyViewModel *_t = static_cast<CQPropertyViewModel *>(_o);
+        Q_UNUSED(_t)
+        void *_v = _a[0];
+        switch (_id) {
+        case 0: _t->setShowHidden(*reinterpret_cast< bool*>(_v)); break;
+        default: break;
+        }
+    } else if (_c == QMetaObject::ResetProperty) {
+    }
+#endif // QT_NO_PROPERTIES
 }
 
 const QMetaObject CQPropertyViewModel::staticMetaObject = {
@@ -116,6 +141,23 @@ int CQPropertyViewModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
             *reinterpret_cast<int*>(_a[0]) = -1;
         _id -= 1;
     }
+#ifndef QT_NO_PROPERTIES
+   else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+            || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
+        qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
+    } else if (_c == QMetaObject::QueryPropertyDesignable) {
+        _id -= 1;
+    } else if (_c == QMetaObject::QueryPropertyScriptable) {
+        _id -= 1;
+    } else if (_c == QMetaObject::QueryPropertyStored) {
+        _id -= 1;
+    } else if (_c == QMetaObject::QueryPropertyEditable) {
+        _id -= 1;
+    } else if (_c == QMetaObject::QueryPropertyUser) {
+        _id -= 1;
+    }
+#endif // QT_NO_PROPERTIES
     return _id;
 }
 

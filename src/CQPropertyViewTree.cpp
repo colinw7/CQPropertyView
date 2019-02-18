@@ -151,8 +151,8 @@ selectObject(const QObject *obj)
 {
   CQPropertyViewItem *root = model_->root();
 
-  for (int i = 0; i < root->numChildren(); ++i) {
-    CQPropertyViewItem *item = root->child(i);
+  for (int i = 0; i < model_->numItemChildren(root); ++i) {
+    CQPropertyViewItem *item = model_->itemChild(root, i);
 
     if (selectObject(item, obj))
       return;
@@ -172,8 +172,8 @@ selectObject(CQPropertyViewItem *item, const QObject *obj)
     }
   }
 
-  for (int i = 0; i < item->numChildren(); ++i) {
-    CQPropertyViewItem *item1 = item->child(i);
+  for (int i = 0; i < model_->numItemChildren(item); ++i) {
+    CQPropertyViewItem *item1 = model_->itemChild(item, i);
 
     if (selectObject(item1, obj))
       return true;
@@ -236,8 +236,8 @@ expandAll(CQPropertyViewItem *item)
 {
   expandItemTree(item);
 
-  for (int i = 0; i < item->numChildren(); ++i) {
-    CQPropertyViewItem *item1 = item->child(i);
+  for (int i = 0; i < model_->numItemChildren(item); ++i) {
+    CQPropertyViewItem *item1 = model_->itemChild(item, i);
 
     expandAll(item1);
   }
@@ -258,8 +258,8 @@ collapseAll(CQPropertyViewItem *item)
 {
   collapseItemTree(item);
 
-  for (int i = 0; i < item->numChildren(); ++i) {
-    CQPropertyViewItem *item1 = item->child(i);
+  for (int i = 0; i < model_->numItemChildren(item); ++i) {
+    CQPropertyViewItem *item1 = model_->itemChild(item, i);
 
     collapseAll(item1);
   }
@@ -306,6 +306,15 @@ getSelectedObjects(std::vector<QObject *> &objs)
 
 void
 CQPropertyViewTree::
+showHidden(bool b)
+{
+  model_->setShowHidden(b);
+
+  model_->reset();
+}
+
+void
+CQPropertyViewTree::
 search(const QString &text)
 {
   QString searchStr = text;
@@ -323,8 +332,8 @@ search(const QString &text)
   // get matching items
   Items items;
 
-  for (int i = 0; i < root->numChildren(); ++i) {
-    CQPropertyViewItem *item = root->child(i);
+  for (int i = 0; i < model_->numItemChildren(root); ++i) {
+    CQPropertyViewItem *item = model_->itemChild(root, i);
 
     searchItemTree(item, regexp, items);
   }
@@ -370,10 +379,10 @@ searchItemTree(CQPropertyViewItem *item, const QRegExp &regexp, Items &items)
   if (regexp.exactMatch(itemText))
     items.push_back(item);
 
-  int n = item->numChildren();
+  int n = model_->numItemChildren(item);
 
   for (int i = 0; i < n; ++i) {
-    CQPropertyViewItem *item1 = item->child(i);
+    CQPropertyViewItem *item1 = model_->itemChild(item, i);
 
     searchItemTree(item1, regexp, items);
   }
@@ -483,12 +492,12 @@ getItemData(CQPropertyViewItem *item, QObject* &obj, QString &path)
   // use object from first branch child
   CQPropertyViewItem *item1 = item;
 
-  int n = item1->numChildren();
+  int n = model_->numItemChildren(item1);
 
   while (n > 0) {
-    item1 = item1->child(0);
+    item1 = model_->itemChild(item1, 0);
 
-    n = item1->numChildren();
+    n = model_->numItemChildren(item1);
   }
 
   obj = item1->object();
@@ -531,14 +540,31 @@ customContextMenuSlot(const QPoint &pos)
   menu->addAction(expandAction);
   menu->addAction(collapseAction);
 
+  //---
+
+  QAction *showHidden = new QAction("Show Hidden", menu);
+
+  showHidden->setCheckable(true);
+  showHidden->setChecked(model_->isShowHidden());
+
+  connect(showHidden, SIGNAL(triggered(bool)), this, SLOT(showHidden(bool)));
+
+  menu->addSeparator();
+  menu->addAction(showHidden);
+
+  //---
+
   QAction *printAction        = new QAction("Print", menu);
   QAction *printChangedAction = new QAction("Print Changed", menu);
 
+  menu->addSeparator();
   menu->addAction(printAction);
   menu->addAction(printChangedAction);
 
   connect(printAction       , SIGNAL(triggered()), this, SLOT(printSlot()));
   connect(printChangedAction, SIGNAL(triggered()), this, SLOT(printChangedSlot()));
+
+  //---
 
   menu->exec(mpos);
 

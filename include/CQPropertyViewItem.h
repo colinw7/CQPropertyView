@@ -18,6 +18,12 @@ class QWidget;
 class CQPropertyViewItem : public QObject {
   Q_OBJECT
 
+  Q_PROPERTY(QString name     READ name       WRITE setName    )
+  Q_PROPERTY(QString alias    READ alias      WRITE setAlias   )
+  Q_PROPERTY(bool    editable READ isEditable WRITE setEditable)
+  Q_PROPERTY(bool    hidden   READ isHidden   WRITE setHidden  )
+  Q_PROPERTY(bool    inside   READ isInside   WRITE setInside  )
+
  public:
   typedef std::vector<CQPropertyViewItem *> Children;
 
@@ -26,46 +32,96 @@ class CQPropertyViewItem : public QObject {
 
  ~CQPropertyViewItem();
 
+  //---
+
+  //! check if valid
   bool isValid() const { return id_ == 0xFEEDBEEF; }
 
+  //! get parent item
   CQPropertyViewItem *parent() const { return parent_; }
 
+  //! get associated object
   QObject *object() const { return object_; }
 
+  //---
+
+  // get number of children
+  int numChildren() const { return children_.size(); }
+
+  //! get children
   const Children &children() const { return children_; }
 
+  // get child
   CQPropertyViewItem *child(int i) const {
     assert(i >= 0 && i < numChildren());
 
-    return children_[i];
+    return children()[i];
   }
 
-  int numChildren() const { return children_.size(); }
+  //---
 
+  //! add child
+  void addChild(CQPropertyViewItem *row);
+
+  //! remove child
+  void removeChild(CQPropertyViewItem *row);
+
+  //---
+
+  //! get number of visible children
+  int numVisibleChildren() const { return visibleChildren().size(); }
+
+  //! get visible children
+  const Children &visibleChildren() const;
+
+  //! get visible child
+  CQPropertyViewItem *visibleChild(int i) const {
+   assert(i >= 0 && i < numVisibleChildren());
+
+    return visibleChildren()[i];
+  }
+
+  //! invalidate cached visible children
+  void invalidateVisible();
+
+  //---
+
+  //! get/set name
   const QString &name() const { return name_; }
   void setName(const QString &s) { name_ = s; }
 
+  //! get/set alias
   const QString &alias() const { return alias_; }
-  void setAlias(const QString &v) { alias_ = v; }
+  CQPropertyViewItem &setAlias(const QString &s) { alias_ = s; return *this; }
 
-  void addChild(CQPropertyViewItem *row);
-
-  void removeChild(CQPropertyViewItem *row);
-
+  //! get/set editable
   bool isEditable() const { return editable_; }
-  void setEditable(bool b) { editable_ = b; }
+  CQPropertyViewItem &setEditable(bool b) { editable_ = b; return *this; }
 
+  //! get/set hidden
+  bool isHidden() const { return hidden_; }
+  CQPropertyViewItem &setHidden(bool b) {
+    hidden_ = b; if (parent_) parent_->invalidateVisible(); return *this;
+  }
+
+  //! get/set inside
   bool isInside() const { return inside_; }
   void setInside(bool b) { inside_ = b; }
 
+  //! get/set enum values
   const QStringList &values() const { return values_; }
   void setValues(const QStringList &v) { values_ = v; }
 
+  //! get alias name
   QString aliasName() const;
 
+  //! get path
   QString path(const QString &sep="/", bool alias=false, CQPropertyViewItem *root=nullptr) const;
 
+  //! get initial value as string
   QString initStr() const;
+
+  //! get data value as string
   QString dataStr() const;
 
   //! set editor
@@ -106,6 +162,7 @@ class CQPropertyViewItem : public QObject {
   QString getDefaultValue() const;
 
  signals:
+  //! emitted when value changed
   void valueChanged(QObject *obj, const QString &name);
 
  private slots:
@@ -116,18 +173,23 @@ class CQPropertyViewItem : public QObject {
   bool enumStringToInd(const CQUtil::PropInfo &propInfo, const QString &str, int &ind) const;
 
  private:
-  uint                         id_       { 0xFEEDBEEF };
-  CQPropertyViewItem*          parent_   { nullptr };
-  QPointer<QObject>            object_;
-  QString                      name_;
-  QString                      alias_;
-  Children                     children_;
-  QVariant                     initValue_;
-  bool                         editable_ { false };
-  bool                         inside_   { false };
-  QWidget*                     widget_   { nullptr };
-  CQPropertyViewEditorFactory *editor_   { nullptr }; //! editor interface
-  QStringList                  values_;
+  uint                         id_       { 0xFEEDBEEF }; //! unique id
+  CQPropertyViewItem*          parent_   { nullptr };    //! parent item
+  QPointer<QObject>            object_;                  //! associated objects
+  QString                      name_;                    //! name
+  QString                      alias_;                   //! alias
+  Children                     children_;                //! child items
+  QVariant                     initValue_;               //! init value
+  bool                         editable_ { false };      //! is editable
+  bool                         hidden_   { false };      //! is hidden
+  bool                         inside_   { false };      //! is mouse inside
+  QWidget*                     widget_   { nullptr };    //! edit widget
+  CQPropertyViewEditorFactory *editor_   { nullptr };    //! editor interface
+  QStringList                  values_;                  //! enum values
+
+  Children visibleChildren_;                //! visible child items
+  bool     visibleChildrenValid_ { false }; //! visible child items valid
+  bool     anyChildrenHidden_    { false }; //! any children hidden
 };
 
 #endif

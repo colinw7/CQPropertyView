@@ -90,6 +90,8 @@ class CQPropertyViewTree : public QTreeView {
 
   void expandSelected();
 
+  void showHidden(bool);
+
   void setFilter(const QString &filter);
   void search(const QString &text);
 

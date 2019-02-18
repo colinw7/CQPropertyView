@@ -9,6 +9,8 @@ class CQPropertyViewItem;
 class CQPropertyViewModel : public QAbstractItemModel {
   Q_OBJECT
 
+  Q_PROPERTY(bool showHidden READ isShowHidden WRITE setShowHidden)
+
  public:
   using NameValues = std::map<QString,QVariant>;
 
@@ -20,9 +22,14 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   //---
 
-  int columnCount(const QModelIndex &) const override;
+  bool isShowHidden() const { return showHidden_; }
+  void setShowHidden(bool b) { showHidden_ = b; }
 
-  int rowCount(const QModelIndex &parent) const override;
+  //---
+
+  int columnCount(const QModelIndex &parent=QModelIndex()) const override;
+
+  int rowCount(const QModelIndex &parent=QModelIndex()) const override;
 
   QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
@@ -57,11 +64,21 @@ class CQPropertyViewModel : public QAbstractItemModel {
   QModelIndex indexFromItem(CQPropertyViewItem *item, int column) const;
 
   void refresh();
+  void reset();
 
   void objectNames(const QObject *object, QStringList &strs) const;
 
   void getChangedNameValues(NameValues &nameValues) const;
   void getChangedNameValues(const QObject *object, NameValues &nameValues) const;
+
+ public:
+  typedef std::vector<CQPropertyViewItem *> Children;
+
+  int numItemChildren(CQPropertyViewItem *item) const;
+
+  const Children &itemChildren(CQPropertyViewItem *item) const;
+
+  CQPropertyViewItem *itemChild(CQPropertyViewItem *item, int i) const;
 
  private:
   const CQPropertyViewItem *propertyItem(const QObject *object, const QString &path,
@@ -92,7 +109,8 @@ class CQPropertyViewModel : public QAbstractItemModel {
   void valueChanged(QObject *, const QString &);
 
  private:
-  CQPropertyViewItem *root_ { nullptr };
+  bool                showHidden_ { false };   //! show hidden properties
+  CQPropertyViewItem *root_       { nullptr }; //! root item
 };
 
 #endif
