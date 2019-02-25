@@ -198,7 +198,8 @@ addProperty(const QString &path, QObject *object, const QString &name, const QSt
 
   QStringList pathParts = path.split('/', QString::SkipEmptyParts);
 
-  CQPropertyViewItem *parentItem = hierItem(pathParts, /*create*/true, /*alias*/false);
+  CQPropertyViewItem *parentItem =
+    hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/false);
 
   CQPropertyViewItem *item = new CQPropertyViewItem(parentItem, object, name);
 
@@ -219,7 +220,8 @@ bool
 CQPropertyViewModel::
 setProperty(QObject *object, const QString &path, const QVariant &value)
 {
-  CQPropertyViewItem *item = propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+  CQPropertyViewItem *item =
+    propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/true);
 
   if (! item)
     return false;
@@ -239,7 +241,8 @@ bool
 CQPropertyViewModel::
 getProperty(const QObject *object, const QString &path, QVariant &value) const
 {
-  const CQPropertyViewItem *item = propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+  const CQPropertyViewItem *item =
+    propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/true);
 
   if (! item)
     return false;
@@ -257,7 +260,8 @@ removeProperties(const QString &path, QObject *)
 
   QStringList pathParts = path.split('/', QString::SkipEmptyParts);
 
-  CQPropertyViewItem *item = hierItem(pathParts, /*create*/false, /*alias*/false);
+  CQPropertyViewItem *item =
+    hierItem(pathParts, /*create*/false, /*alias*/false, /*hidden*/false);
 
   if (item && item->parent())
     item->parent()->removeChild(item);
@@ -333,20 +337,20 @@ const CQPropertyViewItem *
 CQPropertyViewModel::
 propertyItem(const QObject *object, const QString &path) const
 {
-  return propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+  return propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/false);
 }
 
 CQPropertyViewItem *
 CQPropertyViewModel::
 propertyItem(QObject *object, const QString &path)
 {
-  return propertyItem(object, path, '.', /*create*/false, /*alias*/true);
+  return propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/false);
 }
 
 const CQPropertyViewItem *
 CQPropertyViewModel::
-propertyItem(const QObject *object, const QString &path,
-             QChar splitChar, bool create, bool alias) const
+propertyItem(const QObject *object, const QString &path, QChar splitChar,
+             bool create, bool alias, bool hidden) const
 {
   const CQPropertyViewItem *item = objectItem(object);
 
@@ -356,12 +360,13 @@ propertyItem(const QObject *object, const QString &path,
   QStringList strs = path.split(splitChar);
 
   return const_cast<CQPropertyViewModel *>(this)->
-           hierItem(const_cast<CQPropertyViewItem *>(item), strs, create, alias);
+           hierItem(const_cast<CQPropertyViewItem *>(item), strs, create, alias, hidden);
 }
 
 CQPropertyViewItem *
 CQPropertyViewModel::
-propertyItem(QObject *object, const QString &path, QChar splitChar, bool create, bool alias)
+propertyItem(QObject *object, const QString &path, QChar splitChar,
+             bool create, bool alias, bool hidden)
 {
   CQPropertyViewItem *item = objectItem(object);
 
@@ -370,27 +375,28 @@ propertyItem(QObject *object, const QString &path, QChar splitChar, bool create,
 
   QStringList strs = path.split(splitChar);
 
-  return hierItem(item, strs, create, alias);
+  return hierItem(item, strs, create, alias, hidden);
 }
 
 const CQPropertyViewItem *
 CQPropertyViewModel::
-hierItem(const QStringList &pathParts, bool create, bool alias) const
+hierItem(const QStringList &pathParts, bool create, bool alias, bool hidden) const
 {
   return const_cast<CQPropertyViewModel *>(this)->
-           hierItem(const_cast<CQPropertyViewItem *>(root()), pathParts, create, alias);
+           hierItem(const_cast<CQPropertyViewItem *>(root()), pathParts, create, alias, hidden);
 }
 
 CQPropertyViewItem *
 CQPropertyViewModel::
-hierItem(const QStringList &pathParts, bool create, bool alias)
+hierItem(const QStringList &pathParts, bool create, bool alias, bool hidden)
 {
-  return hierItem(root(), pathParts, create, alias);
+  return hierItem(root(), pathParts, create, alias, hidden);
 }
 
 CQPropertyViewItem *
 CQPropertyViewModel::
-hierItem(CQPropertyViewItem *parentItem, const QStringList &pathParts, bool create, bool alias)
+hierItem(CQPropertyViewItem *parentItem, const QStringList &pathParts,
+         bool create, bool alias, bool hidden)
 {
   if (pathParts.empty())
     return parentItem;
@@ -400,13 +406,13 @@ hierItem(CQPropertyViewItem *parentItem, const QStringList &pathParts, bool crea
   if (path.length() == 0)
     return nullptr;
 
-  for (const auto &child : itemChildren(parentItem)) {
+  for (const auto &child : itemChildren(parentItem, hidden)) {
     if (! alias) {
       if (! child->object() && child->name() == path) {
         if (pathParts.size() == 1)
           return child;
 
-        return hierItem(child, pathParts.mid(1), create, alias);
+        return hierItem(child, pathParts.mid(1), create, alias, hidden);
       }
     }
     else {
@@ -414,7 +420,7 @@ hierItem(CQPropertyViewItem *parentItem, const QStringList &pathParts, bool crea
         if (pathParts.size() == 1)
           return child;
 
-        return hierItem(child, pathParts.mid(1), create, alias);
+        return hierItem(child, pathParts.mid(1), create, alias, hidden);
       }
     }
   }
@@ -426,7 +432,7 @@ hierItem(CQPropertyViewItem *parentItem, const QStringList &pathParts, bool crea
 
   parentItem->addChild(item);
 
-  return hierItem(item, pathParts.mid(1), create, alias);
+  return hierItem(item, pathParts.mid(1), create, alias, hidden);
 }
 
 CQPropertyViewItem *
@@ -483,6 +489,9 @@ indexFromItem(CQPropertyViewItem *item, int column) const
   CQPropertyViewItem *root = this->root();
 
   if (item == root)
+    return QModelIndex();
+
+  if (item->isHidden() && ! isShowHidden())
     return QModelIndex();
 
   CQPropertyViewItem *parentItem = item->parent();
@@ -580,9 +589,9 @@ addNameValue(CQPropertyViewItem *item, NameValues &nameValues) const
 
 int
 CQPropertyViewModel::
-numItemChildren(CQPropertyViewItem *item) const
+numItemChildren(CQPropertyViewItem *item, bool hidden) const
 {
-  if (isShowHidden())
+  if (hidden || isShowHidden())
     return item->numChildren();
   else
     return item->numVisibleChildren();
@@ -590,9 +599,9 @@ numItemChildren(CQPropertyViewItem *item) const
 
 const CQPropertyViewModel::Children &
 CQPropertyViewModel::
-itemChildren(CQPropertyViewItem *item) const
+itemChildren(CQPropertyViewItem *item, bool hidden) const
 {
-  if (isShowHidden())
+  if (hidden || isShowHidden())
     return item->children();
   else
     return item->visibleChildren();
@@ -600,9 +609,9 @@ itemChildren(CQPropertyViewItem *item) const
 
 CQPropertyViewItem *
 CQPropertyViewModel::
-itemChild(CQPropertyViewItem *item, int i) const
+itemChild(CQPropertyViewItem *item, int i, bool hidden) const
 {
-  if (isShowHidden())
+  if (hidden || isShowHidden())
     return item->child(i);
   else
     return item->visibleChild(i);

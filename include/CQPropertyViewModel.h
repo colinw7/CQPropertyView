@@ -74,24 +74,26 @@ class CQPropertyViewModel : public QAbstractItemModel {
  public:
   typedef std::vector<CQPropertyViewItem *> Children;
 
-  int numItemChildren(CQPropertyViewItem *item) const;
+  int numItemChildren(CQPropertyViewItem *item, bool hidden=false) const;
 
-  const Children &itemChildren(CQPropertyViewItem *item) const;
+  const Children &itemChildren(CQPropertyViewItem *item, bool hidden=false) const;
 
-  CQPropertyViewItem *itemChild(CQPropertyViewItem *item, int i) const;
+  CQPropertyViewItem *itemChild(CQPropertyViewItem *item, int i, bool hidden=false) const;
 
  private:
   const CQPropertyViewItem *propertyItem(const QObject *object, const QString &path,
-                                         QChar splitChar, bool create, bool alias) const;
+                                         QChar splitChar, bool create, bool alias,
+                                         bool hidden) const;
   CQPropertyViewItem *propertyItem(QObject *object, const QString &path,
-                                   QChar splitChar, bool create, bool alias);
+                                   QChar splitChar, bool create, bool alias, bool hidden);
 
-  const CQPropertyViewItem *hierItem(const QStringList &pathPaths,
-                                     bool create=false, bool alias=false) const;
-  CQPropertyViewItem *hierItem(const QStringList &pathPaths, bool create=false, bool alias=false);
+  const CQPropertyViewItem *hierItem(const QStringList &pathPaths, bool create=false,
+                                     bool alias=false, bool hidden=false) const;
+  CQPropertyViewItem *hierItem(const QStringList &pathPaths, bool create=false,
+                               bool alias=false, bool hidden=false);
 
   CQPropertyViewItem *hierItem(CQPropertyViewItem *parentRow, const QStringList &pathPaths,
-                               bool create=false, bool alias=false);
+                               bool create=false, bool alias=false, bool hidden=false);
 
   CQPropertyViewItem *objectItem(const QObject *obj) const;
 

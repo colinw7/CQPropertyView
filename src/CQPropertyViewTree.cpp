@@ -756,6 +756,13 @@ printChangedSlot() const
 
 void
 CQPropertyViewTree::
+closeEditorSlot()
+{
+  closeEditor();
+}
+
+void
+CQPropertyViewTree::
 closeEditor()
 {
   QWidget *editor = delegate_->getEditor();

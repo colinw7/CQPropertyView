@@ -1,7 +1,8 @@
 #include <CQPropertyViewFontType.h>
 #include <CQPropertyViewItem.h>
 #include <CQPropertyViewDelegate.h>
-#include <CQFontChooser.h>
+#include <CQPropertyViewTree.h>
+#include <CQFontEdit.h>
 #include <cassert>
 
 CQPropertyViewFontType::
@@ -43,39 +44,47 @@ QWidget *
 CQPropertyViewFontEditor::
 createEdit(QWidget *parent)
 {
-  CQFontChooser *chooser = new CQFontChooser(parent);
+  CQPropertyViewTree *tree =
+   (parent ? qobject_cast<CQPropertyViewTree *>(parent->parentWidget()) : nullptr);
 
-  return chooser;
+  CQFontEdit *edit = new CQFontEdit(parent);
+
+  edit->setAutoFillBackground(true);
+
+  if (tree)
+    QObject::connect(edit, SIGNAL(menuHidden()), tree, SLOT(closeEditorSlot()));
+
+  return edit;
 }
 
 void
 CQPropertyViewFontEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQFontChooser *chooser = qobject_cast<CQFontChooser *>(w);
-  assert(chooser);
+  CQFontEdit *edit = qobject_cast<CQFontEdit *>(w);
+  assert(edit);
 
-  QObject::connect(chooser, SIGNAL(fontChanged(const QString&)), obj, method);
+  QObject::connect(edit, SIGNAL(fontChanged(const QString&)), obj, method);
 }
 
 QVariant
 CQPropertyViewFontEditor::
 getValue(QWidget *w)
 {
-  CQFontChooser *chooser = qobject_cast<CQFontChooser *>(w);
-  assert(chooser);
+  CQFontEdit *edit = qobject_cast<CQFontEdit *>(w);
+  assert(edit);
 
-  return chooser->fontName();
+  return edit->fontName();
 }
 
 void
 CQPropertyViewFontEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQFontChooser *chooser = qobject_cast<CQFontChooser *>(w);
-  assert(chooser);
+  CQFontEdit *edit = qobject_cast<CQFontEdit *>(w);
+  assert(edit);
 
   QString str = var.toString();
 
-  chooser->setFontName(str);
+  edit->setFontName(str);
 }

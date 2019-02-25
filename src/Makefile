@@ -992,7 +992,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../include/CQPropertyViewDelegate.h \
-		../../CQUtil/include/CQColorChooser.h
+		../include/CQPropertyViewTree.h \
+		../../CQUtil/include/CQColorEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewColorType.o CQPropertyViewColorType.cpp
 
 ../obj/CQPropertyViewFontType.o: CQPropertyViewFontType.cpp ../include/CQPropertyViewFontType.h \
@@ -1055,7 +1056,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../include/CQPropertyViewDelegate.h \
-		../../CQUtil/include/CQFontChooser.h
+		../include/CQPropertyViewTree.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewFontType.o CQPropertyViewFontType.cpp
 
 ../obj/CQPropertyViewIntegerType.o: CQPropertyViewIntegerType.cpp ../include/CQPropertyViewIntegerType.h \

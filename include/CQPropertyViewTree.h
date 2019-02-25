@@ -98,6 +98,8 @@ class CQPropertyViewTree : public QTreeView {
   void printSlot() const;
   void printChangedSlot() const;
 
+  void closeEditorSlot();
+
  protected slots:
   void modelResetSlot();
 

@@ -1,7 +1,8 @@
 #include <CQPropertyViewColorType.h>
 #include <CQPropertyViewItem.h>
 #include <CQPropertyViewDelegate.h>
-#include <CQColorChooser.h>
+#include <CQPropertyViewTree.h>
+#include <CQColorEdit.h>
 #include <cassert>
 
 CQPropertyViewColorType::
@@ -43,43 +44,47 @@ QWidget *
 CQPropertyViewColorEditor::
 createEdit(QWidget *parent)
 {
-  CQColorChooser *chooser = new CQColorChooser(parent);
+  CQPropertyViewTree *tree =
+   (parent ? qobject_cast<CQPropertyViewTree *>(parent->parentWidget()) : nullptr);
 
-  chooser->setAutoFillBackground(true);
+  CQColorEdit *edit = new CQColorEdit(parent);
 
-  chooser->setStyles(CQColorChooser::Text | CQColorChooser::ColorButton);
+  edit->setAutoFillBackground(true);
 
-  return chooser;
+  if (tree)
+    QObject::connect(edit, SIGNAL(menuHidden()), tree, SLOT(closeEditorSlot()));
+
+  return edit;
 }
 
 void
 CQPropertyViewColorEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQColorChooser *chooser = qobject_cast<CQColorChooser *>(w);
-  assert(chooser);
+  CQColorEdit *edit = qobject_cast<CQColorEdit *>(w);
+  assert(edit);
 
-  QObject::connect(chooser, SIGNAL(colorChanged(const QColor&)), obj, method);
+  QObject::connect(edit, SIGNAL(colorChanged(const QColor&)), obj, method);
 }
 
 QVariant
 CQPropertyViewColorEditor::
 getValue(QWidget *w)
 {
-  CQColorChooser *chooser = qobject_cast<CQColorChooser *>(w);
-  assert(chooser);
+  CQColorEdit *edit = qobject_cast<CQColorEdit *>(w);
+  assert(edit);
 
-  return chooser->colorName();
+  return edit->colorName();
 }
 
 void
 CQPropertyViewColorEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQColorChooser *chooser = qobject_cast<CQColorChooser *>(w);
-  assert(chooser);
+  CQColorEdit *edit = qobject_cast<CQColorEdit *>(w);
+  assert(edit);
 
   QString str = var.toString();
 
-  chooser->setColorName(str);
+  edit->setColorName(str);
 }
