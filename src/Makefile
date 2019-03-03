@@ -1056,7 +1056,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../include/CQPropertyViewDelegate.h \
-		../include/CQPropertyViewTree.h
+		../include/CQPropertyViewTree.h \
+		../../CQUtil/include/CQFontEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewFontType.o CQPropertyViewFontType.cpp
 
 ../obj/CQPropertyViewIntegerType.o: CQPropertyViewIntegerType.cpp ../include/CQPropertyViewIntegerType.h \

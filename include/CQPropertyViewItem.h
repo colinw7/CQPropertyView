@@ -43,6 +43,9 @@ class CQPropertyViewItem : public QObject {
   //! get associated object
   QObject *object() const { return object_; }
 
+  //! get associated object from this item or child items
+  QObject *hierObject() const;
+
   //---
 
   // get number of children

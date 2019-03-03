@@ -37,8 +37,8 @@ CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
   setHeader(new CQHeaderView(this));
 
   header()->setStretchLastSection(true);
-  //header()->setSectionResizeMode(QHeaderView::Interactive);
-  //header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+//header()->setSectionResizeMode(QHeaderView::Interactive);
+//header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
   //--
 
@@ -288,7 +288,7 @@ expandSelected()
 
 void
 CQPropertyViewTree::
-getSelectedObjects(std::vector<QObject *> &objs)
+getSelectedObjects(Objs &objs)
 {
   QModelIndexList indices = this->selectedIndexes();
 
@@ -510,14 +510,14 @@ customContextMenuSlot(const QPoint &pos)
   // Map point to global from the viewport to account for the header.
   QPoint mpos = viewport()->mapToGlobal(pos);
 
-  if (isItemMenu()) {
-    CQPropertyViewItem *item = getModelItem(indexAt(pos));
+  menuItem_ = getModelItem(indexAt(pos));
 
-    if (item) {
+  if (isItemMenu()) {
+    if (menuItem_) {
       QObject *obj;
       QString  path;
 
-      getItemData(item, obj, path);
+      getItemData(menuItem_, obj, path);
 
       if (obj) {
         showContextMenu(obj, mpos);
@@ -531,6 +531,28 @@ customContextMenuSlot(const QPoint &pos)
 
   QMenu *menu = new QMenu;
 
+  //---
+
+  addMenuItems(menu);
+
+  //---
+
+  menu->exec(mpos);
+
+  delete menu;
+}
+
+void
+CQPropertyViewTree::
+addMenuItems(QMenu *menu)
+{
+  addStandardMenuItems(menu);
+}
+
+void
+CQPropertyViewTree::
+addStandardMenuItems(QMenu *menu)
+{
   QAction *expandAction   = new QAction("Expand All"  , menu);
   QAction *collapseAction = new QAction("Collapse All", menu);
 
@@ -563,12 +585,6 @@ customContextMenuSlot(const QPoint &pos)
 
   connect(printAction       , SIGNAL(triggered()), this, SLOT(printSlot()));
   connect(printChangedAction, SIGNAL(triggered()), this, SLOT(printChangedSlot()));
-
-  //---
-
-  menu->exec(mpos);
-
-  delete menu;
 }
 
 void

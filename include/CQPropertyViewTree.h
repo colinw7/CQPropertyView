@@ -18,6 +18,7 @@ class CQPropertyViewTree : public QTreeView {
 
  public:
   typedef std::vector<CQPropertyViewItem *> Items;
+  typedef std::vector<QObject *>            Objs;
 
  public:
   CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model);
@@ -42,7 +43,7 @@ class CQPropertyViewTree : public QTreeView {
 
   bool setCurrentProperty(QObject *object, const QString &path);
 
-  void getSelectedObjects(std::vector<QObject *> &objs);
+  void getSelectedObjects(Objs &objs);
 
   bool isItemMenu() const { return itemMenu_; }
   void setItemMenu(bool b) { itemMenu_ = b; }
@@ -73,6 +74,12 @@ class CQPropertyViewTree : public QTreeView {
 
   void editItem(CQPropertyViewItem *item);
   void closeEditor();
+
+  virtual void addMenuItems(QMenu *menu);
+
+  void addStandardMenuItems(QMenu *menu);
+
+  CQPropertyViewItem *menuItem() const { return menuItem_; }
 
  signals:
   void valueChanged(QObject *, const QString &);
@@ -145,6 +152,7 @@ class CQPropertyViewTree : public QTreeView {
   bool                    hasMouseInd_    { false };
   bool                    shown_          { false };
   QModelIndex             mouseInd_;
+  CQPropertyViewItem*     menuItem_       { nullptr };
 };
 
 #endif

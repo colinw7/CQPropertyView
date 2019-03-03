@@ -130,6 +130,32 @@ invalidateVisible()
 
 //---
 
+QObject *
+CQPropertyViewItem::
+hierObject() const
+{
+  QObject *obj = this->object();
+
+  if (obj)
+    return obj;
+
+  for (auto &child : children_) {
+    QObject *obj = child->object();
+
+    if (obj)
+     return obj;
+  }
+
+  for (auto &child : children_) {
+    QObject *obj = child->hierObject();
+
+    if (obj)
+     return obj;
+  }
+
+  return nullptr;
+}
+
 QString
 CQPropertyViewItem::
 aliasName() const

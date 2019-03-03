@@ -51,13 +51,13 @@ QT_MOC_LITERAL(16, 153, 6), // "search"
 QT_MOC_LITERAL(17, 160, 4), // "text"
 QT_MOC_LITERAL(18, 165, 9), // "printSlot"
 QT_MOC_LITERAL(19, 175, 16), // "printChangedSlot"
-QT_MOC_LITERAL(20, 192, 14), // "modelResetSlot"
-QT_MOC_LITERAL(21, 207, 15), // "itemClickedSlot"
-QT_MOC_LITERAL(22, 223, 5), // "index"
-QT_MOC_LITERAL(23, 229, 17), // "itemSelectionSlot"
-QT_MOC_LITERAL(24, 247, 21), // "customContextMenuSlot"
-QT_MOC_LITERAL(25, 269, 3), // "pos"
-QT_MOC_LITERAL(26, 273, 15), // "closeEditorSlot"
+QT_MOC_LITERAL(20, 192, 15), // "closeEditorSlot"
+QT_MOC_LITERAL(21, 208, 14), // "modelResetSlot"
+QT_MOC_LITERAL(22, 223, 15), // "itemClickedSlot"
+QT_MOC_LITERAL(23, 239, 5), // "index"
+QT_MOC_LITERAL(24, 245, 17), // "itemSelectionSlot"
+QT_MOC_LITERAL(25, 263, 21), // "customContextMenuSlot"
+QT_MOC_LITERAL(26, 285, 3), // "pos"
 QT_MOC_LITERAL(27, 289, 8), // "QWidget*"
 QT_MOC_LITERAL(28, 298, 34), // "QAbstractItemDelegate::EndEdi..."
 QT_MOC_LITERAL(29, 333, 8), // "itemMenu"
@@ -70,10 +70,10 @@ QT_MOC_LITERAL(31, 357, 11) // "resizeOnSho"
     "menuExec\0gpos\0redraw\0expandAll\0"
     "collapseAll\0expandSelected\0showHidden\0"
     "setFilter\0filter\0search\0text\0printSlot\0"
-    "printChangedSlot\0modelResetSlot\0"
-    "itemClickedSlot\0index\0itemSelectionSlot\0"
-    "customContextMenuSlot\0pos\0closeEditorSlot\0"
-    "QWidget*\0QAbstractItemDelegate::EndEditHint\0"
+    "printChangedSlot\0closeEditorSlot\0"
+    "modelResetSlot\0itemClickedSlot\0index\0"
+    "itemSelectionSlot\0customContextMenuSlot\0"
+    "pos\0QWidget*\0QAbstractItemDelegate::EndEditHint\0"
     "itemMenu\0mouseHighlight\0resizeOnSho"
 };
 #undef QT_MOC_LITERAL
@@ -84,34 +84,35 @@ static const uint qt_meta_data_CQPropertyViewTree[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
-       3,  152, // properties
+      19,   14, // methods
+       3,  158, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,  104,    2, 0x06 /* Public */,
-       3,    2,  109,    2, 0x06 /* Public */,
-       6,    2,  114,    2, 0x06 /* Public */,
-       7,    2,  119,    2, 0x06 /* Public */,
+       1,    2,  109,    2, 0x06 /* Public */,
+       3,    2,  114,    2, 0x06 /* Public */,
+       6,    2,  119,    2, 0x06 /* Public */,
+       7,    2,  124,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       9,    0,  124,    2, 0x0a /* Public */,
-      10,    0,  125,    2, 0x0a /* Public */,
-      11,    0,  126,    2, 0x0a /* Public */,
-      12,    0,  127,    2, 0x0a /* Public */,
-      13,    1,  128,    2, 0x0a /* Public */,
-      14,    1,  131,    2, 0x0a /* Public */,
-      16,    1,  134,    2, 0x0a /* Public */,
-      18,    0,  137,    2, 0x0a /* Public */,
-      19,    0,  138,    2, 0x0a /* Public */,
-      20,    0,  139,    2, 0x09 /* Protected */,
-      21,    1,  140,    2, 0x09 /* Protected */,
-      23,    0,  143,    2, 0x09 /* Protected */,
-      24,    1,  144,    2, 0x09 /* Protected */,
-      26,    2,  147,    2, 0x09 /* Protected */,
+       9,    0,  129,    2, 0x0a /* Public */,
+      10,    0,  130,    2, 0x0a /* Public */,
+      11,    0,  131,    2, 0x0a /* Public */,
+      12,    0,  132,    2, 0x0a /* Public */,
+      13,    1,  133,    2, 0x0a /* Public */,
+      14,    1,  136,    2, 0x0a /* Public */,
+      16,    1,  139,    2, 0x0a /* Public */,
+      18,    0,  142,    2, 0x0a /* Public */,
+      19,    0,  143,    2, 0x0a /* Public */,
+      20,    0,  144,    2, 0x0a /* Public */,
+      21,    0,  145,    2, 0x09 /* Protected */,
+      22,    1,  146,    2, 0x09 /* Protected */,
+      24,    0,  149,    2, 0x09 /* Protected */,
+      25,    1,  150,    2, 0x09 /* Protected */,
+      20,    2,  153,    2, 0x09 /* Protected */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QObjectStar, QMetaType::QString,    2,    2,
@@ -130,9 +131,10 @@ static const uint qt_meta_data_CQPropertyViewTree[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,   22,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QPoint,   25,
+    QMetaType::Void, QMetaType::QModelIndex,   23,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QPoint,   26,
     QMetaType::Void, 0x80000000 | 27, 0x80000000 | 28,    2,    2,
 
  // properties: name, type, flags
@@ -162,17 +164,18 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 10: _t->search((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 11: _t->printSlot(); break;
         case 12: _t->printChangedSlot(); break;
-        case 13: _t->modelResetSlot(); break;
-        case 14: _t->itemClickedSlot((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 15: _t->itemSelectionSlot(); break;
-        case 16: _t->customContextMenuSlot((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
-        case 17: _t->closeEditorSlot((*reinterpret_cast< QWidget*(*)>(_a[1])),(*reinterpret_cast< QAbstractItemDelegate::EndEditHint(*)>(_a[2]))); break;
+        case 13: _t->closeEditorSlot(); break;
+        case 14: _t->modelResetSlot(); break;
+        case 15: _t->itemClickedSlot((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 16: _t->itemSelectionSlot(); break;
+        case 17: _t->customContextMenuSlot((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 18: _t->closeEditorSlot((*reinterpret_cast< QWidget*(*)>(_a[1])),(*reinterpret_cast< QAbstractItemDelegate::EndEditHint(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 17:
+        case 18:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -262,13 +265,13 @@ int CQPropertyViewTree::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 19;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 19;
     }
 #ifndef QT_NO_PROPERTIES
    else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
