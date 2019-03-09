@@ -737,7 +737,7 @@ void
 CQPropertyViewTree::
 editItem(CQPropertyViewItem *item)
 {
-  QModelIndex ind = indexFromItem(item, 0, /*map*/true);
+  QModelIndex ind = indexFromItem(item, 1, /*map*/true);
 
   if (ind.isValid())
     edit(ind);

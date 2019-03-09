@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CQPropertyViewTree_t {
     QByteArrayData data[32];
-    char stringdata0[369];
+    char stringdata0[370];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -62,7 +62,7 @@ QT_MOC_LITERAL(27, 289, 8), // "QWidget*"
 QT_MOC_LITERAL(28, 298, 34), // "QAbstractItemDelegate::EndEdi..."
 QT_MOC_LITERAL(29, 333, 8), // "itemMenu"
 QT_MOC_LITERAL(30, 342, 14), // "mouseHighlight"
-QT_MOC_LITERAL(31, 357, 11) // "resizeOnSho"
+QT_MOC_LITERAL(31, 357, 12) // "resizeOnShow"
 
     },
     "CQPropertyViewTree\0valueChanged\0\0"
@@ -74,7 +74,7 @@ QT_MOC_LITERAL(31, 357, 11) // "resizeOnSho"
     "modelResetSlot\0itemClickedSlot\0index\0"
     "itemSelectionSlot\0customContextMenuSlot\0"
     "pos\0QWidget*\0QAbstractItemDelegate::EndEditHint\0"
-    "itemMenu\0mouseHighlight\0resizeOnSho"
+    "itemMenu\0mouseHighlight\0resizeOnShow"
 };
 #undef QT_MOC_LITERAL
 
@@ -140,7 +140,7 @@ static const uint qt_meta_data_CQPropertyViewTree[] = {
  // properties: name, type, flags
       29, QMetaType::Bool, 0x00095103,
       30, QMetaType::Bool, 0x00095103,
-      31, QMetaType::Bool, 0x00095003,
+      31, QMetaType::Bool, 0x00095103,
 
        0        // eod
 };

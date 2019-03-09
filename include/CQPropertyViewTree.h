@@ -14,7 +14,7 @@ class CQPropertyViewTree : public QTreeView {
 
   Q_PROPERTY(bool itemMenu       READ isItemMenu       WRITE setItemMenu      )
   Q_PROPERTY(bool mouseHighlight READ isMouseHighlight WRITE setMouseHighlight)
-  Q_PROPERTY(bool resizeOnSho    READ isResizeOnShow   WRITE setResizeOnShow  )
+  Q_PROPERTY(bool resizeOnShow   READ isResizeOnShow   WRITE setResizeOnShow  )
 
  public:
   typedef std::vector<CQPropertyViewItem *> Items;

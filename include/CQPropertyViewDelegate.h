@@ -3,6 +3,7 @@
 
 #include <QItemDelegate>
 //#include <CAngle.h>
+#include <QPointer>
 
 class CQPropertyViewTree;
 class CQPropertyViewItem;
@@ -71,10 +72,12 @@ class CQPropertyViewDelegate : public QItemDelegate {
   QModelIndex getEditorIndex() const { return editorIndex_; }
 
  private:
-  CQPropertyViewTree* view_        { nullptr };
-  QWidget*            editor_      { nullptr };
-  bool                editing_     { false };
-  QModelIndex         editorIndex_;
+  using WidgetP = QPointer<QWidget>;
+
+  CQPropertyViewTree* view_        { nullptr }; //! parent view
+  WidgetP             editor_;                  //! current editor
+  bool                editing_     { false };   //! is editing
+  QModelIndex         editorIndex_;             //! editor model index
 };
 
 #endif
