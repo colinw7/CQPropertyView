@@ -43,6 +43,10 @@ class CQPropertyViewItem : public QObject {
   //! get associated object
   QObject *object() const { return object_; }
 
+  //! get/set root
+  QObject *root() const { return root_; }
+  void setRoot(QObject *root) { root_ = root; }
+
   //! get associated object from this item or child items
   QObject *hierObject() const;
 
@@ -87,6 +91,8 @@ class CQPropertyViewItem : public QObject {
   //! invalidate cached visible children
   void invalidateVisible();
 
+  bool isHierHidden() const;
+
   //---
 
   //! get/set name
@@ -113,7 +119,7 @@ class CQPropertyViewItem : public QObject {
 
   //! get/set enum values
   const QStringList &values() const { return values_; }
-  void setValues(const QStringList &v) { values_ = v; }
+  CQPropertyViewItem &setValues(const QStringList &v) { values_ = v; return *this; }
 
   //! get alias name
   QString aliasName() const;
@@ -152,8 +158,15 @@ class CQPropertyViewItem : public QObject {
   QVariant data() const;
   bool setData(const QVariant &value);
 
-  //! get tip
-  QString tip() const;
+  //! get/set desc
+  const QString &desc() const { return desc_; }
+  CQPropertyViewItem &setDesc(const QString &s) { desc_ = s; return *this; }
+
+  //! get tip for name column
+  QString nameTip() const;
+
+  //! get tip for value column
+  QString valueTip() const;
 
   //! paint item
   bool paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
@@ -163,6 +176,8 @@ class CQPropertyViewItem : public QObject {
   QWidget *createDefaultEdit(QWidget *parent, const QString &valueStr);
 
   QString getDefaultValue() const;
+
+  QString calcTip() const;
 
  signals:
   //! emitted when value changed
@@ -179,8 +194,10 @@ class CQPropertyViewItem : public QObject {
   uint                         id_       { 0xFEEDBEEF }; //! unique id
   CQPropertyViewItem*          parent_   { nullptr };    //! parent item
   QPointer<QObject>            object_;                  //! associated objects
+  QPointer<QObject>            root_;                    //! root for object
   QString                      name_;                    //! name
   QString                      alias_;                   //! alias
+  QString                      desc_;                    //! description
   Children                     children_;                //! child items
   QVariant                     initValue_;               //! init value
   bool                         editable_ { false };      //! is editable

@@ -71,9 +71,9 @@ data(const QModelIndex &index, int role) const
   }
   else if (role == Qt::ToolTipRole) {
     if      (index.column() == 0)
-      return item->path(".", /*alias*/true);
+      return item->nameTip();
     else if (index.column() == 1)
-      return item->tip();
+      return item->valueTip();
   }
 
   return QVariant();
@@ -199,7 +199,7 @@ addProperty(const QString &path, QObject *object, const QString &name, const QSt
   QStringList pathParts = path.split('/', QString::SkipEmptyParts);
 
   CQPropertyViewItem *parentItem =
-    hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/false);
+    hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/true);
 
   CQPropertyViewItem *item = new CQPropertyViewItem(parentItem, object, name);
 
@@ -261,12 +261,38 @@ removeProperties(const QString &path, QObject *)
   QStringList pathParts = path.split('/', QString::SkipEmptyParts);
 
   CQPropertyViewItem *item =
-    hierItem(pathParts, /*create*/false, /*alias*/false, /*hidden*/false);
+    hierItem(pathParts, /*create*/false, /*alias*/false, /*hidden*/true);
 
   if (item && item->parent())
     item->parent()->removeChild(item);
 
   endResetModel();
+}
+
+void
+CQPropertyViewModel::
+hideProperty(const QString &path, const QObject *object)
+{
+  CQPropertyViewItem *item =
+    propertyItem(const_cast<QObject *>(object), path, '/',
+                 /*create*/false, /*alias*/false, /*hidden*/true);
+  if (! item) return;
+
+  item->setHidden(true);
+}
+
+void
+CQPropertyViewModel::
+setObjectRoot(const QString &path, QObject *obj)
+{
+  QStringList pathParts = path.split('/', QString::SkipEmptyParts);
+
+  CQPropertyViewItem *item =
+    hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/true);
+
+  assert(item->root() == nullptr || item->root() == obj);
+
+  item->setRoot(obj);
 }
 
 void
@@ -466,8 +492,16 @@ objectItem(CQPropertyViewItem *parent, const QObject *obj) const
   for (int i = 0; i < num; ++i) {
     CQPropertyViewItem *item = itemChild(parent, i);
 
-    if (item->object() == obj)
-      return parent;
+    if      (item->root() == obj)
+      return item;
+    else if (item->object() == obj) {
+      CQPropertyViewItem *item1 = parent;
+
+      while (item1 && item1->parent() && ! item1->parent()->object())
+        item1 = item1->parent();
+
+      return item1;
+    }
   }
 
   for (int i = 0; i < num; ++i) {

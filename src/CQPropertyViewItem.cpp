@@ -96,7 +96,7 @@ visibleChildren() const
     th->anyChildrenHidden_ = false;
 
     for (auto &child : children_) {
-      if (child->isHidden()) {
+      if (child->isHierHidden()) {
         th->anyChildrenHidden_ = true;
         break;
       }
@@ -104,7 +104,7 @@ visibleChildren() const
 
     if (anyChildrenHidden_) {
       for (auto &child : children_) {
-        if (! child->isHidden())
+        if (! child->isHierHidden())
           th->visibleChildren_.push_back(child);
       }
     }
@@ -128,6 +128,21 @@ invalidateVisible()
   visibleChildren_.clear();
 }
 
+bool
+CQPropertyViewItem::
+isHierHidden() const
+{
+  if (isHidden())
+    return true;
+
+  for (auto &child : children_) {
+    if (! child->isHierHidden())
+      return false;
+  }
+
+  return false;
+}
+
 //---
 
 QObject *
@@ -143,14 +158,14 @@ hierObject() const
     QObject *obj = child->object();
 
     if (obj)
-     return obj;
+      return obj;
   }
 
   for (auto &child : children_) {
     QObject *obj = child->hierObject();
 
     if (obj)
-     return obj;
+      return obj;
   }
 
   return nullptr;
@@ -518,7 +533,31 @@ setData(const QVariant &value)
 
 QString
 CQPropertyViewItem::
-tip() const
+nameTip() const
+{
+  QString tip = path(".", /*alias*/true);
+
+  if (desc() != "")
+    return QString("%1 (%2)").arg(desc()).arg(tip);
+  else
+    return tip;
+}
+
+QString
+CQPropertyViewItem::
+valueTip() const
+{
+  QString tip = calcTip();
+
+  if (desc() != "")
+    return QString("%1 (%2)").arg(desc()).arg(tip);
+  else
+    return tip;
+}
+
+QString
+CQPropertyViewItem::
+calcTip() const
 {
   CQUtil::PropInfo propInfo;
   QString          typeName;

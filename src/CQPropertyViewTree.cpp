@@ -651,9 +651,9 @@ keyPressEvent(QKeyEvent *ke)
       QString value;
 
       if      (ind.column() == 0)
-        value = item->path(".", /*alias*/true);
+        value = item->nameTip();
       else if (ind.column() == 1)
-        value = item->tip();
+        value = item->valueTip();
       else
         return;
 

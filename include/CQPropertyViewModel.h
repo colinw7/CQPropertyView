@@ -55,6 +55,10 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   void removeProperties(const QString &path, QObject *object=nullptr);
 
+  void hideProperty(const QString &path, const QObject *object);
+
+  void setObjectRoot(const QString &path, QObject *obj);
+
   const CQPropertyViewItem *propertyItem(const QObject *object, const QString &path) const;
   CQPropertyViewItem *propertyItem(QObject *object, const QString &path);
 
