@@ -6,6 +6,9 @@
 
 class CQPropertyViewItem;
 
+/*!
+ * \brief Property view model
+ */
 class CQPropertyViewModel : public QAbstractItemModel {
   Q_OBJECT
 

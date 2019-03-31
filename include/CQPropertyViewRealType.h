@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for double
+/*!
+ * \brief type for double
+ */
 class CQPropertyViewRealType : public CQPropertyViewType {
  public:
   CQPropertyViewRealType();
@@ -21,7 +23,9 @@ class CQPropertyViewRealType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for double
+/*!
+ * \brief editor factory for double
+ */
 class CQPropertyViewRealEditor : public CQPropertyViewEditorFactory {
  public:
   enum class Type {

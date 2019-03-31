@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for QSizeF
+/*!
+ * \brief type for QSizeF
+ */
 class CQPropertyViewSizeFType : public CQPropertyViewType {
  public:
   CQPropertyViewSizeFType();
@@ -23,7 +25,9 @@ class CQPropertyViewSizeFType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for QSizeF
+/*!
+ * \brief editor factory for QSizeF
+ */
 class CQPropertyViewSizeFEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewSizeFEditor(double max=1000, double step=1.0);

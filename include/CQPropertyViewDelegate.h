@@ -8,7 +8,9 @@
 class CQPropertyViewTree;
 class CQPropertyViewItem;
 
-// Item Delegate class to handle custom editing of view items
+/*!
+ * \brief Item Delegate class to handle custom editing of view items
+ */
 class CQPropertyViewDelegate : public QItemDelegate {
   Q_OBJECT
 

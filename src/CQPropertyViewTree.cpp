@@ -681,8 +681,9 @@ showEvent(QShowEvent *)
 
 void
 CQPropertyViewTree::
-resizeEvent(QResizeEvent *)
+resizeEvent(QResizeEvent *e)
 {
+  QTreeView::resizeEvent(e);
 }
 
 void

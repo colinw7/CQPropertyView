@@ -10,6 +10,9 @@ class QObject;
 
 //------
 
+/*!
+ * \brief Base class for editor factories
+ */
 class CQPropertyViewEditorFactory {
  public:
   CQPropertyViewEditorFactory() { }
@@ -27,6 +30,9 @@ class CQPropertyViewEditorFactory {
 
 //------
 
+/*!
+ * \brief Manager class for registered editors
+ */
 class CQPropertyViewEditorMgr {
  public:
   CQPropertyViewEditorMgr();

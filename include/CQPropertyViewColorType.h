@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for QColor
+/*!
+ * \brief type for QColor
+ */
 class CQPropertyViewColorType : public CQPropertyViewType {
  public:
   CQPropertyViewColorType();
@@ -21,7 +23,9 @@ class CQPropertyViewColorType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for QColor
+/*!
+ * \brief editor factory for QColor
+ */
 class CQPropertyViewColorEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewColorEditor();

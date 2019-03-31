@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for CLineDash
+/*!
+ * \brief type for CLineDash
+ */
 class CQPropertyViewLineDashType : public CQPropertyViewType {
  public:
   CQPropertyViewLineDashType();
@@ -23,7 +25,9 @@ class CQPropertyViewLineDashType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for CLineDash
+/*!
+ * \brief editor factory for CLineDash
+ */
 class CQPropertyViewLineDashEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewLineDashEditor();

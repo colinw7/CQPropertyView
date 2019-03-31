@@ -11,6 +11,9 @@ class CQPropertyViewItem;
 
 #define CQPropertyViewMgrInst CQPropertyViewMgr::instance()
 
+/*!
+ * \brief Property view manager for registered types
+ */
 class CQPropertyViewMgr {
  public:
   static CQPropertyViewMgr *instance();

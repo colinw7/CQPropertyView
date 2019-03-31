@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for Qt::Alignment
+/*!
+ * \brief type for Qt::Alignment
+ */
 class CQPropertyViewAlignType : public CQPropertyViewType {
  public:
   CQPropertyViewAlignType();
@@ -23,7 +25,9 @@ class CQPropertyViewAlignType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for Qt::Alignment
+/*!
+ * \brief editor factory for Qt::Alignment
+ */
 class CQPropertyViewAlignEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewAlignEditor();

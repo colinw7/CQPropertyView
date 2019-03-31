@@ -7,6 +7,9 @@
 class CQPropertyViewTree;
 class CQPropertyViewItem;
 
+/*!
+ * \brief proxy model for filter/sort of property model
+ */
 class CQPropertyViewFilter : public QSortFilterProxyModel {
   Q_OBJECT
 

@@ -15,6 +15,9 @@ class CQPropertyViewEditorFactory;
 class QPainter;
 class QWidget;
 
+/*!
+ * \brief Property view item
+ */
 class CQPropertyViewItem : public QObject {
   Q_OBJECT
 
@@ -91,8 +94,6 @@ class CQPropertyViewItem : public QObject {
   //! invalidate cached visible children
   void invalidateVisible();
 
-  bool isHierHidden() const;
-
   //---
 
   //! get/set name
@@ -109,9 +110,7 @@ class CQPropertyViewItem : public QObject {
 
   //! get/set hidden
   bool isHidden() const { return hidden_; }
-  CQPropertyViewItem &setHidden(bool b) {
-    hidden_ = b; if (parent_) parent_->invalidateVisible(); return *this;
-  }
+  CQPropertyViewItem &setHidden(bool b);
 
   //! get/set inside
   bool isInside() const { return inside_; }
@@ -179,6 +178,8 @@ class CQPropertyViewItem : public QObject {
 
   QString calcTip() const;
 
+  bool isHierHidden() const;
+
  signals:
   //! emitted when value changed
   void valueChanged(QObject *obj, const QString &name);
@@ -209,7 +210,7 @@ class CQPropertyViewItem : public QObject {
 
   Children visibleChildren_;                //! visible child items
   bool     visibleChildrenValid_ { false }; //! visible child items valid
-  bool     anyChildrenHidden_    { false }; //! any children hidden
+  bool     visibleChildrenSet_   { false }; //! any children hidden
 };
 
 #endif

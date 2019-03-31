@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for QPalette
+/*!
+ * \brief type for QPalette
+ */
 class CQPropertyViewPaletteType : public CQPropertyViewType {
  public:
   CQPropertyViewPaletteType();
@@ -23,7 +25,9 @@ class CQPropertyViewPaletteType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for QPalette
+/*!
+ * \brief editor factory for QPalette
+ */
 class CQPropertyViewPaletteEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewPaletteEditor();

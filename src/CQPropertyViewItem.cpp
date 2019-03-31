@@ -26,6 +26,57 @@ QString variantToString(const QVariant &var) {
   return str;
 }
 
+class TableTip {
+ public:
+  void addRow(const QString &name, const QString &value) {
+    if (! inTable_)
+      str_ += "<table>\n";
+
+    str_ += QString("<tr><th>%1</th><td>&nbsp;</td><td>%2</td></tr>\n").
+               arg(escapeText(name)).arg(escapeText(value));
+
+    inTable_ = true;
+  }
+
+  QString str() {
+    if (inTable_)
+      str_ += "</table>\n";
+
+    return str_;
+  }
+
+ private:
+  QString escapeText(const QString &str) const {
+    QString str1;
+
+    int i   = 0;
+    int len = str.length();
+
+    while (i < len) {
+      if      (str[i] == '<') {
+        str1 += "&lt;"; ++i;
+      }
+      else if (str[i] == '>') {
+        str1 += "&gt;"; ++i;
+      }
+      else if (str[i] == '"') {
+        str1 += "&quot;"; ++i;
+      }
+      else if (str[i] == '&') {
+        str1 += "&amp;"; ++i;
+      }
+      else
+        str1 += str[i++];
+    }
+
+    return str1;
+  }
+
+ private:
+  QString str_;
+  bool    inTable_ { false };
+};
+
 }
 
 //---
@@ -36,7 +87,7 @@ CQPropertyViewItem(CQPropertyViewItem *parent, QObject *object, const QString &n
 {
   CQUtil::PropInfo propInfo;
 
-  if (CQUtil::getPropInfo(object_, name_, &propInfo) && propInfo.isWritable())
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo) && propInfo.isWritable())
     editable_ = true;
 
   initValue_ = data();
@@ -93,26 +144,30 @@ visibleChildren() const
   if (! visibleChildrenValid_) {
     CQPropertyViewItem *th = const_cast<CQPropertyViewItem *>(this);
 
-    th->anyChildrenHidden_ = false;
+    th->visibleChildrenSet_ = false;
 
-    for (auto &child : children_) {
-      if (child->isHierHidden()) {
-        th->anyChildrenHidden_ = true;
-        break;
-      }
-    }
-
-    if (anyChildrenHidden_) {
+    if (! isHierHidden()) {
       for (auto &child : children_) {
-        if (! child->isHierHidden())
-          th->visibleChildren_.push_back(child);
+        if (child->isHierHidden()) {
+          th->visibleChildrenSet_ = true;
+          break;
+        }
       }
-    }
 
-    th->visibleChildrenValid_ = true;
+      if (th->visibleChildrenSet_) {
+        for (auto &child : children_) {
+          if (! child->isHierHidden())
+            th->visibleChildren_.push_back(child);
+        }
+      }
+
+      th->visibleChildrenValid_ = true;
+    }
+    else
+      th->visibleChildrenSet_ = true;
   }
 
-  if (anyChildrenHidden_)
+  if (visibleChildrenSet_)
     return visibleChildren_;
   else
     return children_;
@@ -123,9 +178,12 @@ CQPropertyViewItem::
 invalidateVisible()
 {
   visibleChildrenValid_ = false;
-  anyChildrenHidden_    = false;
+  visibleChildrenSet_   = false;
 
   visibleChildren_.clear();
+
+  if (parent())
+    parent()->invalidateVisible();
 }
 
 bool
@@ -169,6 +227,17 @@ hierObject() const
   }
 
   return nullptr;
+}
+
+CQPropertyViewItem &
+CQPropertyViewItem::
+setHidden(bool b)
+{
+  hidden_ = b;
+
+  invalidateVisible();
+
+  return *this;
 }
 
 QString
@@ -218,7 +287,7 @@ click()
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();
@@ -248,7 +317,7 @@ getEditorData() const
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();
@@ -274,7 +343,7 @@ createEditor(QWidget *parent)
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();
@@ -395,7 +464,7 @@ setEditorData(const QVariant &value)
 {
   CQUtil::PropInfo propInfo;
 
-  if (CQUtil::getPropInfo(object_, name_, &propInfo) && propInfo.isWritable()) {
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo) && propInfo.isWritable()) {
     QString typeName = propInfo.typeName();
 
     CQPropertyViewType *type = CQPropertyViewMgrInst->getType(typeName);
@@ -437,7 +506,7 @@ updateValue()
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
     typeName = propInfo.typeName();
 
   CQPropertyViewEditorFactory *editor = editor_;
@@ -515,7 +584,7 @@ data() const
 {
   QVariant var;
 
-  if (! CQUtil::getProperty(object_, name_, var))
+  if (! object_ || ! CQUtil::getProperty(object_, name_, var))
     var = QVariant();
 
   return var;
@@ -525,7 +594,7 @@ bool
 CQPropertyViewItem::
 setData(const QVariant &value)
 {
-  if (! CQUtil::setProperty(object_, name_, value))
+  if (! object_ || ! CQUtil::setProperty(object_, name_, value))
     return false;
 
   return true;
@@ -537,22 +606,36 @@ nameTip() const
 {
   QString tip = path(".", /*alias*/true);
 
-  if (desc() != "")
-    return QString("%1 (%2)").arg(desc()).arg(tip);
-  else
+  if (! object_)
     return tip;
+
+  TableTip tableTip;
+
+  tableTip.addRow("Property", tip);
+
+  if (desc() != "")
+    tableTip.addRow("Description", desc());
+
+  return tableTip.str();
 }
 
 QString
 CQPropertyViewItem::
 valueTip() const
 {
+  if (! object_)
+    return "";
+
   QString tip = calcTip();
 
+  TableTip tableTip;
+
+  tableTip.addRow("Value", tip);
+
   if (desc() != "")
-    return QString("%1 (%2)").arg(desc()).arg(tip);
-  else
-    return tip;
+    tableTip.addRow("Description", desc());
+
+  return tableTip.str();
 }
 
 QString
@@ -562,7 +645,7 @@ calcTip() const
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();
@@ -605,7 +688,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();

@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for QPointF
+/*!
+ * \brief type for QPointF
+ */
 class CQPropertyViewPointFType : public CQPropertyViewType {
  public:
   CQPropertyViewPointFType();
@@ -23,7 +25,9 @@ class CQPropertyViewPointFType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for QPointF
+/*!
+ * \brief editor factory for QPointF
+ */
 class CQPropertyViewPointFEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewPointFEditor(double min=-1E50, double max=1E50, double step=1.0);

@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for QRectF
+/*!
+ * \brief type for QRectF
+ */
 class CQPropertyViewRectFType : public CQPropertyViewType {
  public:
   CQPropertyViewRectFType();
@@ -23,7 +25,9 @@ class CQPropertyViewRectFType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for QRectF
+/*!
+ * \brief editor factory for QRectF
+ */
 class CQPropertyViewRectFEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewRectFEditor();

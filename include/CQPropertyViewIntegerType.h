@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for int
+/*!
+ * \brief type for int
+ */
 class CQPropertyViewIntegerType : public CQPropertyViewType {
  public:
   CQPropertyViewIntegerType();
@@ -21,7 +23,9 @@ class CQPropertyViewIntegerType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for int
+/*!
+ * \brief editor factory for int
+ */
 class CQPropertyViewIntegerEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewIntegerEditor(int min=INT_MIN, int max=INT_MAX, int step=1);

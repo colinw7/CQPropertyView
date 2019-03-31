@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for QFont
+/*!
+ * \brief type for QFont
+ */
 class CQPropertyViewFontType : public CQPropertyViewType {
  public:
   CQPropertyViewFontType();
@@ -21,7 +23,9 @@ class CQPropertyViewFontType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for QFont
+/*!
+ * \brief editor factory for QFont
+ */
 class CQPropertyViewFontEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewFontEditor();

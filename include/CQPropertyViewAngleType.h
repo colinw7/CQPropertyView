@@ -3,7 +3,9 @@
 
 #include <CQPropertyViewType.h>
 
-// type for CAngle
+/*!
+ * \brief type for CAngle
+ */
 class CQPropertyViewAngleType : public CQPropertyViewType {
  public:
   CQPropertyViewAngleType();
@@ -23,7 +25,9 @@ class CQPropertyViewAngleType : public CQPropertyViewType {
 
 #include <CQPropertyViewEditor.h>
 
-// editor factory for CAngle
+/*!
+ * \brief editor factory for CAngle
+ */
 class CQPropertyViewAngleEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewAngleEditor();

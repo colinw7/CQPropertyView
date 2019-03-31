@@ -9,6 +9,9 @@ class CQPropertyViewItem;
 class CQPropertyViewFilter;
 class CQPropertyViewDelegate;
 
+/*!
+ * \brief Property view tree view
+ */
 class CQPropertyViewTree : public QTreeView {
   Q_OBJECT
 

@@ -12,11 +12,13 @@ class QPainter;
 class QModelIndex;
 class QVariant;
 
-// type base class
-//
-// support:
-//  . create editor
-//  . delegate draw
+/*!
+ * \brief type base class
+ *
+ * support:
+ *  . create editor
+ *  . delegate draw
+ */
 class CQPropertyViewType {
  public:
   CQPropertyViewType() { }
