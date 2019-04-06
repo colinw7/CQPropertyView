@@ -198,7 +198,10 @@ isHierHidden() const
       return false;
   }
 
-  return false;
+  if (object_)
+    return false;
+
+  return true;
 }
 
 //---
