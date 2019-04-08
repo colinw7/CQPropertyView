@@ -73,7 +73,7 @@ class CQPropertyViewModel : public QAbstractItemModel {
   void refresh();
   void reset();
 
-  void objectNames(const QObject *object, QStringList &strs) const;
+  void objectNames(const QObject *object, QStringList &names, bool hidden=false) const;
 
   void getChangedNameValues(NameValues &nameValues) const;
   void getChangedNameValues(const QObject *object, NameValues &nameValues) const;
@@ -107,7 +107,7 @@ class CQPropertyViewModel : public QAbstractItemModel {
   CQPropertyViewItem *objectItem(CQPropertyViewItem *parent, const QObject *obj) const;
 
   void itemNames(CQPropertyViewItem *rootItem, const QObject *object,
-                 CQPropertyViewItem *item, QStringList &strs) const;
+                 CQPropertyViewItem *item, QStringList &names, bool hidden=false) const;
 
   void getChangedItemNameValues(const QObject *object, CQPropertyViewItem *item,
                                 NameValues &nameValues) const;

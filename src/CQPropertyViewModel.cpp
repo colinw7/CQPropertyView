@@ -297,32 +297,35 @@ setObjectRoot(const QString &path, QObject *obj)
 
 void
 CQPropertyViewModel::
-objectNames(const QObject *object, QStringList &names) const
+objectNames(const QObject *object, QStringList &names, bool hidden) const
 {
   CQPropertyViewItem *item = objectItem(object);
   if (! item) return;
 
-  itemNames(item, object, item, names);
+  itemNames(item, object, item, names, hidden);
 }
 
 void
 CQPropertyViewModel::
 itemNames(CQPropertyViewItem *rootItem, const QObject *object,
-          CQPropertyViewItem *item, QStringList &names) const
+          CQPropertyViewItem *item, QStringList &names, bool hidden) const
 {
   if (item->object() && item->object() != object)
     return;
 
-  int num = numItemChildren(item);
+  int num = numItemChildren(item, hidden);
 
   if (num > 0) {
     for (int i = 0; i < num; ++i) {
-      CQPropertyViewItem *item1 = itemChild(item, i);
+      CQPropertyViewItem *item1 = itemChild(item, i, hidden);
 
-      itemNames(rootItem, object, item1, names);
+      itemNames(rootItem, object, item1, names, hidden);
     }
   }
   else {
+    if (! hidden && item->isHidden())
+      return;
+
     QString name = item->path(".", /*alias*/true, rootItem);
 
     names.push_back(name);
