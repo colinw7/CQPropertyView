@@ -85,6 +85,8 @@ CQPropertyViewItem::
 CQPropertyViewItem(CQPropertyViewItem *parent, QObject *object, const QString &name) :
  parent_(parent), object_(object), name_(name)
 {
+  setObjectName(name);
+
   CQUtil::PropInfo propInfo;
 
   if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo) && propInfo.isWritable())

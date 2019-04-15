@@ -6,6 +6,7 @@ CQPropertyViewModel::
 CQPropertyViewModel() :
  QAbstractItemModel()
 {
+  setObjectName("viewModel");
 }
 
 CQPropertyViewModel::
