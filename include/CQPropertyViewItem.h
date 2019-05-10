@@ -157,9 +157,14 @@ class CQPropertyViewItem : public QObject {
   QVariant data() const;
   bool setData(const QVariant &value);
 
+  QVariant tclData() const;
+
   //! get/set desc
   const QString &desc() const { return desc_; }
   CQPropertyViewItem &setDesc(const QString &s) { desc_ = s; return *this; }
+
+  //! get type name
+  QString typeName() const;
 
   //! get tip for name column
   QString nameTip() const;

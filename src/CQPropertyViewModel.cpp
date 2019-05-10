@@ -253,6 +253,21 @@ getProperty(const QObject *object, const QString &path, QVariant &value) const
   return true;
 }
 
+bool
+CQPropertyViewModel::
+getTclProperty(const QObject *object, const QString &path, QVariant &value) const
+{
+  const CQPropertyViewItem *item =
+    propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/true);
+
+  if (! item)
+    return false;
+
+  value = item->tclData();
+
+  return true;
+}
+
 void
 CQPropertyViewModel::
 removeProperties(const QString &path, QObject *)

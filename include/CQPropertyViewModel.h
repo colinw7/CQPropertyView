@@ -56,6 +56,8 @@ class CQPropertyViewModel : public QAbstractItemModel {
   bool setProperty(QObject *object, const QString &path, const QVariant &value);
   bool getProperty(const QObject *object, const QString &path, QVariant &value) const;
 
+  bool getTclProperty(const QObject *object, const QString &path, QVariant &value) const;
+
   void removeProperties(const QString &path, QObject *object=nullptr);
 
   void hideProperty(const QString &path, const QObject *object);

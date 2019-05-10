@@ -605,6 +605,31 @@ setData(const QVariant &value)
   return true;
 }
 
+QVariant
+CQPropertyViewItem::
+tclData() const
+{
+  QVariant var;
+
+  if (! object_ || ! CQUtil::getTclProperty(object_, name_, var))
+    var = QVariant();
+
+  return var;
+}
+
+QString
+CQPropertyViewItem::
+typeName() const
+{
+  CQUtil::PropInfo propInfo;
+  QString          typeName;
+
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+    typeName = propInfo.typeName();
+
+  return typeName;
+}
+
 QString
 CQPropertyViewItem::
 nameTip() const
