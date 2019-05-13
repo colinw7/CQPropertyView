@@ -60,8 +60,11 @@ CQPropertyViewMgr::
 {
   delete editorMgr_;
 
-  for (auto &type : types_)
-    delete type.second;
+  for (auto &p : types_) {
+    CQPropertyViewType *type = p.second;
+
+    delete type;
+  }
 }
 
 void
@@ -71,6 +74,8 @@ addType(const QString &name, CQPropertyViewType *type)
   assert(! getType(name));
 
   types_[name] = type;
+
+  type->setName(name);
 
   editorMgr_->setEditor(name, type->getEditor());
 }
@@ -92,4 +97,28 @@ CQPropertyViewMgr::
 getEditor(const QString &name) const
 {
   return editorMgr_->getEditor(name);
+}
+
+void
+CQPropertyViewMgr::
+setUserName(const QString &typeName, const QString &userName)
+{
+  userNameMap_[typeName] = userName;
+}
+
+QString
+CQPropertyViewMgr::
+userName(const QString &name) const
+{
+  CQPropertyViewType *type = getType(name);
+
+  if (type)
+    return type->userName();
+
+  auto p = userNameMap_.find(name);
+
+  if (p != userNameMap_.end())
+    return (*p).second;
+
+  return "";
 }

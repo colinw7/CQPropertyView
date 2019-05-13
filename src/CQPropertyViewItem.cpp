@@ -576,13 +576,6 @@ getDefaultValue() const
   return "";
 }
 
-bool
-CQPropertyViewItem::
-isWritable() const
-{
-  return true;
-}
-
 QVariant
 CQPropertyViewItem::
 data() const
@@ -599,6 +592,9 @@ bool
 CQPropertyViewItem::
 setData(const QVariant &value)
 {
+  if (! isEditable())
+    return false;
+
   if (! object_ || ! CQUtil::setProperty(object_, name_, value))
     return false;
 
@@ -630,6 +626,18 @@ typeName() const
   return typeName;
 }
 
+bool
+CQPropertyViewItem::
+isEnum() const
+{
+  CQUtil::PropInfo propInfo;
+
+  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+    return propInfo.isEnumType();
+
+  return false;
+}
+
 QString
 CQPropertyViewItem::
 nameTip() const
@@ -645,6 +653,11 @@ nameTip() const
 
   if (desc() != "")
     tableTip.addRow("Description", desc());
+
+  QString userTypeName = this->userTypeName();
+
+  if (userTypeName != "")
+    tableTip.addRow("Type", userTypeName);
 
   return tableTip.str();
 }
@@ -664,6 +677,11 @@ valueTip() const
 
   if (desc() != "")
     tableTip.addRow("Description", desc());
+
+  QString userTypeName = this->userTypeName();
+
+  if (userTypeName != "")
+    tableTip.addRow("Type", userTypeName);
 
   return tableTip.str();
 }
@@ -801,4 +819,32 @@ enumStringToInd(const CQUtil::PropInfo &propInfo, const QString &str, int &ind) 
   }
 
   return false;
+}
+
+QString
+CQPropertyViewItem::
+userTypeName() const
+{
+  QString typeName = this->typeName();
+
+  QString userTypeName = CQPropertyViewMgrInst->userName(typeName);
+
+  if (userTypeName != "")
+    return userTypeName;
+
+  if      (typeName == "QString")
+    return "string";
+  else if (typeName == "QRectF" || typeName == "QRect")
+    return "rectangle";
+  else if (typeName == "QSizeF" || typeName == "QSize")
+    return "size";
+  else if (typeName == "QPointF" || typeName == "QPoint")
+    return "point";
+  else if (typeName == "Qt::Alignment")
+    return "alignment";
+
+  if (isEnum())
+    return "enum";
+
+  return typeName;
 }

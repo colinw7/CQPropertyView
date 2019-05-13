@@ -120,7 +120,7 @@ paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &
 
   QStyleOptionViewItem option1 = option;
 
-  if (! item->isWritable()) {
+  if (! item->isEditable()) {
     option1.font.setItalic(true);
   }
 

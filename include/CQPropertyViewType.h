@@ -34,6 +34,17 @@ class CQPropertyViewType {
                     const QVariant &value, bool inside);
 
   virtual QString tip(const QVariant &value) const;
+
+  virtual QString userName() const { return ""; }
+
+  //---
+
+  //! get set registered name
+  const QString &name() const { return name_; }
+  void setName(const QString &name) { name_ = name; }
+
+ protected:
+  QString name_; //!< registered name
 };
 
 #endif

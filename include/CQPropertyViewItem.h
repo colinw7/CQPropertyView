@@ -147,9 +147,6 @@ class CQPropertyViewItem : public QObject {
   //! get editor widget text
   QVariant getEditorData() const;
 
-  //! is writable
-  bool isWritable() const;
-
   //! initial value
   QVariant initValue() const { return initValue_; }
 
@@ -165,6 +162,12 @@ class CQPropertyViewItem : public QObject {
 
   //! get type name
   QString typeName() const;
+
+  //! is enum
+  bool isEnum() const;
+
+  //! get user type name
+  QString userTypeName() const;
 
   //! get tip for name column
   QString nameTip() const;

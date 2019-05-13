@@ -32,13 +32,19 @@ class CQPropertyViewMgr {
   CQPropertyViewItem *drawItem() const { return drawItem_; }
   void setDrawItem(CQPropertyViewItem *drawItem) { drawItem_ = drawItem; }
 
+  QString userName(const QString &typeName) const;
+
+  void setUserName(const QString &typeName, const QString &userName);
+
  private:
   CQPropertyViewMgr();
 
  private:
-  typedef std::map<QString,CQPropertyViewType *> Types;
+  using Types       = std::map<QString,CQPropertyViewType *>;
+  using UserNameMap = std::map<QString,QString>;
 
   Types                       types_;
+  UserNameMap                 userNameMap_;
   CQPropertyViewEditorMgr*    editorMgr_ { nullptr };
   mutable CQPropertyViewItem* editItem_  { nullptr };
   mutable CQPropertyViewItem* drawItem_  { nullptr };
