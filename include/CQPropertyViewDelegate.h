@@ -76,10 +76,10 @@ class CQPropertyViewDelegate : public QItemDelegate {
  private:
   using WidgetP = QPointer<QWidget>;
 
-  CQPropertyViewTree* view_        { nullptr }; //! parent view
-  WidgetP             editor_;                  //! current editor
-  bool                editing_     { false };   //! is editing
-  QModelIndex         editorIndex_;             //! editor model index
+  CQPropertyViewTree* view_        { nullptr }; //!< parent view
+  WidgetP             editor_;                  //!< current editor
+  bool                editing_     { false };   //!< is editing
+  QModelIndex         editorIndex_;             //!< editor model index
 };
 
 #endif

@@ -380,16 +380,16 @@ item(const QModelIndex &index, bool &ok) const
 
 const CQPropertyViewItem *
 CQPropertyViewModel::
-propertyItem(const QObject *object, const QString &path) const
+propertyItem(const QObject *object, const QString &path, bool hidden) const
 {
-  return propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/false);
+  return propertyItem(object, path, '.', /*create*/false, /*alias*/true, hidden);
 }
 
 CQPropertyViewItem *
 CQPropertyViewModel::
-propertyItem(QObject *object, const QString &path)
+propertyItem(QObject *object, const QString &path, bool hidden)
 {
-  return propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/false);
+  return propertyItem(object, path, '.', /*create*/false, /*alias*/true, hidden);
 }
 
 const CQPropertyViewItem *

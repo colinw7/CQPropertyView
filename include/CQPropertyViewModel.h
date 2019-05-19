@@ -64,8 +64,9 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   void setObjectRoot(const QString &path, QObject *obj);
 
-  const CQPropertyViewItem *propertyItem(const QObject *object, const QString &path) const;
-  CQPropertyViewItem *propertyItem(QObject *object, const QString &path);
+  const CQPropertyViewItem *propertyItem(const QObject *object, const QString &path,
+                                         bool hidden=false) const;
+  CQPropertyViewItem *propertyItem(QObject *object, const QString &path, bool hidden=false);
 
   CQPropertyViewItem *item(const QModelIndex &index, bool &ok) const;
   CQPropertyViewItem *item(const QModelIndex &index) const;
@@ -120,8 +121,8 @@ class CQPropertyViewModel : public QAbstractItemModel {
   void valueChanged(QObject *, const QString &);
 
  private:
-  bool                showHidden_ { false };   //! show hidden properties
-  CQPropertyViewItem *root_       { nullptr }; //! root item
+  bool                showHidden_ { false };   //!< show hidden properties
+  CQPropertyViewItem *root_       { nullptr }; //!< root item
 };
 
 #endif
