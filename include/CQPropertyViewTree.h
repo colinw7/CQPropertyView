@@ -76,7 +76,8 @@ class CQPropertyViewTree : public QTreeView {
   void selectItem(CQPropertyViewItem *item, bool selected);
 
   void editItem(CQPropertyViewItem *item);
-  void closeEditor();
+
+  void closeCurrentEditor();
 
   virtual void addMenuItems(QMenu *menu);
 

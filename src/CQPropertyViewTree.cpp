@@ -775,12 +775,12 @@ void
 CQPropertyViewTree::
 closeEditorSlot()
 {
-  closeEditor();
+  closeCurrentEditor();
 }
 
 void
 CQPropertyViewTree::
-closeEditor()
+closeCurrentEditor()
 {
   QWidget *editor = delegate_->getEditor();
   if (! editor) return;
