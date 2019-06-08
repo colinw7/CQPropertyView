@@ -78,8 +78,12 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   void objectNames(const QObject *object, QStringList &names, bool hidden=false) const;
 
-  void getChangedNameValues(NameValues &nameValues) const;
-  void getChangedNameValues(const QObject *object, NameValues &nameValues) const;
+  void getChangedNameValues(NameValues &nameValues, bool tcl=false) const;
+
+  void getChangedNameValues(const QObject *object, NameValues &nameValues, bool tcl=false) const;
+
+  void getChangedNameValues(const QObject *root, const QObject *object,
+                            NameValues &nameValues, bool tcl=false) const;
 
  public:
   typedef std::vector<CQPropertyViewItem *> Children;
@@ -112,10 +116,12 @@ class CQPropertyViewModel : public QAbstractItemModel {
   void itemNames(CQPropertyViewItem *rootItem, const QObject *object,
                  CQPropertyViewItem *item, QStringList &names, bool hidden=false) const;
 
-  void getChangedItemNameValues(const QObject *object, CQPropertyViewItem *item,
-                                NameValues &nameValues) const;
+  void getChangedItemNameValues(CQPropertyViewItem *rootItem, const QObject *object,
+                                CQPropertyViewItem *item, NameValues &nameValues,
+                                bool tcl=false) const;
 
-  void addNameValue(CQPropertyViewItem *item, NameValues &nameValues) const;
+  void addNameValue(CQPropertyViewItem *rootItem, CQPropertyViewItem *item,
+                    NameValues &nameValues, bool tcl=false) const;
 
  signals:
   void valueChanged(QObject *, const QString &);

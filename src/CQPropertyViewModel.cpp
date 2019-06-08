@@ -584,24 +584,39 @@ reset()
 
 void
 CQPropertyViewModel::
-getChangedNameValues(NameValues &nameValues) const
+getChangedNameValues(NameValues &nameValues, bool tcl) const
 {
-  return getChangedNameValues(nullptr, nameValues);
+  return getChangedNameValues(nullptr, nameValues, tcl);
 }
 
 void
 CQPropertyViewModel::
-getChangedNameValues(const QObject *obj, NameValues &nameValues) const
+getChangedNameValues(const QObject *obj, NameValues &nameValues, bool tcl) const
 {
-  CQPropertyViewItem *root = this->root();
-
-  return getChangedItemNameValues(obj, root, nameValues);
+  getChangedNameValues(obj, obj, nameValues, tcl);
 }
 
 void
 CQPropertyViewModel::
-getChangedItemNameValues(const QObject *obj, CQPropertyViewItem *parent,
-                         NameValues &nameValues) const
+getChangedNameValues(const QObject *rootObj, const QObject *obj,
+                     NameValues &nameValues, bool tcl) const
+{
+  CQPropertyViewItem *rootItem = this->root();
+
+  if (obj) {
+    CQPropertyViewItem *item = objectItem(rootObj);
+
+    if (item)
+      rootItem = item;
+  }
+
+  return getChangedItemNameValues(rootItem, obj, rootItem, nameValues, tcl);
+}
+
+void
+CQPropertyViewModel::
+getChangedItemNameValues(CQPropertyViewItem *rootItem, const QObject *obj,
+                         CQPropertyViewItem *parent, NameValues &nameValues, bool tcl) const
 {
   int num = numItemChildren(parent);
 
@@ -611,7 +626,7 @@ getChangedItemNameValues(const QObject *obj, CQPropertyViewItem *parent,
     int num1 = numItemChildren(item);
 
     if (num1 > 0) {
-      getChangedItemNameValues(obj, item, nameValues);
+      getChangedItemNameValues(rootItem, obj, item, nameValues, tcl);
     }
     else {
       if (! item->isEditable())
@@ -624,18 +639,22 @@ getChangedItemNameValues(const QObject *obj, CQPropertyViewItem *parent,
       QString dataStr = item->dataStr();
 
       if (initStr != dataStr)
-        addNameValue(item, nameValues);
+        addNameValue(rootItem, item, nameValues, tcl);
     }
   }
 }
 
 void
 CQPropertyViewModel::
-addNameValue(CQPropertyViewItem *item, NameValues &nameValues) const
+addNameValue(CQPropertyViewItem *rootItem, CQPropertyViewItem *item,
+             NameValues &nameValues, bool tcl) const
 {
-  QString path = item->path(".", /*alias*/true);
+  QString path = item->path(".", /*alias*/true, rootItem);
 
-  nameValues[path] = item->dataStr();
+  if (tcl)
+    nameValues[path] = item->tclData();
+  else
+    nameValues[path] = item->dataStr();
 }
 
 //------

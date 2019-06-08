@@ -765,7 +765,7 @@ printChangedSlot() const
 {
   CQPropertyViewModel::NameValues nameValues;
 
-  model_->getChangedNameValues(nameValues);
+  model_->getChangedNameValues(nameValues, /*tcl*/false);
 
   for (const auto &nv : nameValues)
     std::cerr << nv.first.toStdString() << "=" << nv.second.toString().toStdString() << "\n";
