@@ -146,6 +146,8 @@ visibleChildren() const
   if (! visibleChildrenValid_) {
     CQPropertyViewItem *th = const_cast<CQPropertyViewItem *>(this);
 
+    assert(th->visibleChildren_.empty());
+
     th->visibleChildrenSet_ = false;
 
     if (! isHierHidden()) {

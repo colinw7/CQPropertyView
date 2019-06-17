@@ -315,6 +315,8 @@ void
 CQPropertyViewModel::
 objectNames(const QObject *object, QStringList &names, bool hidden) const
 {
+  assert(object);
+
   CQPropertyViewItem *item = objectItem(object);
   if (! item) return;
 
@@ -506,14 +508,18 @@ CQPropertyViewItem *
 CQPropertyViewModel::
 objectItem(CQPropertyViewItem *parent, const QObject *obj) const
 {
+  // check children
   int num = numItemChildren(parent);
 
   for (int i = 0; i < num; ++i) {
     CQPropertyViewItem *item = itemChild(parent, i);
 
+    // explicit root for object
     if      (item->root() == obj)
       return item;
-    else if (item->object() == obj) {
+
+    // matching item's root is highest null object parent
+    if (item->object() == obj) {
       CQPropertyViewItem *item1 = parent;
 
       while (item1 && item1->parent() && ! item1->parent()->object())
@@ -523,6 +529,7 @@ objectItem(CQPropertyViewItem *parent, const QObject *obj) const
     }
   }
 
+  // check hier children
   for (int i = 0; i < num; ++i) {
     CQPropertyViewItem *item = itemChild(parent, i);
 
