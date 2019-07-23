@@ -29,9 +29,9 @@ class CQPropertyViewType {
 
   virtual bool setEditorData(CQPropertyViewItem *item, const QVariant &value);
 
-  virtual void draw(const CQPropertyViewDelegate *delegate, QPainter *painter,
-                    const QStyleOptionViewItem &option, const QModelIndex &index,
-                    const QVariant &value, bool inside);
+  virtual void draw(CQPropertyViewItem *item, const CQPropertyViewDelegate *delegate,
+                    QPainter *painter, const QStyleOptionViewItem &option,
+                    const QModelIndex &index, const QVariant &value, bool inside);
 
   virtual QString tip(const QVariant &value) const;
 

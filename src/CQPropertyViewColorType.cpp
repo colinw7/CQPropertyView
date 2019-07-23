@@ -26,7 +26,7 @@ setEditorData(CQPropertyViewItem *item, const QVariant &value)
 
 void
 CQPropertyViewColorType::
-draw(const CQPropertyViewDelegate *delegate, QPainter *painter,
+draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
      const QVariant &value, bool inside)
 {

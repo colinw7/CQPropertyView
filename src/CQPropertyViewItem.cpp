@@ -746,7 +746,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
   CQPropertyViewType *type = CQPropertyViewMgrInst->getType(typeName);
 
   if      (type) {
-    type->draw(delegate, painter, option, index, var, inside);
+    type->draw(this, delegate, painter, option, index, var, inside);
   }
   else if (typeName == "bool") {
     delegate->drawCheckInside(painter, option, var.toBool(), index, inside);

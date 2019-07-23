@@ -120,12 +120,20 @@ paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &
 
   QStyleOptionViewItem option1 = option;
 
+  //---
+
+  // read only is drawn italic
   if (! item->isEditable()) {
     option1.font.setItalic(true);
   }
 
+  //---
+
   bool inside = view_->isMouseInd(index);
 
+  //---
+
+  // property name
   if      (index.column() == 0) {
     QString label = item->aliasName();
 
@@ -243,7 +251,7 @@ drawColor(QPainter *painter, const QStyleOptionViewItem &option,
 
   painter->drawRect(rect);
 
-  QFontMetrics fm(painter->font());
+//QFontMetrics fm(painter->font());
 
   int x = rect.right() + 2;
 //int y = rect.top() + fm.ascent();

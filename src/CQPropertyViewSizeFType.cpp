@@ -24,7 +24,7 @@ setEditorData(CQPropertyViewItem *item, const QVariant &value)
 
 void
 CQPropertyViewSizeFType::
-draw(const CQPropertyViewDelegate *delegate, QPainter *painter,
+draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
      const QVariant &value, bool inside)
 {
