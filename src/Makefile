@@ -485,6 +485,7 @@ compiler_moc_header_clean:
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -581,6 +582,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -638,6 +640,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -688,6 +691,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -743,6 +747,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -797,6 +802,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -851,6 +857,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -906,6 +913,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -962,6 +970,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -1018,6 +1027,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -1072,6 +1082,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -1127,6 +1138,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -1182,6 +1194,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -1237,6 +1250,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \
@@ -1290,6 +1304,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CIVector2D.h \
 		../../CMath/include/CMathGen.h \
 		../../CFont/include/CFont.h \
+		../../CFont/include/CFontPtr.h \
 		../../CUtil/include/CRefPtr.h \
 		../../CImageLib/include/CImagePtr.h \
 		../../CMath/include/CPoint2D.h \

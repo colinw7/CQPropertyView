@@ -17,7 +17,10 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
      const QStyleOptionViewItem &option, const QModelIndex &index,
      const QVariant &value, bool inside)
 {
-  QString str = value.toString();
+  QString str;
+
+  if (! CQUtil::userVariantToString(value, str))
+    str = value.toString();
 
   delegate->drawString(painter, option, str, index, inside);
 }
