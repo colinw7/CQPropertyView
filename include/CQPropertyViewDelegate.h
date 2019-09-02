@@ -73,6 +73,8 @@ class CQPropertyViewDelegate : public QItemDelegate {
   // get editor index
   QModelIndex getEditorIndex() const { return editorIndex_; }
 
+  bool eventFilter(QObject *obj, QEvent *event);
+
  private:
   using WidgetP = QPointer<QWidget>;
 

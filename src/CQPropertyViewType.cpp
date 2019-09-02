@@ -1,6 +1,7 @@
 #include <CQPropertyViewType.h>
 #include <CQPropertyViewItem.h>
 #include <CQPropertyViewDelegate.h>
+#include <CQPropertyViewUtil.h>
 
 bool
 CQPropertyViewType::
@@ -17,10 +18,7 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
      const QStyleOptionViewItem &option, const QModelIndex &index,
      const QVariant &value, bool inside)
 {
-  QString str;
-
-  if (! CQUtil::userVariantToString(value, str))
-    str = value.toString();
+  QString str = CQPropertyViewUtil::variantToString(value);
 
   delegate->drawString(painter, option, str, index, inside);
 }

@@ -419,3 +419,10 @@ drawString(QPainter *painter, const QStyleOptionViewItem &option, const QString 
 
   //painter->fillRect(option.rect, Qt::red);
 }
+
+bool
+CQPropertyViewDelegate::
+eventFilter(QObject *obj, QEvent *event)
+{
+  return QObject::eventFilter(obj, event);
+}

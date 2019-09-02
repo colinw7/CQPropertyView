@@ -3,6 +3,7 @@
 #include <CQPropertyViewEditor.h>
 #include <CQPropertyView.h>
 #include <CQPropertyViewType.h>
+#include <CQPropertyViewUtil.h>
 #include <CQUtil.h>
 
 #include <QLineEdit>
@@ -10,21 +11,6 @@
 #include <QCheckBox>
 
 namespace {
-
-QString variantToString(const QVariant &var) {
-  QString str;
-
-  if (var.type() == QVariant::UserType) {
-    if (! CQUtil::userVariantToString(var, str))
-      return "";
-  }
-  else {
-    if (! CQUtil::variantToString(var, str))
-      return "";
-  }
-
-  return str;
-}
 
 class TableTip {
  public:
@@ -783,14 +769,14 @@ QString
 CQPropertyViewItem::
 initStr() const
 {
-  return variantToString(initValue());
+  return CQPropertyViewUtil::variantToString(initValue());
 }
 
 QString
 CQPropertyViewItem::
 dataStr() const
 {
-  return variantToString(data());
+  return CQPropertyViewUtil::variantToString(data());
 }
 
 bool
