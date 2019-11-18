@@ -85,6 +85,31 @@ CQPropertyViewTree::
 
 void
 CQPropertyViewTree::
+setPropertyModel(CQPropertyViewModel *model)
+{
+  assert(model);
+
+  if (model_) {
+    disconnect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
+               this, SIGNAL(valueChanged(QObject *, const QString &)));
+    disconnect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
+               this, SLOT(redraw()));
+  }
+
+  model_ = model;
+
+  connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
+          this, SIGNAL(valueChanged(QObject *, const QString &)));
+  connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
+          this, SLOT(redraw()));
+
+  filter_->setSourceModel(model_);
+
+  setModel(filter_);
+}
+
+void
+CQPropertyViewTree::
 setMouseHighlight(bool b)
 {
   mouseHighlight_ = b;

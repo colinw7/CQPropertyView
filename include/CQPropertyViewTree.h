@@ -29,6 +29,7 @@ class CQPropertyViewTree : public QTreeView {
   virtual ~CQPropertyViewTree();
 
   CQPropertyViewModel *propertyModel() const { return model_; }
+  void setPropertyModel(CQPropertyViewModel *model);
 
   CQPropertyViewFilter *filterModel() const { return filter_; }
 
