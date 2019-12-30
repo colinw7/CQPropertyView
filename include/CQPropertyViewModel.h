@@ -62,6 +62,8 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   void hideProperty(const QString &path, const QObject *object);
 
+  bool nameToPath(const QObject *obj, const QString &name, QString &path) const;
+
   void setObjectRoot(const QString &path, QObject *obj);
 
   const CQPropertyViewItem *propertyItem(const QObject *object, const QString &path,
@@ -95,6 +97,8 @@ class CQPropertyViewModel : public QAbstractItemModel {
   CQPropertyViewItem *itemChild(CQPropertyViewItem *item, int i, bool hidden=false) const;
 
  private:
+  CQPropertyViewItem *getNamedItem(CQPropertyViewItem *item, const QString &name) const;
+
   const CQPropertyViewItem *propertyItem(const QObject *object, const QString &path,
                                          QChar splitChar, bool create, bool alias,
                                          bool hidden) const;

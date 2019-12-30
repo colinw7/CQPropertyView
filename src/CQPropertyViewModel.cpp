@@ -297,6 +297,40 @@ hideProperty(const QString &path, const QObject *object)
   item->setHidden(true);
 }
 
+bool
+CQPropertyViewModel::
+nameToPath(const QObject *object, const QString &name, QString &path) const
+{
+  assert(object);
+
+  CQPropertyViewItem *item = objectItem(object);
+  if (! item) return false;
+
+  CQPropertyViewItem *item1 = getNamedItem(item, name);
+  if (! item1) return false;
+
+  path = item1->path(".", /*alias*/true, item);
+
+  return true;
+}
+
+CQPropertyViewItem *
+CQPropertyViewModel::
+getNamedItem(CQPropertyViewItem *item, const QString &name) const
+{
+  for (const auto &child : itemChildren(item)) {
+    if (child->object() && child->name() == name)
+      return child;
+
+    CQPropertyViewItem *item1 = getNamedItem(child, name);
+
+    if (item1)
+      return item1;
+  }
+
+  return nullptr;
+}
+
 void
 CQPropertyViewModel::
 setObjectRoot(const QString &path, QObject *obj)

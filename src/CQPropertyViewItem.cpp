@@ -77,6 +77,8 @@ CQPropertyViewItem(CQPropertyViewItem *parent, QObject *object, const QString &n
 
   if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo) && propInfo.isWritable())
     editable_ = true;
+  else
+    editable_ = false;
 
   initValue_ = data();
 }
