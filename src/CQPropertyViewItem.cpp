@@ -10,9 +10,7 @@
 #include <QComboBox>
 #include <QCheckBox>
 
-namespace {
-
-class TableTip {
+class CQPropertyViewItemTableTip {
  public:
   void addRow(const QString &name, const QString &value) {
     if (! inTable_)
@@ -63,8 +61,6 @@ class TableTip {
   bool    inTable_ { false };
 };
 
-}
-
 //---
 
 CQPropertyViewItem::
@@ -86,7 +82,7 @@ CQPropertyViewItem(CQPropertyViewItem *parent, QObject *object, const QString &n
 CQPropertyViewItem::
 ~CQPropertyViewItem()
 {
-  for (auto &child : children_)
+  for (auto &child : children())
     delete child;
 }
 
@@ -109,7 +105,7 @@ removeChild(CQPropertyViewItem *row)
 
   Children children;
 
-  for (auto &child : children_) {
+  for (auto &child : this->children()) {
     if (child != row)
       children.push_back(child);
     else
@@ -190,7 +186,7 @@ isHierHidden() const
       return false;
   }
 
-  if (object_)
+  if (object())
     return false;
 
   return true;
@@ -282,7 +278,7 @@ click()
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();
@@ -292,10 +288,10 @@ click()
 
   if (typeName == "bool" && propInfo.isWritable()) {
     if (! setData(! var.toBool())) {
-      //std::cerr << "Failed to set property " << name_.toStdString() << std::endl;
+      //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
     }
 
-    emit valueChanged(object_, name_);
+    emit valueChanged(object(), name());
 
     return true;
   }
@@ -312,7 +308,7 @@ getEditorData() const
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();
@@ -338,7 +334,7 @@ createEditor(QWidget *parent)
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();
@@ -459,14 +455,14 @@ setEditorData(const QVariant &value)
 {
   CQUtil::PropInfo propInfo;
 
-  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo) && propInfo.isWritable()) {
+  if (object() && CQUtil::getPropInfo(object(), name(), &propInfo) && propInfo.isWritable()) {
     QString typeName = propInfo.typeName();
 
     CQPropertyViewType *type = CQPropertyViewMgrInst->getType(typeName);
 
     if      (type) {
       if (! type->setEditorData(this, value)) {
-        //std::cerr << "Failed to set property " << name_.toStdString() << std::endl;
+        //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
       }
     }
     else if (propInfo.isEnumType()) {
@@ -478,17 +474,17 @@ setEditorData(const QVariant &value)
         QVariant v(ind);
 
         if (! this->setData(v)) {
-          //std::cerr << "Failed to set property " << name_.toStdString() << std::endl;
+          //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
         }
       }
     }
     else {
       if (! this->setData(value)) {
-        //std::cerr << "Failed to set property " << name_.toStdString() << std::endl;
+        //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
       }
     }
 
-    emit valueChanged(object_, name_);
+    emit valueChanged(object(), name());
   }
 }
 
@@ -501,7 +497,7 @@ updateValue()
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
   CQPropertyViewEditorFactory *editor = editor_;
@@ -572,7 +568,7 @@ data() const
 {
   QVariant var;
 
-  if (! object_ || ! CQUtil::getProperty(object_, name_, var))
+  if (! object() || ! CQUtil::getProperty(object(), name(), var))
     var = QVariant();
 
   return var;
@@ -585,7 +581,7 @@ setData(const QVariant &value)
   if (! isEditable())
     return false;
 
-  if (! object_ || ! CQUtil::setProperty(object_, name_, value))
+  if (! object() || ! CQUtil::setProperty(object(), name(), value))
     return false;
 
   return true;
@@ -597,7 +593,7 @@ tclData() const
 {
   QVariant var;
 
-  if (! object_ || ! CQUtil::getTclProperty(object_, name_, var))
+  if (! object() || ! CQUtil::getTclProperty(object(), name(), var))
     var = QVariant();
 
   return var;
@@ -610,7 +606,7 @@ typeName() const
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
   return typeName;
@@ -622,7 +618,7 @@ isEnum() const
 {
   CQUtil::PropInfo propInfo;
 
-  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     return propInfo.isEnumType();
 
   return false;
@@ -634,20 +630,14 @@ nameTip() const
 {
   QString tip = path(".", /*alias*/true);
 
-  if (! object_)
+  if (! object())
     return tip;
 
-  TableTip tableTip;
+  CQPropertyViewItemTableTip tableTip;
 
   tableTip.addRow("Property", tip);
 
-  if (desc() != "")
-    tableTip.addRow("Description", desc());
-
-  QString userTypeName = this->userTypeName();
-
-  if (userTypeName != "")
-    tableTip.addRow("Type", userTypeName);
+  addCommonType(tableTip);
 
   return tableTip.str();
 }
@@ -656,15 +646,24 @@ QString
 CQPropertyViewItem::
 valueTip() const
 {
-  if (! object_)
+  if (! object())
     return "";
 
   QString tip = calcTip();
 
-  TableTip tableTip;
+  CQPropertyViewItemTableTip tableTip;
 
   tableTip.addRow("Value", tip);
 
+  addCommonType(tableTip);
+
+  return tableTip.str();
+}
+
+void
+CQPropertyViewItem::
+addCommonType(CQPropertyViewItemTableTip &tableTip) const
+{
   if (desc() != "")
     tableTip.addRow("Description", desc());
 
@@ -673,7 +672,11 @@ valueTip() const
   if (userTypeName != "")
     tableTip.addRow("Type", userTypeName);
 
-  return tableTip.str();
+  if (minValue().isValid() && minValue().toString().length())
+    tableTip.addRow("Min", minValue().toString());
+
+  if (maxValue().isValid() && maxValue().toString().length())
+    tableTip.addRow("Max", maxValue().toString());
 }
 
 QString
@@ -683,7 +686,7 @@ calcTip() const
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();
@@ -726,7 +729,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
-  if (object_ && CQUtil::getPropInfo(object_, name_, &propInfo))
+  if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
   QVariant var = this->data();

@@ -1,6 +1,7 @@
 #include <CQPropertyViewRealType.h>
 #include <CQPropertyViewItem.h>
 #include <CQPropertyViewDelegate.h>
+#include <CQPropertyView.h>
 #include <cassert>
 
 CQPropertyViewRealType::
@@ -82,6 +83,16 @@ createEdit(QWidget *parent)
   }
 #else
   CQRealSpin *spin = new CQRealSpin(parent);
+
+  CQPropertyViewItem *item = CQPropertyViewMgrInst->editItem();
+
+  if (item) {
+    QVariant vmin = item->minValue();
+    QVariant vmax = item->maxValue();
+
+    if (vmin.isValid()) { bool ok; double r = vmin.toDouble(&ok); if (ok) min_ = r; }
+    if (vmax.isValid()) { bool ok; double r = vmax.toDouble(&ok); if (ok) max_ = r; }
+  }
 
   spin->setRange(min_, max_);
   spin->setSingleStep(step_);

@@ -1050,7 +1050,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h
+		../include/CQPropertyViewDelegate.h \
+		../include/CQPropertyView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewIntegerType.o CQPropertyViewIntegerType.cpp
 
 ../obj/CQPropertyViewPointFType.o: CQPropertyViewPointFType.cpp ../include/CQPropertyViewPointFType.h \
@@ -1162,6 +1163,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../include/CQPropertyViewDelegate.h \
+		../include/CQPropertyView.h \
 		../../CQUtil/include/CQRealSpin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewRealType.o CQPropertyViewRealType.cpp
 

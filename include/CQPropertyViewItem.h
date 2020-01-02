@@ -12,6 +12,7 @@
 
 class CQPropertyViewDelegate;
 class CQPropertyViewEditorFactory;
+class CQPropertyViewItemTableTip;
 class QPainter;
 class QWidget;
 
@@ -98,7 +99,7 @@ class CQPropertyViewItem : public QObject {
 
   //! get/set name
   const QString &name() const { return name_; }
-  void setName(const QString &s) { name_ = s; }
+  CQPropertyViewItem &setName(const QString &s) { name_ = s; return *this; }
 
   //! get/set alias
   const QString &alias() const { return alias_; }
@@ -114,11 +115,19 @@ class CQPropertyViewItem : public QObject {
 
   //! get/set inside
   bool isInside() const { return inside_; }
-  void setInside(bool b) { inside_ = b; }
+  CQPropertyViewItem &setInside(bool b) { inside_ = b; return *this; }
 
   //! get/set enum values
   const QStringList &values() const { return values_; }
   CQPropertyViewItem &setValues(const QStringList &v) { values_ = v; return *this; }
+
+  const QVariant &minValue() const { return minValue_; }
+  CQPropertyViewItem &setMinValue(const QVariant &v) { minValue_ = v; return *this; }
+
+  const QVariant &maxValue() const { return maxValue_; }
+  CQPropertyViewItem &setMaxValue(const QVariant &v) { maxValue_ = v; return *this; }
+
+  //----
 
   //! get alias name
   QString aliasName() const;
@@ -186,6 +195,8 @@ class CQPropertyViewItem : public QObject {
 
   QString calcTip() const;
 
+  void addCommonType(CQPropertyViewItemTableTip &tableTip) const;
+
   bool isHierHidden() const;
 
  signals:
@@ -215,6 +226,8 @@ class CQPropertyViewItem : public QObject {
   QWidget*                     widget_   { nullptr };    //!< edit widget
   CQPropertyViewEditorFactory *editor_   { nullptr };    //!< editor interface
   QStringList                  values_;                  //!< enum values
+  QVariant                     minValue_;                //!< min value
+  QVariant                     maxValue_;                //!< max value
 
   Children visibleChildren_;                //!< visible child items
   bool     visibleChildrenValid_ { false }; //!< visible child items valid

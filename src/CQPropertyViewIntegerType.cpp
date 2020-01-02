@@ -1,6 +1,7 @@
 #include <CQPropertyViewIntegerType.h>
 #include <CQPropertyViewItem.h>
 #include <CQPropertyViewDelegate.h>
+#include <CQPropertyView.h>
 #include <QSpinBox>
 #include <cassert>
 
@@ -45,6 +46,16 @@ CQPropertyViewIntegerEditor::
 createEdit(QWidget *parent)
 {
   QSpinBox *spin = new QSpinBox(parent);
+
+  CQPropertyViewItem *item = CQPropertyViewMgrInst->editItem();
+
+  if (item) {
+    QVariant vmin = item->minValue();
+    QVariant vmax = item->maxValue();
+
+    if (vmin.isValid()) { bool ok; int i = vmin.toInt(&ok); if (ok) min_ = i; }
+    if (vmax.isValid()) { bool ok; int i = vmax.toInt(&ok); if (ok) max_ = i; }
+  }
 
   spin->setRange(min_, max_);
   spin->setSingleStep(step_);
