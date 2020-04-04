@@ -688,6 +688,9 @@ keyPressEvent(QKeyEvent *ke)
       clipboard->setText(value, QClipboard::Selection);
     }
   }
+  else if (ke->key() == Qt::Key_Escape) {
+    closeCurrentEditor();
+  }
   else
     QTreeView::keyPressEvent(ke);
 }
