@@ -16,6 +16,7 @@ class CQPropertyViewTree : public QTreeView {
   Q_OBJECT
 
   Q_PROPERTY(bool itemMenu       READ isItemMenu       WRITE setItemMenu      )
+  Q_PROPERTY(bool showHidden     READ isShowHidden     WRITE setShowHidden    )
   Q_PROPERTY(bool mouseHighlight READ isMouseHighlight WRITE setMouseHighlight)
   Q_PROPERTY(bool resizeOnShow   READ isResizeOnShow   WRITE setResizeOnShow  )
 
@@ -51,6 +52,8 @@ class CQPropertyViewTree : public QTreeView {
 
   bool isItemMenu() const { return itemMenu_; }
   void setItemMenu(bool b) { itemMenu_ = b; }
+
+  bool isShowHidden() const;
 
   bool isMouseHighlight() const { return mouseHighlight_; }
   void setMouseHighlight(bool b);
@@ -102,7 +105,7 @@ class CQPropertyViewTree : public QTreeView {
 
   void expandSelected();
 
-  void showHidden(bool);
+  void setShowHidden(bool);
 
   void setFilter(const QString &filter);
   void search(const QString &text);

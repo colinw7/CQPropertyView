@@ -329,9 +329,16 @@ getSelectedObjects(Objs &objs)
   }
 }
 
+bool
+CQPropertyViewTree::
+isShowHidden() const
+{
+  return model_->isShowHidden();
+}
+
 void
 CQPropertyViewTree::
-showHidden(bool b)
+setShowHidden(bool b)
 {
   model_->setShowHidden(b);
 
@@ -592,9 +599,9 @@ addStandardMenuItems(QMenu *menu)
   QAction *showHidden = new QAction("Show Hidden", menu);
 
   showHidden->setCheckable(true);
-  showHidden->setChecked(model_->isShowHidden());
+  showHidden->setChecked(isShowHidden());
 
-  connect(showHidden, SIGNAL(triggered(bool)), this, SLOT(showHidden(bool)));
+  connect(showHidden, SIGNAL(triggered(bool)), this, SLOT(setShowHidden(bool)));
 
   menu->addSeparator();
   menu->addAction(showHidden);
