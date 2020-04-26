@@ -52,7 +52,7 @@ QWidget *
 CQPropertyViewPointFEditor::
 createEdit(QWidget *parent)
 {
-  CQPoint2DEdit *edit = new CQPoint2DEdit(parent);
+  auto *edit = new CQPoint2DEdit(parent);
 
   edit->setSpin(true);
   edit->setMinimum(CPoint2D(min_, min_));
@@ -66,7 +66,7 @@ void
 CQPropertyViewPointFEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQPoint2DEdit *edit = qobject_cast<CQPoint2DEdit *>(w);
+  auto *edit = qobject_cast<CQPoint2DEdit *>(w);
   assert(edit);
 
   QObject::connect(edit, SIGNAL(valueChanged()), obj, method);
@@ -76,7 +76,7 @@ QVariant
 CQPropertyViewPointFEditor::
 getValue(QWidget *w)
 {
-  CQPoint2DEdit *edit = qobject_cast<CQPoint2DEdit *>(w);
+  auto *edit = qobject_cast<CQPoint2DEdit *>(w);
   assert(edit);
 
   return edit->getQValue();
@@ -86,7 +86,7 @@ void
 CQPropertyViewPointFEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQPoint2DEdit *edit = qobject_cast<CQPoint2DEdit *>(w);
+  auto *edit = qobject_cast<CQPoint2DEdit *>(w);
   assert(edit);
 
   QPointF p = var.toPointF();

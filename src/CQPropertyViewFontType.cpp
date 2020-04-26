@@ -44,10 +44,9 @@ QWidget *
 CQPropertyViewFontEditor::
 createEdit(QWidget *parent)
 {
-  CQPropertyViewTree *tree =
-   (parent ? qobject_cast<CQPropertyViewTree *>(parent->parentWidget()) : nullptr);
+  auto *tree = (parent ? qobject_cast<CQPropertyViewTree *>(parent->parentWidget()) : nullptr);
 
-  CQFontEdit *edit = new CQFontEdit(parent);
+  auto *edit = new CQFontEdit(parent);
 
   edit->setAutoFillBackground(true);
 
@@ -61,7 +60,7 @@ void
 CQPropertyViewFontEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQFontEdit *edit = qobject_cast<CQFontEdit *>(w);
+  auto *edit = qobject_cast<CQFontEdit *>(w);
   assert(edit);
 
   QObject::connect(edit, SIGNAL(fontChanged(const QString&)), obj, method);
@@ -71,7 +70,7 @@ QVariant
 CQPropertyViewFontEditor::
 getValue(QWidget *w)
 {
-  CQFontEdit *edit = qobject_cast<CQFontEdit *>(w);
+  auto *edit = qobject_cast<CQFontEdit *>(w);
   assert(edit);
 
   return edit->fontName();
@@ -81,7 +80,7 @@ void
 CQPropertyViewFontEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQFontEdit *edit = qobject_cast<CQFontEdit *>(w);
+  auto *edit = qobject_cast<CQFontEdit *>(w);
   assert(edit);
 
   QString str = var.toString();

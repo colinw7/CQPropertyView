@@ -61,7 +61,7 @@ CQPropertyViewMgr::
   delete editorMgr_;
 
   for (auto &p : types_) {
-    CQPropertyViewType *type = p.second;
+    auto *type = p.second;
 
     delete type;
   }
@@ -110,7 +110,7 @@ QString
 CQPropertyViewMgr::
 userName(const QString &name) const
 {
-  CQPropertyViewType *type = getType(name);
+  auto *type = getType(name);
 
   if (type)
     return type->userName();

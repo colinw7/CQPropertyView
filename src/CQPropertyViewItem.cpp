@@ -128,7 +128,7 @@ CQPropertyViewItem::
 visibleChildren() const
 {
   if (! visibleChildrenValid_) {
-    CQPropertyViewItem *th = const_cast<CQPropertyViewItem *>(this);
+    auto *th = const_cast<CQPropertyViewItem *>(this);
 
     assert(th->visibleChildren_.empty());
 
@@ -198,20 +198,20 @@ QObject *
 CQPropertyViewItem::
 hierObject() const
 {
-  QObject *obj = this->object();
+  auto *obj = this->object();
 
   if (obj)
     return obj;
 
   for (auto &child : children_) {
-    QObject *obj = child->object();
+    auto *obj = child->object();
 
     if (obj)
       return obj;
   }
 
   for (auto &child : children_) {
-    QObject *obj = child->hierObject();
+    auto *obj = child->hierObject();
 
     if (obj)
       return obj;
@@ -249,7 +249,7 @@ path(const QString &sep, bool alias, CQPropertyViewItem *root) const
 {
   QString path;
 
-  const CQPropertyViewItem *item = this;
+  const auto *item = this;
 
   while (item) {
     QString name = (alias ? item->aliasName() : item->name());
@@ -348,7 +348,7 @@ createEditor(QWidget *parent)
       var = str;
   }
 
-  CQPropertyViewEditorFactory *editor = editor_;
+  auto *editor = editor_;
 
   if (! editor)
     editor = CQPropertyViewMgrInst->getEditor(typeName);
@@ -367,7 +367,7 @@ createEditor(QWidget *parent)
 
     const QStringList &names = propInfo.enumNames();
 
-    QComboBox *combo = new QComboBox(parent);
+    auto *combo = new QComboBox(parent);
 
     combo->setObjectName("combo");
 
@@ -381,7 +381,7 @@ createEditor(QWidget *parent)
   // bool - create toggle
   // TODO: use button press (no need to edit) see CQCheckTree.cpp
   else if (typeName == "bool") {
-    QCheckBox *check = new QCheckBox(parent);
+    auto *check = new QCheckBox(parent);
 
     check->setObjectName("check");
 
@@ -423,7 +423,7 @@ CQPropertyViewItem::
 createDefaultEdit(QWidget *parent, const QString &valueStr)
 {
   if (values().length()) {
-    QComboBox *combo = new QComboBox(parent);
+    auto *combo = new QComboBox(parent);
 
     combo->setObjectName("combo");
 
@@ -435,7 +435,7 @@ createDefaultEdit(QWidget *parent, const QString &valueStr)
     return combo;
   }
   else {
-    QLineEdit *edit = new QLineEdit(parent);
+    auto *edit = new QLineEdit(parent);
 
     edit->setObjectName("edit");
 
@@ -458,7 +458,7 @@ setEditorData(const QVariant &value)
   if (object() && CQUtil::getPropInfo(object(), name(), &propInfo) && propInfo.isWritable()) {
     QString typeName = propInfo.typeName();
 
-    CQPropertyViewType *type = CQPropertyViewMgrInst->getType(typeName);
+    auto *type = CQPropertyViewMgrInst->getType(typeName);
 
     if      (type) {
       if (! type->setEditorData(this, value)) {
@@ -500,7 +500,7 @@ updateValue()
   if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
-  CQPropertyViewEditorFactory *editor = editor_;
+  auto *editor = editor_;
 
   if (! editor)
     editor = CQPropertyViewMgrInst->getEditor(typeName);
@@ -511,7 +511,7 @@ updateValue()
     setEditorData(var);
   }
   else if (propInfo.isEnumType()) {
-    QComboBox *combo = qobject_cast<QComboBox *>(widget_);
+    auto *combo = qobject_cast<QComboBox *>(widget_);
     assert(combo);
 
     QString text = combo->currentText();
@@ -519,7 +519,7 @@ updateValue()
     setEditorData(text);
   }
   else if (typeName == "bool") {
-    QCheckBox *check = qobject_cast<QCheckBox *>(widget_);
+    auto *check = qobject_cast<QCheckBox *>(widget_);
     assert(check);
 
     check->setText(check->isChecked() ? "true" : "false");
@@ -547,12 +547,12 @@ QString
 CQPropertyViewItem::
 getDefaultValue() const
 {
-  QLineEdit *edit = qobject_cast<QLineEdit *>(widget_);
+  auto *edit = qobject_cast<QLineEdit *>(widget_);
 
   if (edit)
     return edit->text();
 
-  QComboBox *combo = qobject_cast<QComboBox *>(widget_);
+  auto *combo = qobject_cast<QComboBox *>(widget_);
 
   if (combo)
     return combo->currentText();
@@ -691,7 +691,7 @@ calcTip() const
 
   QVariant var = this->data();
 
-  CQPropertyViewType *type = CQPropertyViewMgrInst->getType(typeName);
+  auto *type = CQPropertyViewMgrInst->getType(typeName);
 
   if (type)
     return type->tip(var);
@@ -734,7 +734,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
 
   QVariant var = this->data();
 
-  CQPropertyViewType *type = CQPropertyViewMgrInst->getType(typeName);
+  auto *type = CQPropertyViewMgrInst->getType(typeName);
 
   if      (type) {
     type->draw(this, delegate, painter, option, index, var, inside);

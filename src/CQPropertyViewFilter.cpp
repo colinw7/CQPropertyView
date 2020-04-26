@@ -16,14 +16,14 @@ filterAcceptsRow(int row, const QModelIndex &parent) const
   if (filter_.length() == 0)
     return true;
 
-  //CQPropertyViewItem *parentItem = view_->getModelItem(parent, /*map*/false);
+  //auto *parentItem = view_->getModelItem(parent, /*map*/false);
   //if (! parentItem) return true;
 
-  QAbstractItemModel *model = view_->propertyModel();
+  auto *model = view_->propertyModel();
 
   QModelIndex child = model->index(row, 0, parent);
 
-  CQPropertyViewItem *item = view_->getModelItem(child, /*map*/false);
+  auto *item = view_->getModelItem(child, /*map*/false);
   if (! item) return false;
 
   if (! item->object()) {
@@ -50,7 +50,7 @@ acceptsItem(const QModelIndex &ind) const
   if (p != matches_.end())
     return (*p).second;
 
-  CQPropertyViewItem *item = view_->getModelItem(ind, /*map*/false);
+  auto *item = view_->getModelItem(ind, /*map*/false);
   if (! item) return false;
 
   bool match = true;
@@ -82,12 +82,12 @@ bool
 CQPropertyViewFilter::
 anyChildMatch(const QModelIndex &parent) const
 {
-  QAbstractItemModel *model = view_->propertyModel();
+  auto *model = view_->propertyModel();
 
   for (int i = 0; i < model->rowCount(parent); ++i) {
     QModelIndex child = model->index(i, 0, parent);
 
-    CQPropertyViewItem *item = view_->getModelItem(child, /*map*/false);
+    auto *item = view_->getModelItem(child, /*map*/false);
     assert(item);
 
     if (! item->object()) {
@@ -108,7 +108,7 @@ void
 CQPropertyViewFilter::
 expandMatches()
 {
-  CQPropertyViewFilter *filterModel = view_->filterModel();
+  auto *filterModel = view_->filterModel();
 
   std::vector<QModelIndex> inds;
 

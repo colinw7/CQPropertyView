@@ -57,7 +57,7 @@ QWidget *
 CQPropertyViewAngleEditor::
 createEdit(QWidget *parent)
 {
-  CQAngleSpinBox *edit = new CQAngleSpinBox(parent);
+  auto *edit = new CQAngleSpinBox(parent);
 
   return edit;
 }
@@ -66,7 +66,7 @@ void
 CQPropertyViewAngleEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQAngleSpinBox *edit = qobject_cast<CQAngleSpinBox *>(w);
+  auto *edit = qobject_cast<CQAngleSpinBox *>(w);
   assert(edit);
 
   QObject::connect(edit, SIGNAL(angleChanged(const CAngle &)), obj, method);
@@ -76,7 +76,7 @@ QVariant
 CQPropertyViewAngleEditor::
 getValue(QWidget *w)
 {
-  CQAngleSpinBox *edit = qobject_cast<CQAngleSpinBox *>(w);
+  auto *edit = qobject_cast<CQAngleSpinBox *>(w);
   assert(edit);
 
   return QVariant::fromValue(edit->getAngle());
@@ -86,7 +86,7 @@ void
 CQPropertyViewAngleEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQAngleSpinBox *edit = qobject_cast<CQAngleSpinBox *>(w);
+  auto *edit = qobject_cast<CQAngleSpinBox *>(w);
   assert(edit);
 
   CAngle angle = var.value<CAngle>();

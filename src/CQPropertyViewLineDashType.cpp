@@ -78,7 +78,7 @@ QWidget *
 CQPropertyViewLineDashEditor::
 createEdit(QWidget *parent)
 {
-  CQLineDash *edit = new CQLineDash(parent);
+  auto *edit = new CQLineDash(parent);
 
   return edit;
 }
@@ -87,7 +87,7 @@ void
 CQPropertyViewLineDashEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQLineDash *edit = qobject_cast<CQLineDash *>(w);
+  auto *edit = qobject_cast<CQLineDash *>(w);
   assert(edit);
 
   QObject::connect(edit, SIGNAL(valueChanged(const CLineDash &)), obj, method);
@@ -97,7 +97,7 @@ QVariant
 CQPropertyViewLineDashEditor::
 getValue(QWidget *w)
 {
-  CQLineDash *edit = qobject_cast<CQLineDash *>(w);
+  auto *edit = qobject_cast<CQLineDash *>(w);
   assert(edit);
 
   return QVariant::fromValue(edit->getLineDash());
@@ -107,7 +107,7 @@ void
 CQPropertyViewLineDashEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQLineDash *edit = qobject_cast<CQLineDash *>(w);
+  auto *edit = qobject_cast<CQLineDash *>(w);
   assert(edit);
 
   CLineDash dash = var.value<CLineDash>();

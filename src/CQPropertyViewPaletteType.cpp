@@ -51,7 +51,7 @@ QWidget *
 CQPropertyViewPaletteEditor::
 createEdit(QWidget *parent)
 {
-  CQPaletteChooser *chooser = new CQPaletteChooser(parent);
+  auto *chooser = new CQPaletteChooser(parent);
 
   return chooser;
 }
@@ -60,7 +60,7 @@ void
 CQPropertyViewPaletteEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQPaletteChooser *chooser = qobject_cast<CQPaletteChooser *>(w);
+  auto *chooser = qobject_cast<CQPaletteChooser *>(w);
   assert(chooser);
 
   QObject::connect(chooser, SIGNAL(paletteChanged(const QString&)), obj, method);
@@ -70,7 +70,7 @@ QVariant
 CQPropertyViewPaletteEditor::
 getValue(QWidget *w)
 {
-  CQPaletteChooser *chooser = qobject_cast<CQPaletteChooser *>(w);
+  auto *chooser = qobject_cast<CQPaletteChooser *>(w);
   assert(chooser);
 
   return chooser->palette();
@@ -80,7 +80,7 @@ void
 CQPropertyViewPaletteEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQPaletteChooser *chooser = qobject_cast<CQPaletteChooser *>(w);
+  auto *chooser = qobject_cast<CQPaletteChooser *>(w);
   assert(chooser);
 
   QString str = var.toString();

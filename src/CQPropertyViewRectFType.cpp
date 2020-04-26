@@ -51,7 +51,7 @@ QWidget *
 CQPropertyViewRectFEditor::
 createEdit(QWidget *parent)
 {
-  CQBBox2DEdit *edit = new CQBBox2DEdit(parent);
+  auto *edit = new CQBBox2DEdit(parent);
 
   return edit;
 }
@@ -60,7 +60,7 @@ void
 CQPropertyViewRectFEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQBBox2DEdit *edit = qobject_cast<CQBBox2DEdit *>(w);
+  auto *edit = qobject_cast<CQBBox2DEdit *>(w);
   assert(edit);
 
   QObject::connect(edit, SIGNAL(valueChanged()), obj, method);
@@ -70,7 +70,7 @@ QVariant
 CQPropertyViewRectFEditor::
 getValue(QWidget *w)
 {
-  CQBBox2DEdit *edit = qobject_cast<CQBBox2DEdit *>(w);
+  auto *edit = qobject_cast<CQBBox2DEdit *>(w);
   assert(edit);
 
   QRectF rect = edit->getQValue();
@@ -82,7 +82,7 @@ void
 CQPropertyViewRectFEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQBBox2DEdit *edit = qobject_cast<CQBBox2DEdit *>(w);
+  auto *edit = qobject_cast<CQBBox2DEdit *>(w);
   assert(edit);
 
   QRectF rect = var.toRectF();

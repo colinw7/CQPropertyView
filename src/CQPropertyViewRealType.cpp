@@ -53,7 +53,7 @@ createEdit(QWidget *parent)
 {
 #if 0
   if      (type_ == Type::RealSlider) {
-    CQRealSlider *slider = new CQRealSlider(parent);
+    auto *slider = new CQRealSlider(parent);
 
     slider->setAutoFillBackground(true);
 
@@ -66,14 +66,14 @@ createEdit(QWidget *parent)
     return slider;
   }
   else if (type_ == Type::ComboSlider) {
-    CQComboSlider *combo = new CQComboSlider(parent, min_, min_, max_);
+    auto *combo = new CQComboSlider(parent, min_, min_, max_);
 
     combo->setAutoFillBackground(true);
 
     return combo;
   }
   else {
-    CQRealSpin *spin = new CQRealSpin(parent);
+    auto *spin = new CQRealSpin(parent);
 
     spin->setRange(min_, max_);
     spin->setSingleStep(step_);
@@ -82,9 +82,9 @@ createEdit(QWidget *parent)
     return spin;
   }
 #else
-  CQRealSpin *spin = new CQRealSpin(parent);
+  auto *spin = new CQRealSpin(parent);
 
-  CQPropertyViewItem *item = CQPropertyViewMgrInst->editItem();
+  auto *item = CQPropertyViewMgrInst->editItem();
 
   if (item) {
     QVariant vmin = item->minValue();
@@ -108,25 +108,25 @@ connect(QWidget *w, QObject *obj, const char *method)
 {
 #if 0
   if      (type_ == Type::RealSlider) {
-    CQRealSlider *slider = qobject_cast<CQRealSlider *>(w);
+    auto *slider = qobject_cast<CQRealSlider *>(w);
     assert(slider);
 
     QObject::connect(slider, SIGNAL(valueChanged(double)), obj, method);
   }
   else if (type_ == Type::ComboSlider) {
-    CQComboSlider *combo = qobject_cast<CQComboSlider *>(w);
+    auto *combo = qobject_cast<CQComboSlider *>(w);
     assert(combo);
 
     QObject::connect(combo, SIGNAL(valueChanged(double)), obj, method);
   }
   else {
-    CQRealSpin *spin = qobject_cast<CQRealSpin *>(w);
+    auto *spin = qobject_cast<CQRealSpin *>(w);
     assert(spin);
 
     QObject::connect(spin, SIGNAL(valueChanged(double)), obj, method);
   }
 #else
-  CQRealSpin *spin = qobject_cast<CQRealSpin *>(w);
+  auto *spin = qobject_cast<CQRealSpin *>(w);
   assert(spin);
 
   QObject::connect(spin, SIGNAL(valueChanged(double)), obj, method);
@@ -139,25 +139,25 @@ getValue(QWidget *w)
 {
 #if 0
   if      (type_ == Type::RealSlider) {
-    CQRealSlider *slider = qobject_cast<CQRealSlider *>(w);
+    auto *slider = qobject_cast<CQRealSlider *>(w);
     assert(slider);
 
     return QVariant(slider->value());
   }
   else if (type_ == Type::ComboSlider) {
-    CQComboSlider *combo = qobject_cast<CQComboSlider *>(w);
+    auto *combo = qobject_cast<CQComboSlider *>(w);
     assert(combo);
 
     return QVariant(combo->value());
   }
   else {
-    CQRealSpin *spin = qobject_cast<CQRealSpin *>(w);
+    auto *spin = qobject_cast<CQRealSpin *>(w);
     assert(spin);
 
     return QVariant(spin->value());
   }
 #else
-  CQRealSpin *spin = qobject_cast<CQRealSpin *>(w);
+  auto *spin = qobject_cast<CQRealSpin *>(w);
   assert(spin);
 
   return QVariant(spin->value());
@@ -170,7 +170,7 @@ setValue(QWidget *w, const QVariant &var)
 {
 #if 0
   if      (type_ == Type::RealSlider) {
-    CQRealSlider *slider = qobject_cast<CQRealSlider *>(w);
+    auto *slider = qobject_cast<CQRealSlider *>(w);
     assert(slider);
 
     double r = var.toDouble();
@@ -178,7 +178,7 @@ setValue(QWidget *w, const QVariant &var)
     slider->setValue(r);
   }
   else if (type_ == Type::ComboSlider) {
-    CQComboSlider *combo = qobject_cast<CQComboSlider *>(w);
+    auto *combo = qobject_cast<CQComboSlider *>(w);
     assert(combo);
 
     double r = var.toDouble();
@@ -186,7 +186,7 @@ setValue(QWidget *w, const QVariant &var)
     combo->setValue(r);
   }
   else {
-    CQRealSpin *spin = qobject_cast<CQRealSpin *>(w);
+    auto *spin = qobject_cast<CQRealSpin *>(w);
     assert(spin);
 
     double r = var.toDouble();
@@ -194,7 +194,7 @@ setValue(QWidget *w, const QVariant &var)
     spin->setValue(r);
   }
 #else
-  CQRealSpin *spin = qobject_cast<CQRealSpin *>(w);
+  auto *spin = qobject_cast<CQRealSpin *>(w);
   assert(spin);
 
   double r = var.toDouble();

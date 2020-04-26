@@ -223,7 +223,7 @@ class CQPropertyViewItem : public QObject {
   bool                         editable_ { false };      //!< is editable
   bool                         hidden_   { false };      //!< is hidden
   bool                         inside_   { false };      //!< is mouse inside
-  QWidget*                     widget_   { nullptr };    //!< edit widget
+  QPointer<QWidget>            widget_;                  //!< edit widget
   CQPropertyViewEditorFactory *editor_   { nullptr };    //!< editor interface
   QStringList                  values_;                  //!< enum values
   QVariant                     minValue_;                //!< min value

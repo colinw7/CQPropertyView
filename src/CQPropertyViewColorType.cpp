@@ -44,10 +44,9 @@ QWidget *
 CQPropertyViewColorEditor::
 createEdit(QWidget *parent)
 {
-  CQPropertyViewTree *tree =
-   (parent ? qobject_cast<CQPropertyViewTree *>(parent->parentWidget()) : nullptr);
+  auto *tree = (parent ? qobject_cast<CQPropertyViewTree *>(parent->parentWidget()) : nullptr);
 
-  CQColorEdit *edit = new CQColorEdit(parent);
+  auto *edit = new CQColorEdit(parent);
 
   edit->setAutoFillBackground(true);
 
@@ -61,7 +60,7 @@ void
 CQPropertyViewColorEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQColorEdit *edit = qobject_cast<CQColorEdit *>(w);
+  auto *edit = qobject_cast<CQColorEdit *>(w);
   assert(edit);
 
   QObject::connect(edit, SIGNAL(colorChanged(const QColor&)), obj, method);
@@ -71,7 +70,7 @@ QVariant
 CQPropertyViewColorEditor::
 getValue(QWidget *w)
 {
-  CQColorEdit *edit = qobject_cast<CQColorEdit *>(w);
+  auto *edit = qobject_cast<CQColorEdit *>(w);
   assert(edit);
 
   return edit->colorName();
@@ -81,7 +80,7 @@ void
 CQPropertyViewColorEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQColorEdit *edit = qobject_cast<CQColorEdit *>(w);
+  auto *edit = qobject_cast<CQColorEdit *>(w);
   assert(edit);
 
   QString str = var.toString();

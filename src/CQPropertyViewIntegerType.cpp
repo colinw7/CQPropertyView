@@ -45,9 +45,9 @@ QWidget *
 CQPropertyViewIntegerEditor::
 createEdit(QWidget *parent)
 {
-  QSpinBox *spin = new QSpinBox(parent);
+  auto *spin = new QSpinBox(parent);
 
-  CQPropertyViewItem *item = CQPropertyViewMgrInst->editItem();
+  auto *item = CQPropertyViewMgrInst->editItem();
 
   if (item) {
     QVariant vmin = item->minValue();
@@ -67,7 +67,7 @@ void
 CQPropertyViewIntegerEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  QSpinBox *spin = qobject_cast<QSpinBox *>(w);
+  auto *spin = qobject_cast<QSpinBox *>(w);
   assert(spin);
 
   QObject::connect(spin, SIGNAL(valueChanged(int)), obj, method);
@@ -77,7 +77,7 @@ QVariant
 CQPropertyViewIntegerEditor::
 getValue(QWidget *w)
 {
-  QSpinBox *spin = qobject_cast<QSpinBox *>(w);
+  auto *spin = qobject_cast<QSpinBox *>(w);
   assert(spin);
 
   return QVariant(spin->value());
@@ -87,7 +87,7 @@ void
 CQPropertyViewIntegerEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  QSpinBox *spin = qobject_cast<QSpinBox *>(w);
+  auto *spin = qobject_cast<QSpinBox *>(w);
   assert(spin);
 
   int i = var.toInt();

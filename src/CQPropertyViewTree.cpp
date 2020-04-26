@@ -64,7 +64,7 @@ CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
   connect(this, SIGNAL(clicked(const QModelIndex &)),
           this, SLOT(itemClickedSlot(const QModelIndex &)));
 
-  QItemSelectionModel *sm = this->selectionModel();
+  auto *sm = this->selectionModel();
 
   connect(sm, SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
           this, SLOT(itemSelectionSlot()));
@@ -174,10 +174,10 @@ void
 CQPropertyViewTree::
 selectObject(const QObject *obj)
 {
-  CQPropertyViewItem *root = model_->root();
+  auto *root = model_->root();
 
   for (int i = 0; i < model_->numItemChildren(root); ++i) {
-    CQPropertyViewItem *item = model_->itemChild(root, i);
+    auto *item = model_->itemChild(root, i);
 
     if (selectObject(item, obj))
       return;
@@ -188,7 +188,7 @@ bool
 CQPropertyViewTree::
 selectObject(CQPropertyViewItem *item, const QObject *obj)
 {
-  QObject *obj1 = item->object();
+  auto *obj1 = item->object();
 
   if (obj1 == obj) {
     if (item->parent()) {
@@ -198,7 +198,7 @@ selectObject(CQPropertyViewItem *item, const QObject *obj)
   }
 
   for (int i = 0; i < model_->numItemChildren(item); ++i) {
-    CQPropertyViewItem *item1 = model_->itemChild(item, i);
+    auto *item1 = model_->itemChild(item, i);
 
     if (selectObject(item1, obj))
       return true;
@@ -211,7 +211,7 @@ void
 CQPropertyViewTree::
 deselectAllObjects()
 {
-  QItemSelectionModel *sm = this->selectionModel();
+  auto *sm = this->selectionModel();
 
   sm->clear();
 }
@@ -220,7 +220,7 @@ bool
 CQPropertyViewTree::
 setCurrentProperty(QObject *object, const QString &path)
 {
-  CQPropertyViewItem *item = model_->propertyItem(object, path);
+  auto *item = model_->propertyItem(object, path);
 
   if (! item)
     return false;
@@ -250,7 +250,7 @@ void
 CQPropertyViewTree::
 expandAll()
 {
-  CQPropertyViewItem *root = model_->root();
+  auto *root = model_->root();
 
   expandAll(root);
 }
@@ -262,7 +262,7 @@ expandAll(CQPropertyViewItem *item)
   expandItemTree(item);
 
   for (int i = 0; i < model_->numItemChildren(item); ++i) {
-    CQPropertyViewItem *item1 = model_->itemChild(item, i);
+    auto *item1 = model_->itemChild(item, i);
 
     expandAll(item1);
   }
@@ -272,7 +272,7 @@ void
 CQPropertyViewTree::
 collapseAll()
 {
-  CQPropertyViewItem *root = model_->root();
+  auto *root = model_->root();
 
   collapseAll(root);
 }
@@ -284,7 +284,7 @@ collapseAll(CQPropertyViewItem *item)
   collapseItemTree(item);
 
   for (int i = 0; i < model_->numItemChildren(item); ++i) {
-    CQPropertyViewItem *item1 = model_->itemChild(item, i);
+    auto *item1 = model_->itemChild(item, i);
 
     collapseAll(item1);
   }
@@ -297,7 +297,7 @@ expandSelected()
   QModelIndexList indices = this->selectedIndexes();
 
   for (int i = 0; i < indices.length(); ++i) {
-    CQPropertyViewItem *item = getModelItem(indices[i]);
+    auto *item = getModelItem(indices[i]);
 
     expandItemTree(item);
   }
@@ -305,7 +305,7 @@ expandSelected()
   resizeColumns();
 
   for (int i = 0; i < indices.length(); ++i) {
-    CQPropertyViewItem *item = getModelItem(indices[i]);
+    auto *item = getModelItem(indices[i]);
 
     scrollToItem(item);
   }
@@ -318,7 +318,7 @@ getSelectedObjects(Objs &objs)
   QModelIndexList indices = this->selectedIndexes();
 
   for (int i = 0; i < indices.length(); ++i) {
-    CQPropertyViewItem *item = getModelItem(indices[i]);
+    auto *item = getModelItem(indices[i]);
 
     QObject *obj;
     QString  path;
@@ -359,24 +359,24 @@ search(const QString &text)
 
   QRegExp regexp(searchStr, Qt::CaseSensitive, QRegExp::Wildcard);
 
-  CQPropertyViewItem *root = model_->root();
+  auto *root = model_->root();
 
   // get matching items
   Items items;
 
   for (int i = 0; i < model_->numItemChildren(root); ++i) {
-    CQPropertyViewItem *item = model_->itemChild(root, i);
+    auto *item = model_->itemChild(root, i);
 
     searchItemTree(item, regexp, items);
   }
 
   // select matching items
-  QItemSelectionModel *sm = this->selectionModel();
+  auto *sm = this->selectionModel();
 
   sm->clear();
 
   for (uint i = 0; i < items.size(); ++i) {
-    CQPropertyViewItem *item = items[i];
+    auto *item = items[i];
 
     selectItem(item, true);
   }
@@ -385,7 +385,7 @@ search(const QString &text)
 
   // ensure selection expanded
   for (uint i = 0; i < items.size(); ++i) {
-    CQPropertyViewItem *item = items[i];
+    auto *item = items[i];
 
     expandItemTree(item);
   }
@@ -396,7 +396,7 @@ search(const QString &text)
   resizeColumns();
 
   for (uint i = 0; i < items.size(); ++i) {
-    CQPropertyViewItem *item = items[i];
+    auto *item = items[i];
 
     scrollToItem(item);
   }
@@ -414,7 +414,7 @@ searchItemTree(CQPropertyViewItem *item, const QRegExp &regexp, Items &items)
   int n = model_->numItemChildren(item);
 
   for (int i = 0; i < n; ++i) {
-    CQPropertyViewItem *item1 = model_->itemChild(item, i);
+    auto *item1 = model_->itemChild(item, i);
 
     searchItemTree(item1, regexp, items);
   }
@@ -446,7 +446,7 @@ void
 CQPropertyViewTree::
 itemClickedSlot(const QModelIndex &index)
 {
-  CQPropertyViewItem *item = getModelItem(index);
+  auto *item = getModelItem(index);
 
   if (item && index.column() == 1) {
     if (item->click()) {
@@ -476,7 +476,7 @@ itemSelectionSlot()
 
   assert(ind.model() == filter_);
 
-  CQPropertyViewItem *item = getModelItem(ind);
+  auto *item = getModelItem(ind);
 
   QObject *obj;
   QString  path;
@@ -493,7 +493,7 @@ getModelItem(const QModelIndex &ind, bool map) const
   if (map) {
     bool ok;
 
-    CQPropertyViewItem *item = model_->item(ind, ok);
+    auto *item = model_->item(ind, ok);
 
     if (! item)
       return nullptr;
@@ -502,12 +502,12 @@ getModelItem(const QModelIndex &ind, bool map) const
 
     QModelIndex ind1 = filter_->mapToSource(ind);
 
-    CQPropertyViewItem *item1 = model_->item(ind1);
+    auto *item1 = model_->item(ind1);
 
     return item1;
   }
   else {
-    CQPropertyViewItem *item = model_->item(ind);
+    auto *item = model_->item(ind);
 
     return item;
   }
@@ -522,7 +522,7 @@ getItemData(CQPropertyViewItem *item, QObject* &obj, QString &path)
   //---
 
   // use object from first branch child
-  CQPropertyViewItem *item1 = item;
+  auto *item1 = item;
 
   int n = model_->numItemChildren(item1);
 
@@ -561,7 +561,7 @@ customContextMenuSlot(const QPoint &pos)
 
   //---
 
-  QMenu *menu = new QMenu;
+  auto *menu = new QMenu;
 
   //---
 
@@ -585,8 +585,8 @@ void
 CQPropertyViewTree::
 addStandardMenuItems(QMenu *menu)
 {
-  QAction *expandAction   = new QAction("Expand All"  , menu);
-  QAction *collapseAction = new QAction("Collapse All", menu);
+  auto *expandAction   = new QAction("Expand All"  , menu);
+  auto *collapseAction = new QAction("Collapse All", menu);
 
   connect(expandAction  , SIGNAL(triggered()), this, SLOT(expandAll()));
   connect(collapseAction, SIGNAL(triggered()), this, SLOT(collapseAll()));
@@ -596,7 +596,7 @@ addStandardMenuItems(QMenu *menu)
 
   //---
 
-  QAction *showHidden = new QAction("Show Hidden", menu);
+  auto *showHidden = new QAction("Show Hidden", menu);
 
   showHidden->setCheckable(true);
   showHidden->setChecked(isShowHidden());
@@ -608,8 +608,8 @@ addStandardMenuItems(QMenu *menu)
 
   //---
 
-  QAction *printAction        = new QAction("Print", menu);
-  QAction *printChangedAction = new QAction("Print Changed", menu);
+  auto *printAction        = new QAction("Print", menu);
+  auto *printChangedAction = new QAction("Print Changed", menu);
 
   menu->addSeparator();
   menu->addAction(printAction);
@@ -636,7 +636,7 @@ mouseMoveEvent(QMouseEvent *me)
   QModelIndex ind = indexAt(me->pos());
 
   if (ind.isValid()) {
-    CQPropertyViewItem *item = getModelItem(ind);
+    auto *item = getModelItem(ind);
 
     if (item) {
       if (! isMouseInd(ind)) {
@@ -677,7 +677,7 @@ keyPressEvent(QKeyEvent *ke)
     QModelIndex ind = indexAt(mapFromGlobal(p));
 
     if (ind.isValid()) {
-      CQPropertyViewItem *item = getModelItem(ind);
+      auto *item = getModelItem(ind);
       if (! item) return;
 
       QString value;
@@ -689,7 +689,7 @@ keyPressEvent(QKeyEvent *ke)
       else
         return;
 
-      QClipboard *clipboard = QApplication::clipboard();
+      auto *clipboard = QApplication::clipboard();
 
       clipboard->setText(value, QClipboard::Clipboard);
       clipboard->setText(value, QClipboard::Selection);
@@ -735,7 +735,7 @@ void
 CQPropertyViewTree::
 selectItem(CQPropertyViewItem *item, bool selected)
 {
-  QItemSelectionModel *sm = this->selectionModel();
+  auto *sm = this->selectionModel();
 
   QModelIndex ind = indexFromItem(item, 0, /*map*/true);
 
@@ -786,7 +786,7 @@ printSlot() const
   QModelIndexList indices = this->selectionModel()->selectedRows();
 
   for (int i = 0; i < indices.length(); ++i) {
-    CQPropertyViewItem *item = getModelItem(indices[i]);
+    auto *item = getModelItem(indices[i]);
 
     QString path = item->path(".", /*alias*/true);
 
@@ -817,7 +817,7 @@ void
 CQPropertyViewTree::
 closeCurrentEditor()
 {
-  QWidget *editor = delegate_->getEditor();
+  auto *editor = delegate_->getEditor();
   if (! editor) return;
 
   if (! delegate_->isEditing())
@@ -858,7 +858,7 @@ indexFromItem(CQPropertyViewItem *item, int column, bool map) const
     return QModelIndex();
 
   if (map) {
-    CQPropertyViewFilter *filterModel = this->filterModel();
+    auto *filterModel = this->filterModel();
 
     return filterModel->mapFromSource(ind);
   }

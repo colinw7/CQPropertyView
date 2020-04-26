@@ -29,12 +29,12 @@ createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &i
   if (index.column() != 1)
     return nullptr;
 
-  CQPropertyViewItem *item = view_->getModelItem(index);
+  auto *item = view_->getModelItem(index);
   assert(item);
 
-  CQPropertyViewDelegate *th = const_cast<CQPropertyViewDelegate *>(this);
+  auto *th = const_cast<CQPropertyViewDelegate *>(this);
 
-  QWidget *w = item->createEditor(parent);
+  auto *w = item->createEditor(parent);
 
   assert(w);
 
@@ -63,7 +63,7 @@ setEditorData(QWidget *, const QModelIndex &index) const
   if (index.column() != 1)
     return;
 
-  CQPropertyViewItem *item = view_->getModelItem(index);
+  auto *item = view_->getModelItem(index);
   assert(item);
 
   QVariant var = item->data();
@@ -84,7 +84,7 @@ setModelData(QWidget *, QAbstractItemModel *model, const QModelIndex &index) con
   if (index.column() != 1)
     return;
 
-  CQPropertyViewItem *item = view_->getModelItem(index);
+  auto *item = view_->getModelItem(index);
   assert(item);
 
   QVariant var = item->getEditorData();
@@ -111,7 +111,7 @@ void
 CQPropertyViewDelegate::
 paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-  CQPropertyViewItem *item = view_->getModelItem(index);
+  auto *item = view_->getModelItem(index);
   assert(item);
 
   CQPropertyViewMgrInst->setDrawItem(item);
@@ -172,7 +172,7 @@ QWidget *
 CQPropertyViewDelegate::
 createEdit(QWidget *parent, const QString &text) const
 {
-  QLineEdit *edit = new QLineEdit(parent);
+  auto *edit = new QLineEdit(parent);
 
   edit->setObjectName("edit");
 

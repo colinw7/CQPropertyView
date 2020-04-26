@@ -51,7 +51,7 @@ QWidget *
 CQPropertyViewAlignEditor::
 createEdit(QWidget *parent)
 {
-  CQAlignEdit *edit = new CQAlignEdit(parent);
+  auto *edit = new CQAlignEdit(parent);
 
   return edit;
 }
@@ -60,7 +60,7 @@ void
 CQPropertyViewAlignEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  CQAlignEdit *edit = qobject_cast<CQAlignEdit *>(w);
+  auto *edit = qobject_cast<CQAlignEdit *>(w);
   assert(edit);
 
   QObject::connect(edit, SIGNAL(valueChanged(Qt::Alignment)), obj, method);
@@ -70,7 +70,7 @@ QVariant
 CQPropertyViewAlignEditor::
 getValue(QWidget *w)
 {
-  CQAlignEdit *edit = qobject_cast<CQAlignEdit *>(w);
+  auto *edit = qobject_cast<CQAlignEdit *>(w);
   assert(edit);
 
   return QVariant(edit->align());
@@ -80,7 +80,7 @@ void
 CQPropertyViewAlignEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  CQAlignEdit *edit = qobject_cast<CQAlignEdit *>(w);
+  auto *edit = qobject_cast<CQAlignEdit *>(w);
   assert(edit);
 
   int i = var.toInt();
