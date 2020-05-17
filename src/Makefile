@@ -466,13 +466,6 @@ compiler_moc_header_clean:
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -498,12 +491,19 @@ compiler_moc_header_clean:
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -563,13 +563,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -595,12 +588,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -621,13 +621,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -653,12 +646,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h
@@ -672,13 +672,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -704,12 +697,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -729,13 +729,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -761,12 +754,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h
@@ -784,13 +784,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -816,12 +809,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -839,13 +839,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -871,12 +864,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -895,13 +895,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -927,12 +920,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -952,13 +952,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -984,12 +977,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -1009,13 +1009,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -1041,12 +1034,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -1065,13 +1065,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -1097,12 +1090,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -1121,13 +1121,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -1153,12 +1146,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -1178,13 +1178,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -1210,12 +1203,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -1234,13 +1234,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -1266,12 +1259,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
@@ -1288,13 +1288,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CRGBA.h \
 		../../CUtil/include/CRGB.h \
 		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CRGBUtil.h \
-		../../CUtil/include/CCMYK.h \
-		../../CUtil/include/CHSL.h \
-		../../CUtil/include/CHSV.h \
-		../../CUtil/include/CHSB.h \
-		../../CUtil/include/CHSI.h \
-		../../CMath/include/CMathRound.h \
 		../../CUtil/include/CLineDash.h \
 		../../CUtil/include/CILineDash.h \
 		../../CMath/include/CAngle.h \
@@ -1320,12 +1313,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CBrush.h \
 		../../CUtil/include/CBrushStyle.h \
 		../../CUtil/include/CFillType.h \
+		../../CImageLib/include/CImageLib.h \
+		../../CUtil/include/CAlignType.h \
+		../../CImageLib/include/CImageState.h \
 		../../CImageLib/include/CImage.h \
 		../../CUtil/include/CRGBACombineDef.h \
-		../../CUtil/include/CAlignType.h \
 		../../CFile/include/CFileType.h \
 		../../CUtil/include/COptVal.h \
-		../../CUtil/include/CAutoPtr.h \
+		../../CImageLib/include/CImageMgr.h \
+		../../CFile/include/CFile.h \
+		../../CFile/include/CFileBase.h \
+		../../CStrUtil/include/CStrUtil.h \
+		../../CImageLib/include/CImageAnim.h \
+		../../CImageLib/include/CImageFile.h \
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
