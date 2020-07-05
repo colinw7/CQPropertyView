@@ -23,14 +23,16 @@ CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
 
   filter_ = new CQPropertyViewFilter(this);
 
-  connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
-          this, SIGNAL(valueChanged(QObject *, const QString &)));
-  connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
-          this, SLOT(redraw()));
+  if (model) {
+    connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
+            this, SIGNAL(valueChanged(QObject *, const QString &)));
+    connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
+            this, SLOT(redraw()));
 
-  filter_->setSourceModel(model_);
+    filter_->setSourceModel(model_);
 
-  setModel(filter_);
+    setModel(filter_);
+  }
 
   //--
 
@@ -66,8 +68,9 @@ CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
 
   auto *sm = this->selectionModel();
 
-  connect(sm, SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-          this, SLOT(itemSelectionSlot()));
+  if (sm)
+    connect(sm, SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            this, SLOT(itemSelectionSlot()));
 
   //---
 
@@ -87,8 +90,6 @@ void
 CQPropertyViewTree::
 setPropertyModel(CQPropertyViewModel *model)
 {
-  assert(model);
-
   if (model_) {
     disconnect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
                this, SIGNAL(valueChanged(QObject *, const QString &)));
@@ -96,16 +97,22 @@ setPropertyModel(CQPropertyViewModel *model)
                this, SLOT(redraw()));
   }
 
+  //---
+
   model_ = model;
 
-  connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
-          this, SIGNAL(valueChanged(QObject *, const QString &)));
-  connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
-          this, SLOT(redraw()));
+  //---
 
-  filter_->setSourceModel(model_);
+  if (model_) {
+    connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
+            this, SIGNAL(valueChanged(QObject *, const QString &)));
+    connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
+            this, SLOT(redraw()));
 
-  setModel(filter_);
+    filter_->setSourceModel(model_);
+
+    setModel(filter_);
+  }
 }
 
 void
