@@ -547,7 +547,7 @@ CQPropertyViewTree::
 customContextMenuSlot(const QPoint &pos)
 {
   // Map point to global from the viewport to account for the header.
-  QPoint mpos = viewport()->mapToGlobal(pos);
+  menuPos_ = viewport()->mapToGlobal(pos);
 
   menuItem_ = getModelItem(indexAt(pos));
 
@@ -559,7 +559,7 @@ customContextMenuSlot(const QPoint &pos)
       getItemData(menuItem_, obj, path);
 
       if (obj) {
-        showContextMenu(obj, mpos);
+        showContextMenu(obj, menuPos_);
 
         return;
       }
@@ -576,7 +576,7 @@ customContextMenuSlot(const QPoint &pos)
 
   //---
 
-  menu->exec(mpos);
+  menu->exec(menuPos_);
 
   delete menu;
 }
@@ -592,38 +592,52 @@ void
 CQPropertyViewTree::
 addStandardMenuItems(QMenu *menu)
 {
-  auto *expandAction   = new QAction("Expand All"  , menu);
-  auto *collapseAction = new QAction("Collapse All", menu);
+  auto addAction = [&](const QString &text, const char *slotName) {
+    auto *action = new QAction(text, menu);
 
-  connect(expandAction  , SIGNAL(triggered()), this, SLOT(expandAll()));
-  connect(collapseAction, SIGNAL(triggered()), this, SLOT(collapseAll()));
+    connect(action, SIGNAL(triggered()), this, slotName);
 
-  menu->addAction(expandAction);
-  menu->addAction(collapseAction);
+    menu->addAction(action);
+
+    return action;
+  };
+
+  auto addCheckAction = [&](const QString &text, bool checked, const char *slotName) {
+    auto *action = new QAction(text, menu);
+
+    action->setCheckable(true);
+    action->setChecked(checked);
+
+    connect(action, SIGNAL(triggered(bool)), this, slotName);
+
+    menu->addAction(action);
+
+    return action;
+  };
 
   //---
 
-  auto *showHidden = new QAction("Show Hidden", menu);
-
-  showHidden->setCheckable(true);
-  showHidden->setChecked(isShowHidden());
-
-  connect(showHidden, SIGNAL(triggered(bool)), this, SLOT(setShowHidden(bool)));
-
-  menu->addSeparator();
-  menu->addAction(showHidden);
+  (void) addAction("Expand All"  , SLOT(expandAll()));
+  (void) addAction("Collapse All", SLOT(collapseAll()));
 
   //---
 
-  auto *printAction        = new QAction("Print", menu);
-  auto *printChangedAction = new QAction("Print Changed", menu);
+  menu->addSeparator();
+
+  (void) addCheckAction("Show Hidden", isShowHidden(), SLOT(setShowHidden(bool)));
+
+  //---
+
+  auto *copyAction = addAction("Copy", SLOT(copySlot()));
+
+  copyAction->setShortcut(QKeySequence::Copy);
+
+  //---
 
   menu->addSeparator();
-  menu->addAction(printAction);
-  menu->addAction(printChangedAction);
 
-  connect(printAction       , SIGNAL(triggered()), this, SLOT(printSlot()));
-  connect(printChangedAction, SIGNAL(triggered()), this, SLOT(printChangedSlot()));
+  (void) addAction("Print"        , SLOT(printSlot()));
+  (void) addAction("Print Changed", SLOT(printChangedSlot()));
 }
 
 void
@@ -681,26 +695,7 @@ keyPressEvent(QKeyEvent *ke)
   if (ke->matches(QKeySequence::Copy)) {
     QPoint p = QCursor::pos();
 
-    QModelIndex ind = indexAt(mapFromGlobal(p));
-
-    if (ind.isValid()) {
-      auto *item = getModelItem(ind);
-      if (! item) return;
-
-      QString value;
-
-      if      (ind.column() == 0)
-        value = item->nameTip();
-      else if (ind.column() == 1)
-        value = item->valueTip();
-      else
-        return;
-
-      auto *clipboard = QApplication::clipboard();
-
-      clipboard->setText(value, QClipboard::Clipboard);
-      clipboard->setText(value, QClipboard::Selection);
-    }
+    copyAt(p, /*html*/false);
   }
   else if (ke->key() == Qt::Key_Escape) {
     closeCurrentEditor();
@@ -784,6 +779,39 @@ editItem(CQPropertyViewItem *item)
 
   if (ind.isValid())
     edit(ind);
+}
+
+void
+CQPropertyViewTree::
+copySlot() const
+{
+  copyAt(menuPos_, /*html*/false);
+}
+
+void
+CQPropertyViewTree::
+copyAt(const QPoint &p, bool html) const
+{
+  QModelIndex ind = indexAt(viewport()->mapFromGlobal(p));
+
+  if (ind.isValid()) {
+    auto *item = getModelItem(ind);
+    if (! item) return;
+
+    QString value;
+
+    if      (ind.column() == 0)
+      value = item->nameTip(html);
+    else if (ind.column() == 1)
+      value = item->valueTip(html);
+    else
+      return;
+
+    auto *clipboard = QApplication::clipboard();
+
+    clipboard->setText(value, QClipboard::Clipboard);
+    clipboard->setText(value, QClipboard::Selection);
+  }
 }
 
 void

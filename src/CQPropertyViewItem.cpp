@@ -626,38 +626,46 @@ isEnum() const
 
 QString
 CQPropertyViewItem::
-nameTip() const
+nameTip(bool html) const
 {
   QString tip = path(".", /*alias*/true);
 
   if (! object())
     return tip;
 
-  CQPropertyViewItemTableTip tableTip;
+  if (html) {
+    CQPropertyViewItemTableTip tableTip;
 
-  tableTip.addRow("Property", tip);
+    tableTip.addRow("Property", tip);
 
-  addCommonType(tableTip);
+    addCommonType(tableTip);
 
-  return tableTip.str();
+    return tableTip.str();
+  }
+
+  return tip;
 }
 
 QString
 CQPropertyViewItem::
-valueTip() const
+valueTip(bool html) const
 {
   if (! object())
     return "";
 
   QString tip = calcTip();
 
-  CQPropertyViewItemTableTip tableTip;
+  if (html) {
+    CQPropertyViewItemTableTip tableTip;
 
-  tableTip.addRow("Value", tip);
+    tableTip.addRow("Value", tip);
 
-  addCommonType(tableTip);
+    addCommonType(tableTip);
 
-  return tableTip.str();
+    return tableTip.str();
+  }
+
+  return tip;
 }
 
 void

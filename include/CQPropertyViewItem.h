@@ -179,10 +179,10 @@ class CQPropertyViewItem : public QObject {
   QString userTypeName() const;
 
   //! get tip for name column
-  QString nameTip() const;
+  QString nameTip(bool html=true) const;
 
   //! get tip for value column
-  QString valueTip() const;
+  QString valueTip(bool html=true) const;
 
   //! paint item
   bool paint(const CQPropertyViewDelegate *delegate, QPainter *painter,

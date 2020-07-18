@@ -110,6 +110,8 @@ class CQPropertyViewTree : public QTreeView {
   void setFilter(const QString &filter);
   void search(const QString &text);
 
+  void copySlot() const;
+
   void printSlot() const;
   void printChangedSlot() const;
 
@@ -127,6 +129,8 @@ class CQPropertyViewTree : public QTreeView {
   void closeEditorSlot(QWidget *, QAbstractItemDelegate::EndEditHint);
 
  protected:
+  void copyAt(const QPoint &p, bool html) const;
+
   bool selectObject(CQPropertyViewItem *item, const QObject *obj);
 
   void getItemData(CQPropertyViewItem *item, QObject* &obj, QString &path);
@@ -161,6 +165,7 @@ class CQPropertyViewTree : public QTreeView {
   bool                    shown_          { false };
   QModelIndex             mouseInd_;
   CQPropertyViewItem*     menuItem_       { nullptr };
+  QPoint                  menuPos_;
 };
 
 #endif
