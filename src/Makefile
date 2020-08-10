@@ -563,6 +563,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewIntegerType.h \
 		../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewRealType.h \
 		../include/CQPropertyViewColorType.h \
 		../include/CQPropertyViewFontType.h \
@@ -736,6 +737,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../include/CQPropertyViewModel.h \
 		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyView.h \
@@ -853,6 +855,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 
 ../obj/CQPropertyViewAlignType.o: CQPropertyViewAlignType.cpp ../include/CQPropertyViewAlignType.h \
 		../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
@@ -903,12 +906,12 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h \
 		../../CQUtil/include/CQAlignEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewAlignType.o CQPropertyViewAlignType.cpp
 
 ../obj/CQPropertyViewColorType.o: CQPropertyViewColorType.cpp ../include/CQPropertyViewColorType.h \
 		../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
@@ -959,13 +962,13 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewTree.h \
 		../../CQUtil/include/CQColorEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewColorType.o CQPropertyViewColorType.cpp
 
 ../obj/CQPropertyViewFontType.o: CQPropertyViewFontType.cpp ../include/CQPropertyViewFontType.h \
 		../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
@@ -1016,13 +1019,13 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewTree.h \
 		../../CQUtil/include/CQFontEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewFontType.o CQPropertyViewFontType.cpp
 
 ../obj/CQPropertyViewIntegerType.o: CQPropertyViewIntegerType.cpp ../include/CQPropertyViewIntegerType.h \
 		../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
@@ -1073,12 +1076,12 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewIntegerType.o CQPropertyViewIntegerType.cpp
 
 ../obj/CQPropertyViewPointFType.o: CQPropertyViewPointFType.cpp ../include/CQPropertyViewPointFType.h \
 		../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
@@ -1129,12 +1132,12 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h \
 		../../CQUtil/include/CQPoint2DEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewPointFType.o CQPropertyViewPointFType.cpp
 
 ../obj/CQPropertyViewRealType.o: CQPropertyViewRealType.cpp ../include/CQPropertyViewRealType.h \
 		../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
@@ -1185,13 +1188,13 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyView.h \
 		../../CQUtil/include/CQRealSpin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewRealType.o CQPropertyViewRealType.cpp
 
 ../obj/CQPropertyViewRectFType.o: CQPropertyViewRectFType.cpp ../include/CQPropertyViewRectFType.h \
 		../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
@@ -1242,12 +1245,12 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h \
 		../../CQUtil/include/CQBBox2DEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewRectFType.o CQPropertyViewRectFType.cpp
 
 ../obj/CQPropertyViewSizeFType.o: CQPropertyViewSizeFType.cpp ../include/CQPropertyViewSizeFType.h \
 		../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
@@ -1298,11 +1301,11 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h \
 		../../CQUtil/include/CQPoint2DEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewSizeFType.o CQPropertyViewSizeFType.cpp
 
 ../obj/CQPropertyViewType.o: CQPropertyViewType.cpp ../include/CQPropertyViewType.h \
+		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
 		../../CUtil/include/CEvent.h \
@@ -1352,7 +1355,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CGenGradient.h \
 		../../CUtil/include/CPen.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewUtil.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewType.o CQPropertyViewType.cpp
 

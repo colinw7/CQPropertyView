@@ -27,9 +27,9 @@ void
 CQPropertyViewRealType::
 draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
-     const QVariant &value, bool inside)
+     const QVariant &value, const ItemState &itemState)
 {
-  delegate->drawString(painter, option, value.toString(), index, inside);
+  delegate->drawString(painter, option, value.toString(), index, itemState);
 }
 
 //------

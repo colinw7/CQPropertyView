@@ -129,7 +129,9 @@ paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &
 
   //---
 
-  bool inside = view_->isMouseInd(index);
+  ItemState itemState;
+
+  itemState.inside = view_->isMouseInd(index);
 
   //---
 
@@ -137,18 +139,18 @@ paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &
   if      (index.column() == 0) {
     QString label = item->aliasName();
 
-    drawString(painter, option, label, index, inside);
+    drawString(painter, option, label, index, itemState);
 
     //QItemDelegate::paint(painter, option1, index);
   }
   else if (index.column() == 1) {
-    if (inside)
+    if (itemState.inside)
       item->setInside(true);
 
     if (! item->paint(this, painter, option1, index))
       QItemDelegate::paint(painter, option1, index);
 
-    if (inside)
+    if (itemState.inside)
       item->setInside(false);
   }
 }
@@ -197,7 +199,7 @@ createEdit(QWidget *parent, const QString &text) const
 void
 CQPropertyViewDelegate::
 drawBackground(QPainter *painter, const QStyleOptionViewItem &option,
-               const QModelIndex &index, bool /*inside*/) const
+               const QModelIndex &index, const ItemState & /*itemState*/) const
 {
   QItemDelegate::drawBackground(painter, option, index);
 }
@@ -205,9 +207,9 @@ drawBackground(QPainter *painter, const QStyleOptionViewItem &option,
 void
 CQPropertyViewDelegate::
 drawCheckInside(QPainter *painter, const QStyleOptionViewItem &option,
-                bool checked, const QModelIndex &index, bool inside) const
+                bool checked, const QModelIndex &index, const ItemState &itemState) const
 {
-  drawBackground(painter, option, index, inside);
+  drawBackground(painter, option, index, itemState);
 
   Qt::CheckState checkState = (checked ? Qt::Checked : Qt::Unchecked);
 
@@ -235,9 +237,9 @@ drawCheckInside(QPainter *painter, const QStyleOptionViewItem &option,
 void
 CQPropertyViewDelegate::
 drawColor(QPainter *painter, const QStyleOptionViewItem &option,
-          const QColor &c, const QModelIndex &index, bool inside) const
+          const QColor &c, const QModelIndex &index, const ItemState &itemState) const
 {
-  drawBackground(painter, option, index, inside);
+  drawBackground(painter, option, index, itemState);
 
   QRect rect = option.rect;
 
@@ -267,9 +269,9 @@ drawColor(QPainter *painter, const QStyleOptionViewItem &option,
 void
 CQPropertyViewDelegate::
 drawFont(QPainter *painter, const QStyleOptionViewItem &option,
-         const QFont &f, const QModelIndex &index, bool inside) const
+         const QFont &f, const QModelIndex &index, const ItemState &itemState) const
 {
-  drawBackground(painter, option, index, inside);
+  drawBackground(painter, option, index, itemState);
 
   QRect rect = option.rect;
 
@@ -323,9 +325,9 @@ drawFont(QPainter *painter, const QStyleOptionViewItem &option,
 void
 CQPropertyViewDelegate::
 drawPoint(QPainter *painter, const QStyleOptionViewItem &option,
-         const QPointF &p, const QModelIndex &index, bool inside) const
+         const QPointF &p, const QModelIndex &index, const ItemState &itemState) const
 {
-  drawBackground(painter, option, index, inside);
+  drawBackground(painter, option, index, itemState);
 
   QRect rect = option.rect;
 
@@ -341,9 +343,9 @@ drawPoint(QPainter *painter, const QStyleOptionViewItem &option,
 void
 CQPropertyViewDelegate::
 drawSize(QPainter *painter, const QStyleOptionViewItem &option,
-         const QSizeF &s, const QModelIndex &index, bool inside) const
+         const QSizeF &s, const QModelIndex &index, const ItemState &itemState) const
 {
-  drawBackground(painter, option, index, inside);
+  drawBackground(painter, option, index, itemState);
 
   QRect rect = option.rect;
 
@@ -359,9 +361,9 @@ drawSize(QPainter *painter, const QStyleOptionViewItem &option,
 void
 CQPropertyViewDelegate::
 drawRect(QPainter *painter, const QStyleOptionViewItem &option,
-         const QRectF &r, const QModelIndex &index, bool inside) const
+         const QRectF &r, const QModelIndex &index, const ItemState &itemState) const
 {
-  drawBackground(painter, option, index, inside);
+  drawBackground(painter, option, index, itemState);
 
   QRect rect = option.rect;
 
@@ -379,9 +381,9 @@ drawRect(QPainter *painter, const QStyleOptionViewItem &option,
 void
 CQPropertyViewDelegate::
 drawAngle(QPainter *painter, const QStyleOptionViewItem &option,
-         const CAngle &a, const QModelIndex &index, bool inside) const
+         const CAngle &a, const QModelIndex &index, const ItemState &itemState) const
 {
-  drawBackground(painter, option, index, inside);
+  drawBackground(painter, option, index, itemState);
 
   QRect rect = option.rect;
 
@@ -398,13 +400,13 @@ drawAngle(QPainter *painter, const QStyleOptionViewItem &option,
 void
 CQPropertyViewDelegate::
 drawString(QPainter *painter, const QStyleOptionViewItem &option, const QString &str,
-           const QModelIndex &index, bool inside) const
+           const QModelIndex &index, const ItemState &itemState) const
 {
-  drawBackground(painter, option, index, inside);
+  drawBackground(painter, option, index, itemState);
 
   QRect rect = option.rect;
 
-  if (inside) {
+  if (itemState.inside) {
     QStyleOptionViewItem option1 = option;
 
     QColor c = QColor(100, 100, 200);

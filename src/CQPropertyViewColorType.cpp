@@ -28,9 +28,9 @@ void
 CQPropertyViewColorType::
 draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
-     const QVariant &value, bool inside)
+     const QVariant &value, const ItemState &itemState)
 {
-  delegate->drawColor(painter, option, value.value<QColor>(), index, inside);
+  delegate->drawColor(painter, option, value.value<QColor>(), index, itemState);
 }
 
 //------

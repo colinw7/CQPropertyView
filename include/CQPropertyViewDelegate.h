@@ -15,6 +15,12 @@ class CQPropertyViewDelegate : public QItemDelegate {
   Q_OBJECT
 
  public:
+  struct ItemState {
+    bool inside = false;
+    bool dirty  = false;
+  };
+
+ public:
   CQPropertyViewDelegate(CQPropertyViewTree *view);
 
   // Override to create editor
@@ -39,27 +45,27 @@ class CQPropertyViewDelegate : public QItemDelegate {
   QWidget *createEdit(QWidget *parent, const QString &text) const;
 
   void drawBackground(QPainter *painter, const QStyleOptionViewItem &option,
-                      const QModelIndex &index, bool inside) const;
+                      const QModelIndex &index, const ItemState &itemState) const;
 
   void drawCheckInside(QPainter *painter, const QStyleOptionViewItem &option,
-                       bool checked, const QModelIndex &index, bool inside) const;
+                       bool checked, const QModelIndex &index, const ItemState &itemState) const;
 
   void drawColor(QPainter *painter, const QStyleOptionViewItem &option,
-                 const QColor &c, const QModelIndex &index, bool inside) const;
+                 const QColor &c, const QModelIndex &index, const ItemState &itemState) const;
   void drawFont (QPainter *painter, const QStyleOptionViewItem &option,
-                 const QFont &f, const QModelIndex &index, bool inside) const;
+                 const QFont &f, const QModelIndex &index, const ItemState &itemState) const;
   void drawPoint(QPainter *painter, const QStyleOptionViewItem &option,
-                 const QPointF &p, const QModelIndex &index, bool inside) const;
+                 const QPointF &p, const QModelIndex &index, const ItemState &itemState) const;
   void drawSize (QPainter *painter, const QStyleOptionViewItem &option,
-                 const QSizeF &s, const QModelIndex &index, bool inside) const;
+                 const QSizeF &s, const QModelIndex &index, const ItemState &itemState) const;
   void drawRect (QPainter *painter, const QStyleOptionViewItem &option,
-                 const QRectF &r, const QModelIndex &index, bool inside) const;
+                 const QRectF &r, const QModelIndex &index, const ItemState &itemState) const;
 #if 0
   void drawAngle(QPainter *painter, const QStyleOptionViewItem &option,
-                 const CAngle &a, const QModelIndex &index, bool inside) const;
+                 const CAngle &a, const QModelIndex &index, const ItemState &itemState) const;
 #endif
   void drawString(QPainter *painter, const QStyleOptionViewItem &option,
-                  const QString &str, const QModelIndex &index, bool inside) const;
+                  const QString &str, const QModelIndex &index, const ItemState &itemState) const;
 
   //---
 

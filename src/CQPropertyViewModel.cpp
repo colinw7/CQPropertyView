@@ -76,6 +76,10 @@ data(const QModelIndex &index, int role) const
     else if (index.column() == 1)
       return item->valueTip();
   }
+  else if (role == Qt::BackgroundRole) {
+    if (item->isDirty())
+      return QColor(240, 100, 100); // red
+  }
 
   return QVariant();
 }
@@ -202,7 +206,7 @@ addProperty(const QString &path, QObject *object, const QString &name, const QSt
   CQPropertyViewItem *parentItem =
     hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/true);
 
-  auto *item = new CQPropertyViewItem(parentItem, object, name);
+  auto *item = new CQPropertyViewItem(this, parentItem, object, name);
 
   connect(item, SIGNAL(valueChanged(QObject *, const QString &)),
           this, SIGNAL(valueChanged(QObject *, const QString &)));
@@ -509,7 +513,7 @@ hierItem(CQPropertyViewItem *parentItem, const QStringList &pathParts,
   if (! create)
     return nullptr;
 
-  auto *item = new CQPropertyViewItem(parentItem, nullptr, path);
+  auto *item = new CQPropertyViewItem(this, parentItem, nullptr, path);
 
   parentItem->addChild(item);
 
@@ -523,7 +527,7 @@ root() const
   if (! root_) {
     auto *th = const_cast<CQPropertyViewModel *>(this);
 
-    th->root_ = new CQPropertyViewItem(nullptr, nullptr, "");
+    th->root_ = new CQPropertyViewItem(th, nullptr, nullptr, "");
   }
 
   return root_;
@@ -623,6 +627,8 @@ reset()
   endResetModel();
 }
 
+//------
+
 void
 CQPropertyViewModel::
 getChangedNameValues(NameValues &nameValues, bool tcl) const
@@ -696,6 +702,43 @@ addNameValue(CQPropertyViewItem *rootItem, CQPropertyViewItem *item,
     nameValues[path] = item->tclData();
   else
     nameValues[path] = item->dataStr();
+}
+
+//-----
+
+void
+CQPropertyViewModel::
+updateDirty()
+{
+  Items items;
+
+  auto *rootItem = this->root();
+
+  getDirtyItems(rootItem, items);
+
+  for (auto &item : items)
+    item->applyDirty();
+}
+
+void
+CQPropertyViewModel::
+getDirtyItems(CQPropertyViewItem *parent, Items &items) const
+{
+  int num = numItemChildren(parent);
+
+  for (int i = 0; i < num; ++i) {
+    auto *item = itemChild(parent, i);
+
+    int num1 = numItemChildren(item);
+
+    if (num1 > 0) {
+      getDirtyItems(item, items);
+    }
+    else {
+      if (item->isDirty())
+        items.push_back(item);
+    }
+  }
 }
 
 //------

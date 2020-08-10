@@ -1,6 +1,7 @@
 #ifndef CQPropertyViewType_H
 #define CQPropertyViewType_H
 
+#include <CQPropertyViewDelegate.h>
 #include <QString>
 
 class CQPropertyViewEditorFactory;
@@ -21,9 +22,19 @@ class QVariant;
  */
 class CQPropertyViewType {
  public:
+  using ItemState = CQPropertyViewDelegate::ItemState;
+
+ public:
   CQPropertyViewType() { }
 
   virtual ~CQPropertyViewType() { }
+
+  //---
+
+  int margin() const { return margin_; }
+  void setMargin(int m) { margin_ = m; }
+
+  //---
 
   virtual CQPropertyViewEditorFactory *getEditor() const = 0;
 
@@ -31,7 +42,8 @@ class CQPropertyViewType {
 
   virtual void draw(CQPropertyViewItem *item, const CQPropertyViewDelegate *delegate,
                     QPainter *painter, const QStyleOptionViewItem &option,
-                    const QModelIndex &index, const QVariant &value, bool inside);
+                    const QModelIndex &index, const QVariant &value,
+                    const ItemState &itemState);
 
   virtual QString tip(const QVariant &value) const;
 
@@ -44,7 +56,8 @@ class CQPropertyViewType {
   void setName(const QString &name) { name_ = name; }
 
  protected:
-  QString name_; //!< registered name
+  QString name_;         //!< registered name
+  int     margin_ { 4 }; //! left/right margin
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include <CQPropertyViewItem.h>
+#include <CQPropertyViewModel.h>
 #include <CQPropertyViewDelegate.h>
 #include <CQPropertyViewEditor.h>
 #include <CQPropertyView.h>
@@ -64,8 +65,9 @@ class CQPropertyViewItemTableTip {
 //---
 
 CQPropertyViewItem::
-CQPropertyViewItem(CQPropertyViewItem *parent, QObject *object, const QString &name) :
- parent_(parent), object_(object), name_(name)
+CQPropertyViewItem(CQPropertyViewModel *model, CQPropertyViewItem *parent,
+                   QObject *object, const QString &name) :
+ model_(model), parent_(parent), object_(object), name_(name)
 {
   setObjectName(name);
 
@@ -566,6 +568,11 @@ QVariant
 CQPropertyViewItem::
 data() const
 {
+  if (isDirty())
+    return dirtyValue();
+
+  //---
+
   QVariant var;
 
   if (! object() || ! CQUtil::getProperty(object(), name(), var))
@@ -581,7 +588,27 @@ setData(const QVariant &value)
   if (! isEditable())
     return false;
 
-  if (! object() || ! CQUtil::setProperty(object(), name(), value))
+  if (model_->isAutoUpdate()) {
+    setDirty(false);
+
+    if (! object() || ! CQUtil::setProperty(object(), name(), value))
+      return false;
+  }
+  else {
+    setDirty(true);
+    setDirtyValue(value);
+  }
+
+  return true;
+}
+
+bool
+CQPropertyViewItem::
+applyDirty()
+{
+  setDirty(false);
+
+  if (! object() || ! CQUtil::setProperty(object(), name(), dirtyValue()))
     return false;
 
   return true;
@@ -591,6 +618,11 @@ QVariant
 CQPropertyViewItem::
 tclData() const
 {
+  if (isDirty())
+    return dirtyValue();
+
+  //---
+
   QVariant var;
 
   if (! object() || ! CQUtil::getTclProperty(object(), name(), var))
@@ -732,8 +764,6 @@ CQPropertyViewItem::
 paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
       const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-  bool inside = isInside();
-
   CQUtil::PropInfo propInfo;
   QString          typeName;
 
@@ -744,11 +774,16 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
 
   auto *type = CQPropertyViewMgrInst->getType(typeName);
 
+  CQPropertyViewDelegate::ItemState itemState;
+
+  itemState.inside = isInside();
+  itemState.dirty  = isDirty();
+
   if      (type) {
-    type->draw(this, delegate, painter, option, index, var, inside);
+    type->draw(this, delegate, painter, option, index, var, itemState);
   }
   else if (typeName == "bool") {
-    delegate->drawCheckInside(painter, option, var.toBool(), index, inside);
+    delegate->drawCheckInside(painter, option, var.toBool(), index, itemState);
   }
   else if (propInfo.isEnumType()) {
     int ind = var.toInt();
@@ -756,7 +791,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
     QString str;
 
     if (enumIndToString(propInfo, ind, str))
-      delegate->drawString(painter, option, str, index, inside);
+      delegate->drawString(painter, option, str, index, itemState);
   }
   else if (var.type() == QVariant::UserType) {
     QString str;
@@ -764,7 +799,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
     if (! CQUtil::userVariantToString(var, str))
       return false;
 
-    delegate->drawString(painter, option, str, index, inside);
+    delegate->drawString(painter, option, str, index, itemState);
   }
   else {
     QString str;
@@ -772,7 +807,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
     if (! CQUtil::variantToString(var, str))
       return false;
 
-    delegate->drawString(painter, option, str, index, inside);
+    delegate->drawString(painter, option, str, index, itemState);
   }
 
   return true;

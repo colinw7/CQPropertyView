@@ -28,9 +28,9 @@ void
 CQPropertyViewFontType::
 draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
-     const QVariant &value, bool inside)
+     const QVariant &value, const ItemState &itemState)
 {
-  delegate->drawFont(painter, option, value.value<QFont>(), index, inside);
+  delegate->drawFont(painter, option, value.value<QFont>(), index, itemState);
 }
 
 //------

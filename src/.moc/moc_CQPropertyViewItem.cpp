@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CQPropertyViewItem_t {
-    QByteArrayData data[18];
-    char stringdata0[163];
+    QByteArrayData data[19];
+    char stringdata0[169];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -48,14 +48,15 @@ QT_MOC_LITERAL(13, 129, 4), // "int&"
 QT_MOC_LITERAL(14, 134, 5), // "alias"
 QT_MOC_LITERAL(15, 140, 8), // "editable"
 QT_MOC_LITERAL(16, 149, 6), // "hidden"
-QT_MOC_LITERAL(17, 156, 6) // "inside"
+QT_MOC_LITERAL(17, 156, 6), // "inside"
+QT_MOC_LITERAL(18, 163, 5) // "dirty"
 
     },
     "CQPropertyViewItem\0valueChanged\0\0obj\0"
     "name\0updateValue\0enumIndToString\0"
     "CQUtil::PropInfo\0propInfo\0ind\0QString&\0"
     "str\0enumStringToInd\0int&\0alias\0editable\0"
-    "hidden\0inside"
+    "hidden\0inside\0dirty"
 };
 #undef QT_MOC_LITERAL
 
@@ -66,7 +67,7 @@ static const uint qt_meta_data_CQPropertyViewItem[] = {
        0,       // classname
        0,    0, // classinfo
        4,   14, // methods
-       5,   54, // properties
+       6,   54, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
@@ -94,6 +95,7 @@ static const uint qt_meta_data_CQPropertyViewItem[] = {
       15, QMetaType::Bool, 0x00095103,
       16, QMetaType::Bool, 0x00095103,
       17, QMetaType::Bool, 0x00095103,
+      18, QMetaType::Bool, 0x00095103,
 
        0        // eod
 };
@@ -133,6 +135,7 @@ void CQPropertyViewItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 2: *reinterpret_cast< bool*>(_v) = _t->isEditable(); break;
         case 3: *reinterpret_cast< bool*>(_v) = _t->isHidden(); break;
         case 4: *reinterpret_cast< bool*>(_v) = _t->isInside(); break;
+        case 5: *reinterpret_cast< bool*>(_v) = _t->isDirty(); break;
         default: break;
         }
     } else if (_c == QMetaObject::WriteProperty) {
@@ -145,6 +148,7 @@ void CQPropertyViewItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 2: _t->setEditable(*reinterpret_cast< bool*>(_v)); break;
         case 3: _t->setHidden(*reinterpret_cast< bool*>(_v)); break;
         case 4: _t->setInside(*reinterpret_cast< bool*>(_v)); break;
+        case 5: _t->setDirty(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
     } else if (_c == QMetaObject::ResetProperty) {
@@ -193,17 +197,17 @@ int CQPropertyViewItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 5;
+        _id -= 6;
     }
 #endif // QT_NO_PROPERTIES
     return _id;

@@ -26,9 +26,9 @@ void
 CQPropertyViewRectFType::
 draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
-     const QVariant &value, bool inside)
+     const QVariant &value, const ItemState &itemState)
 {
-  delegate->drawRect(painter, option, value.value<QRectF>(), index, inside);
+  delegate->drawRect(painter, option, value.value<QRectF>(), index, itemState);
 }
 
 QString

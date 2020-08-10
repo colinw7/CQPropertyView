@@ -23,11 +23,13 @@ CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
 
   filter_ = new CQPropertyViewFilter(this);
 
-  if (model) {
+  if (model_) {
     connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
             this, SIGNAL(valueChanged(QObject *, const QString &)));
     connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
             this, SLOT(redraw()));
+
+    model_->setTree(this);
 
     filter_->setSourceModel(model_);
 
@@ -90,11 +92,14 @@ void
 CQPropertyViewTree::
 setPropertyModel(CQPropertyViewModel *model)
 {
+  // disconnect current model
   if (model_) {
     disconnect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
                this, SIGNAL(valueChanged(QObject *, const QString &)));
     disconnect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
                this, SLOT(redraw()));
+
+    model_->setTree(nullptr);
   }
 
   //---
@@ -103,11 +108,14 @@ setPropertyModel(CQPropertyViewModel *model)
 
   //---
 
+  // connect new model
   if (model_) {
     connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
             this, SIGNAL(valueChanged(QObject *, const QString &)));
     connect(model_, SIGNAL(valueChanged(QObject *, const QString &)),
             this, SLOT(redraw()));
+
+    model_->setTree(this);
 
     filter_->setSourceModel(model_);
 
@@ -347,10 +355,38 @@ void
 CQPropertyViewTree::
 setShowHidden(bool b)
 {
-  model_->setShowHidden(b);
+  if (model_) {
+    model_->setShowHidden(b);
 
-  model_->reset();
+    model_->reset();
+  }
 }
+
+//---
+
+void
+CQPropertyViewTree::
+autoUpdateSlot(bool b)
+{
+  if (model_)
+    model_->setAutoUpdate(b);
+}
+
+void
+CQPropertyViewTree::
+updateDirtySlot()
+{
+  if (! model_)
+    return;
+
+  emit startUpdate();
+
+  model_->updateDirty();
+
+  emit endUpdate();
+}
+
+//---
 
 void
 CQPropertyViewTree::
@@ -631,6 +667,17 @@ addStandardMenuItems(QMenu *menu)
   auto *copyAction = addAction("Copy", SLOT(copySlot()));
 
   copyAction->setShortcut(QKeySequence::Copy);
+
+  //---
+
+  if (model()) {
+    menu->addSeparator();
+
+    (void) addCheckAction("Auto Update", model_->isAutoUpdate(), SLOT(autoUpdateSlot(bool)));
+
+    if (! model_->isAutoUpdate())
+      (void) addAction("Update Dirty", SLOT(updateDirtySlot()));
+  }
 
   //---
 

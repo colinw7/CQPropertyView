@@ -4,6 +4,7 @@
 #include <QAbstractItemModel>
 #include <vector>
 
+class CQPropertyViewTree;
 class CQPropertyViewItem;
 
 /*!
@@ -13,9 +14,11 @@ class CQPropertyViewModel : public QAbstractItemModel {
   Q_OBJECT
 
   Q_PROPERTY(bool showHidden READ isShowHidden WRITE setShowHidden)
+  Q_PROPERTY(bool autoUpdate READ isAutoUpdate WRITE setAutoUpdate)
 
  public:
   using NameValues = std::map<QString,QVariant>;
+  using Items      = std::vector<CQPropertyViewItem *>;
 
  public:
   CQPropertyViewModel();
@@ -25,8 +28,17 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   //---
 
+  void setTree(CQPropertyViewTree *tree) { tree_ = tree; }
+
+  //---
+
+  //! get/set show hidden
   bool isShowHidden() const { return showHidden_; }
   void setShowHidden(bool b) { showHidden_ = b; }
+
+  //! get/set auto update
+  bool isAutoUpdate() const { return autoUpdate_; }
+  void setAutoUpdate(bool b) { autoUpdate_ = b; }
 
   //---
 
@@ -87,8 +99,14 @@ class CQPropertyViewModel : public QAbstractItemModel {
   void getChangedNameValues(const QObject *root, const QObject *object,
                             NameValues &nameValues, bool tcl=false) const;
 
+  //---
+
+  void updateDirty();
+
+  void getDirtyItems(CQPropertyViewItem *parent, Items &items) const;
+
  public:
-  typedef std::vector<CQPropertyViewItem *> Children;
+  using Children = std::vector<CQPropertyViewItem *>;
 
   int numItemChildren(CQPropertyViewItem *item, bool hidden=false) const;
 
@@ -131,7 +149,9 @@ class CQPropertyViewModel : public QAbstractItemModel {
   void valueChanged(QObject *, const QString &);
 
  private:
+  CQPropertyViewTree* tree_       { nullptr }; //!< parent tree
   bool                showHidden_ { false };   //!< show hidden properties
+  bool                autoUpdate_ { true };    //!< auto update
   CQPropertyViewItem *root_       { nullptr }; //!< root item
 };
 

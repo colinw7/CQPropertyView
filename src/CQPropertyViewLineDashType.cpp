@@ -27,9 +27,9 @@ void
 CQPropertyViewLineDashType::
 draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
-     const QVariant &value, bool inside)
+     const QVariant &value, const ItemState &itemState)
 {
-  delegate->drawBackground(painter, option, index, inside);
+  delegate->drawBackground(painter, option, index, itemState);
 
   CLineDash dash = value.value<CLineDash>();
 
@@ -45,7 +45,7 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
 
   QRect irect = option.rect;
 
-  irect.setLeft(irect.left() + w + 8);
+  irect.setLeft(irect.left() + w + 2*margin());
 
   painter->drawPixmap(irect, icon.pixmap(option.rect.size()));
 
@@ -53,9 +53,9 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
 
   QStyleOptionViewItem option1 = option;
 
-  option1.rect.setRight(option1.rect.left() + w + 8);
+  option1.rect.setRight(option1.rect.left() + w + 2*margin());
 
-  delegate->drawString(painter, option1, str, index, inside);
+  delegate->drawString(painter, option1, str, index, itemState);
 }
 
 QString

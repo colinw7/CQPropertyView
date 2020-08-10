@@ -97,6 +97,9 @@ class CQPropertyViewTree : public QTreeView {
 
   void menuExec(QObject *obj, const QPoint &gpos);
 
+  void startUpdate();
+  void endUpdate();
+
  public slots:
   void redraw();
 
@@ -127,6 +130,10 @@ class CQPropertyViewTree : public QTreeView {
   void customContextMenuSlot(const QPoint &pos);
 
   void closeEditorSlot(QWidget *, QAbstractItemDelegate::EndEditHint);
+
+  void autoUpdateSlot(bool);
+
+  void updateDirtySlot();
 
  protected:
   void copyAt(const QPoint &p, bool html) const;

@@ -26,9 +26,9 @@ void
 CQPropertyViewSizeFType::
 draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
-     const QVariant &value, bool inside)
+     const QVariant &value, const ItemState &itemState)
 {
-  delegate->drawSize(painter, option, value.value<QSizeF>(), index, inside);
+  delegate->drawSize(painter, option, value.value<QSizeF>(), index, itemState);
 }
 
 QString

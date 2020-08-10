@@ -26,11 +26,11 @@ void
 CQPropertyViewAlignType::
 draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
-     const QVariant &value, bool inside)
+     const QVariant &value, const ItemState &itemState)
 {
   QString str = CQAlignEdit::toString((Qt::Alignment) value.toInt());
 
-  delegate->drawString(painter, option, str, index, inside);
+  delegate->drawString(painter, option, str, index, itemState);
 }
 
 QString

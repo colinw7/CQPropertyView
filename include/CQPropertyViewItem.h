@@ -10,6 +10,7 @@
 #include <vector>
 #include <cassert>
 
+class CQPropertyViewModel;
 class CQPropertyViewDelegate;
 class CQPropertyViewEditorFactory;
 class CQPropertyViewItemTableTip;
@@ -27,12 +28,14 @@ class CQPropertyViewItem : public QObject {
   Q_PROPERTY(bool    editable READ isEditable WRITE setEditable)
   Q_PROPERTY(bool    hidden   READ isHidden   WRITE setHidden  )
   Q_PROPERTY(bool    inside   READ isInside   WRITE setInside  )
+  Q_PROPERTY(bool    dirty    READ isDirty    WRITE setDirty   )
 
  public:
   typedef std::vector<CQPropertyViewItem *> Children;
 
  public:
-  CQPropertyViewItem(CQPropertyViewItem *parent, QObject *object, const QString &name);
+  CQPropertyViewItem(CQPropertyViewModel *model, CQPropertyViewItem *parent,
+                     QObject *object, const QString &name);
 
  ~CQPropertyViewItem();
 
@@ -121,11 +124,22 @@ class CQPropertyViewItem : public QObject {
   const QStringList &values() const { return values_; }
   CQPropertyViewItem &setValues(const QStringList &v) { values_ = v; return *this; }
 
+  //! get/set min value
   const QVariant &minValue() const { return minValue_; }
   CQPropertyViewItem &setMinValue(const QVariant &v) { minValue_ = v; return *this; }
 
+  //! get/set max value
   const QVariant &maxValue() const { return maxValue_; }
   CQPropertyViewItem &setMaxValue(const QVariant &v) { maxValue_ = v; return *this; }
+
+  //----
+
+  //! get/set dirty
+  bool isDirty() const { return dirty_; }
+  void setDirty(bool b) { dirty_ = b; }
+
+  const QVariant &dirtyValue() const { return dirtyValue_; }
+  void setDirtyValue(const QVariant &v) { dirtyValue_ = v; }
 
   //----
 
@@ -163,6 +177,10 @@ class CQPropertyViewItem : public QObject {
   QVariant data() const;
   bool setData(const QVariant &value);
 
+  //! apply dirty value
+  bool applyDirty();
+
+  //! get tcl data
   QVariant tclData() const;
 
   //! get/set desc
@@ -211,6 +229,7 @@ class CQPropertyViewItem : public QObject {
   bool enumStringToInd(const CQUtil::PropInfo &propInfo, const QString &str, int &ind) const;
 
  private:
+  CQPropertyViewModel*         model_    { nullptr };    //!< parent model
   uint                         id_       { 0xFEEDBEEF }; //!< unique id
   CQPropertyViewItem*          parent_   { nullptr };    //!< parent item
   QPointer<QObject>            object_;                  //!< associated objects
@@ -223,6 +242,8 @@ class CQPropertyViewItem : public QObject {
   bool                         editable_ { false };      //!< is editable
   bool                         hidden_   { false };      //!< is hidden
   bool                         inside_   { false };      //!< is mouse inside
+  bool                         dirty_    { false };      //!< is dirty (value changed/not applied)
+  QVariant                     dirtyValue_;              //!< dirty value
   QPointer<QWidget>            widget_;                  //!< edit widget
   CQPropertyViewEditorFactory *editor_   { nullptr };    //!< editor interface
   QStringList                  values_;                  //!< enum values

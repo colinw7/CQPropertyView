@@ -26,9 +26,9 @@ void
 CQPropertyViewPointFType::
 draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
-     const QVariant &value, bool inside)
+     const QVariant &value, const ItemState &itemState)
 {
-  delegate->drawPoint(painter, option, value.value<QPointF>(), index, inside);
+  delegate->drawPoint(painter, option, value.value<QPointF>(), index, itemState);
 }
 
 QString

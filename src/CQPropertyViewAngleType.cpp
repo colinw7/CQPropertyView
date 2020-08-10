@@ -26,13 +26,13 @@ void
 CQPropertyViewAngleType::
 draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *painter,
      const QStyleOptionViewItem &option, const QModelIndex &index,
-     const QVariant &value, bool inside)
+     const QVariant &value, const ItemState &itemState)
 {
   QString str = value.value<CAngle>().toString().c_str();
 
   str += "\u00b0";
 
-  delegate->drawString(painter, option, str, index, inside);
+  delegate->drawString(painter, option, str, index, itemState);
 }
 
 QString
