@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CQPropertyViewItem_t {
     QByteArrayData data[19];
-    char stringdata0[169];
+    char stringdata0[175];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,26 +37,26 @@ QT_MOC_LITERAL(2, 32, 0), // ""
 QT_MOC_LITERAL(3, 33, 3), // "obj"
 QT_MOC_LITERAL(4, 37, 4), // "name"
 QT_MOC_LITERAL(5, 42, 11), // "updateValue"
-QT_MOC_LITERAL(6, 54, 15), // "enumIndToString"
-QT_MOC_LITERAL(7, 70, 16), // "CQUtil::PropInfo"
-QT_MOC_LITERAL(8, 87, 8), // "propInfo"
-QT_MOC_LITERAL(9, 96, 3), // "ind"
-QT_MOC_LITERAL(10, 100, 8), // "QString&"
-QT_MOC_LITERAL(11, 109, 3), // "str"
-QT_MOC_LITERAL(12, 113, 15), // "enumStringToInd"
-QT_MOC_LITERAL(13, 129, 4), // "int&"
-QT_MOC_LITERAL(14, 134, 5), // "alias"
-QT_MOC_LITERAL(15, 140, 8), // "editable"
-QT_MOC_LITERAL(16, 149, 6), // "hidden"
-QT_MOC_LITERAL(17, 156, 6), // "inside"
-QT_MOC_LITERAL(18, 163, 5) // "dirty"
+QT_MOC_LITERAL(6, 54, 17), // "enumValueToString"
+QT_MOC_LITERAL(7, 72, 16), // "CQUtil::PropInfo"
+QT_MOC_LITERAL(8, 89, 8), // "propInfo"
+QT_MOC_LITERAL(9, 98, 5), // "value"
+QT_MOC_LITERAL(10, 104, 8), // "QString&"
+QT_MOC_LITERAL(11, 113, 3), // "str"
+QT_MOC_LITERAL(12, 117, 17), // "enumStringToValue"
+QT_MOC_LITERAL(13, 135, 4), // "int&"
+QT_MOC_LITERAL(14, 140, 5), // "alias"
+QT_MOC_LITERAL(15, 146, 8), // "editable"
+QT_MOC_LITERAL(16, 155, 6), // "hidden"
+QT_MOC_LITERAL(17, 162, 6), // "inside"
+QT_MOC_LITERAL(18, 169, 5) // "dirty"
 
     },
     "CQPropertyViewItem\0valueChanged\0\0obj\0"
-    "name\0updateValue\0enumIndToString\0"
-    "CQUtil::PropInfo\0propInfo\0ind\0QString&\0"
-    "str\0enumStringToInd\0int&\0alias\0editable\0"
-    "hidden\0inside\0dirty"
+    "name\0updateValue\0enumValueToString\0"
+    "CQUtil::PropInfo\0propInfo\0value\0"
+    "QString&\0str\0enumStringToValue\0int&\0"
+    "alias\0editable\0hidden\0inside\0dirty"
 };
 #undef QT_MOC_LITERAL
 
@@ -108,9 +108,9 @@ void CQPropertyViewItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: _t->valueChanged((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 1: _t->updateValue(); break;
-        case 2: { bool _r = _t->enumIndToString((*reinterpret_cast< const CQUtil::PropInfo(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])));
+        case 2: { bool _r = _t->enumValueToString((*reinterpret_cast< const CQUtil::PropInfo(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 3: { bool _r = _t->enumStringToInd((*reinterpret_cast< const CQUtil::PropInfo(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])));
+        case 3: { bool _r = _t->enumStringToValue((*reinterpret_cast< const CQUtil::PropInfo(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
