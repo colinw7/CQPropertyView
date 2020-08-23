@@ -368,8 +368,13 @@ void
 CQPropertyViewTree::
 autoUpdateSlot(bool b)
 {
-  if (model_)
-    model_->setAutoUpdate(b);
+  if (! model_)
+    return;
+
+  if (b)
+    updateDirtySlot();
+
+  model_->setAutoUpdate(b);
 }
 
 void
