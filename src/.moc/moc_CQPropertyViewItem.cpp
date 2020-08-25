@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CQPropertyViewItem_t {
-    QByteArrayData data[19];
-    char stringdata0[175];
+    QByteArrayData data[11];
+    char stringdata0[89];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,26 +37,16 @@ QT_MOC_LITERAL(2, 32, 0), // ""
 QT_MOC_LITERAL(3, 33, 3), // "obj"
 QT_MOC_LITERAL(4, 37, 4), // "name"
 QT_MOC_LITERAL(5, 42, 11), // "updateValue"
-QT_MOC_LITERAL(6, 54, 17), // "enumValueToString"
-QT_MOC_LITERAL(7, 72, 16), // "CQUtil::PropInfo"
-QT_MOC_LITERAL(8, 89, 8), // "propInfo"
-QT_MOC_LITERAL(9, 98, 5), // "value"
-QT_MOC_LITERAL(10, 104, 8), // "QString&"
-QT_MOC_LITERAL(11, 113, 3), // "str"
-QT_MOC_LITERAL(12, 117, 17), // "enumStringToValue"
-QT_MOC_LITERAL(13, 135, 4), // "int&"
-QT_MOC_LITERAL(14, 140, 5), // "alias"
-QT_MOC_LITERAL(15, 146, 8), // "editable"
-QT_MOC_LITERAL(16, 155, 6), // "hidden"
-QT_MOC_LITERAL(17, 162, 6), // "inside"
-QT_MOC_LITERAL(18, 169, 5) // "dirty"
+QT_MOC_LITERAL(6, 54, 5), // "alias"
+QT_MOC_LITERAL(7, 60, 8), // "editable"
+QT_MOC_LITERAL(8, 69, 6), // "hidden"
+QT_MOC_LITERAL(9, 76, 6), // "inside"
+QT_MOC_LITERAL(10, 83, 5) // "dirty"
 
     },
     "CQPropertyViewItem\0valueChanged\0\0obj\0"
-    "name\0updateValue\0enumValueToString\0"
-    "CQUtil::PropInfo\0propInfo\0value\0"
-    "QString&\0str\0enumStringToValue\0int&\0"
-    "alias\0editable\0hidden\0inside\0dirty"
+    "name\0updateValue\0alias\0editable\0hidden\0"
+    "inside\0dirty"
 };
 #undef QT_MOC_LITERAL
 
@@ -66,36 +56,32 @@ static const uint qt_meta_data_CQPropertyViewItem[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
-       6,   54, // properties
+       2,   14, // methods
+       6,   30, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   34,    2, 0x06 /* Public */,
+       1,    2,   24,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   39,    2, 0x08 /* Private */,
-       6,    3,   40,    2, 0x08 /* Private */,
-      12,    3,   47,    2, 0x08 /* Private */,
+       5,    0,   29,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QObjectStar, QMetaType::QString,    3,    4,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Bool, 0x80000000 | 7, QMetaType::Int, 0x80000000 | 10,    8,    9,   11,
-    QMetaType::Bool, 0x80000000 | 7, QMetaType::QString, 0x80000000 | 13,    8,   11,    9,
 
  // properties: name, type, flags
        4, QMetaType::QString, 0x00095103,
-      14, QMetaType::QString, 0x00095103,
-      15, QMetaType::Bool, 0x00095103,
-      16, QMetaType::Bool, 0x00095103,
-      17, QMetaType::Bool, 0x00095103,
-      18, QMetaType::Bool, 0x00095103,
+       6, QMetaType::QString, 0x00095103,
+       7, QMetaType::Bool, 0x00095103,
+       8, QMetaType::Bool, 0x00095103,
+       9, QMetaType::Bool, 0x00095103,
+      10, QMetaType::Bool, 0x00095103,
 
        0        // eod
 };
@@ -108,10 +94,6 @@ void CQPropertyViewItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: _t->valueChanged((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 1: _t->updateValue(); break;
-        case 2: { bool _r = _t->enumValueToString((*reinterpret_cast< const CQUtil::PropInfo(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 3: { bool _r = _t->enumStringToValue((*reinterpret_cast< const CQUtil::PropInfo(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -185,13 +167,13 @@ int CQPropertyViewItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 2;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 2)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 2;
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty

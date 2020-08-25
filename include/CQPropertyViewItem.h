@@ -225,8 +225,8 @@ class CQPropertyViewItem : public QObject {
   //! called when the editor widget is changed
   void updateValue();
 
-  bool enumValueToString(const CQUtil::PropInfo &propInfo, int value, QString &str) const;
-  bool enumStringToValue(const CQUtil::PropInfo &propInfo, const QString &str, int &value) const;
+//bool enumValueToString(const CQUtil::PropInfo &propInfo, int value, QString &str) const;
+//bool enumStringToValue(const CQUtil::PropInfo &propInfo, const QString &str, int &value) const;
 
  private:
   CQPropertyViewModel*         model_    { nullptr };    //!< parent model

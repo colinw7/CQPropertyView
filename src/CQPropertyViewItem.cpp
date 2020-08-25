@@ -320,7 +320,7 @@ getEditorData() const
 
     QString str;
 
-    if (enumValueToString(propInfo, value, str))
+    if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
       var = str;
   }
 
@@ -346,7 +346,7 @@ createEditor(QWidget *parent)
 
     QString str;
 
-    if (enumValueToString(propInfo, value, str))
+    if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
       var = str;
   }
 
@@ -470,14 +470,17 @@ setEditorData(const QVariant &value)
     else if (propInfo.isEnumType()) {
       QString name = CQUtil::variantToString(value);
 
-      int ind = -1;
+      int ind;
 
-      if (enumStringToValue(propInfo, name, ind)) {
+      if (CQUtil::getPropInfoEnumNameValue(propInfo, name, ind)) {
         QVariant v(ind);
 
         if (! this->setData(v)) {
           //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
         }
+      }
+      else {
+        //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
       }
     }
     else {
@@ -744,7 +747,7 @@ calcTip() const
 
     QString str;
 
-    if (enumValueToString(propInfo, value, str))
+    if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
       return str;
   }
   else if (var.type() == QVariant::UserType) {
@@ -790,7 +793,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
 
     QString str;
 
-    if (enumValueToString(propInfo, value, str))
+    if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
       delegate->drawString(painter, option, str, index, itemState);
   }
   else if (var.type() == QVariant::UserType) {
@@ -827,16 +830,12 @@ dataStr() const
   return CQPropertyViewUtil::variantToString(data());
 }
 
+#if 0
 bool
 CQPropertyViewItem::
 enumValueToString(const CQUtil::PropInfo &propInfo, int value, QString &str) const
 {
-  str = propInfo.enumValueName(value, "");
-
-  if (str == "")
-    return false;
-
-  return true;
+  return CQUtil::getPropInfoEnumValueName(propInfo, value, str);
 #if 0
   const QStringList &names = propInfo.enumNames();
 
@@ -848,17 +847,14 @@ enumValueToString(const CQUtil::PropInfo &propInfo, int value, QString &str) con
   return true;
 #endif
 }
+#endif
 
+#if 0
 bool
 CQPropertyViewItem::
 enumStringToValue(const CQUtil::PropInfo &propInfo, const QString &str, int &value) const
 {
-  value = propInfo.enumNameValue(str, -999);
-
-  if (value == -999)
-    return false;
-
-  return true;
+  return CQUtil::getPropInfoEnumNameValue(propInfo, str, value);
 #if 0
   const QStringList &names = propInfo.enumNames();
 
@@ -872,6 +868,7 @@ enumStringToValue(const CQUtil::PropInfo &propInfo, const QString &str, int &val
   return false;
 #endif
 }
+#endif
 
 QString
 CQPropertyViewItem::
