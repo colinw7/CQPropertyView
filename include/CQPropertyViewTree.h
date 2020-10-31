@@ -144,8 +144,16 @@ class CQPropertyViewTree : public QTreeView {
 
   void searchItemTree(CQPropertyViewItem *item, const QRegExp &regexp, Items &items);
 
-  void expandItemTree(CQPropertyViewItem *item);
+  void expandItemTree  (CQPropertyViewItem *item);
   void collapseItemTree(CQPropertyViewItem *item);
+
+  //---
+
+  void saveState();
+
+  void restoreState();
+
+  //---
 
   void showContextMenu(QObject *obj, const QPoint &globalPos);
 
@@ -162,6 +170,24 @@ class CQPropertyViewTree : public QTreeView {
   QModelIndex indexFromItem(CQPropertyViewItem *item, int column, bool map=false) const;
 
  private:
+  using ItemPath       = QStringList;
+  using ItemPaths      = std::vector<ItemPath>;
+  using DepthItemPaths = std::map<int, ItemPaths>;
+
+  struct StateData {
+    ItemPath       topItem;
+    DepthItemPaths expandPaths;
+    QModelIndex    topIndex;
+  };
+
+  void saveState1   (const QModelIndex &parent, StateData &stateData, int depth);
+  void restoreState1(const QModelIndex &parent, StateData &stateData, int depth);
+
+  void itemPath(const QModelIndex &ind, ItemPath &path) const;
+
+//void printPath(const ItemPath &path) const;
+
+ private:
   CQPropertyViewModel*    model_          { nullptr };
   CQPropertyViewFilter*   filter_         { nullptr };
   CQPropertyViewDelegate* delegate_       { nullptr };
@@ -173,6 +199,7 @@ class CQPropertyViewTree : public QTreeView {
   QModelIndex             mouseInd_;
   CQPropertyViewItem*     menuItem_       { nullptr };
   QPoint                  menuPos_;
+  StateData               stateData_;
 };
 
 #endif

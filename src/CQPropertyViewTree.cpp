@@ -344,6 +344,8 @@ getSelectedObjects(Objs &objs)
   }
 }
 
+//---
+
 bool
 CQPropertyViewTree::
 isShowHidden() const
@@ -355,12 +357,204 @@ void
 CQPropertyViewTree::
 setShowHidden(bool b)
 {
-  if (model_) {
+  if (model_ && b != model_->isShowHidden()) {
+    saveState();
+
     model_->setShowHidden(b);
 
     model_->reset();
+
+    restoreState();
   }
 }
+
+//---
+
+void
+CQPropertyViewTree::
+saveState()
+{
+  assert(model_);
+
+  stateData_.expandPaths.clear();
+
+  auto ind = indexAt(QPoint(0, 0));
+
+  stateData_.topItem.clear();
+
+  itemPath(ind, stateData_.topItem);
+
+//std::cerr << "Top : "; printPath(stateData_.topItem);
+
+  stateData_.topIndex = QModelIndex();
+
+  saveState1(QModelIndex(), stateData_, 0);
+}
+
+void
+CQPropertyViewTree::
+saveState1(const QModelIndex &parent, StateData &stateData, int depth)
+{
+  auto *filterModel = this->filterModel();
+
+  int nr = filterModel->rowCount(parent);
+
+  for (int r = 0; r < nr; ++r) {
+    auto ind = filterModel->index(r, 0, parent);
+
+    if (! filterModel->hasChildren(ind))
+      continue;
+
+    if (isExpanded(ind)) {
+      ItemPath path;
+
+      itemPath(ind, path);
+
+      stateData.expandPaths[depth].push_back(path);
+
+    //std::cerr << "Save : "; printPath(path);
+    }
+
+    saveState1(ind, stateData, depth + 1);
+  }
+}
+
+void
+CQPropertyViewTree::
+restoreState()
+{
+  assert(model_);
+
+  restoreState1(QModelIndex(), stateData_, 0);
+
+  redraw();
+
+  if (stateData_.topIndex.isValid()) {
+#if 0
+    ItemPath topItem;
+    auto ind1 = indexAt(QPoint(0, 0));
+    itemPath(ind1, topItem);
+    std::cerr << "Top : "; printPath(topItem);
+
+    auto rect = visualRect(stateData_.topIndex);
+    int dy = rect.top();
+    std::cerr << "DY : " << dy << "\n";
+#endif
+
+    scrollTo(stateData_.topIndex, QAbstractItemView::EnsureVisible);
+
+#if 0
+    rect = visualRect(stateData_.topIndex);
+    dy = rect.top();
+    std::cerr << "DY : " << dy << "\n";
+
+    topItem.clear();
+    ind1 = indexAt(QPoint(0, 0));
+    itemPath(ind1, topItem);
+    std::cerr << "Top : "; printPath(topItem);
+#endif
+
+    scrollTo(stateData_.topIndex, QAbstractItemView::PositionAtTop);
+
+#if 0
+    rect = visualRect(stateData_.topIndex);
+    dy = rect.top();
+    std::cerr << "DY : " << dy << "\n";
+
+    topItem.clear();
+    ind1 = indexAt(QPoint(0, 0));
+    itemPath(ind1, topItem);
+    std::cerr << "Top : "; printPath(topItem);
+#endif
+  }
+}
+
+void
+CQPropertyViewTree::
+restoreState1(const QModelIndex &parent, StateData &stateData, int depth)
+{
+  auto pd = stateData.expandPaths.find(depth);
+
+  //---
+
+  auto itemMatch = [&](const ItemPath &path1, const ItemPath &path2) {
+    int np = path1.length();
+
+    if (path2.length() != np)
+      return false;
+
+    for (int i = 0; i < np; ++i) {
+      if (path1[i] != path2[i])
+        return false;
+    }
+
+    return true;
+  };
+
+  auto hasPath = [&](const ItemPath &path) {
+    auto &itemPaths = (*pd).second;
+
+    for (const auto &path1 : itemPaths) {
+      if (itemMatch(path, path1))
+        return true;
+    }
+
+    return false;
+  };
+
+  //---
+
+  auto *filterModel = this->filterModel();
+
+  int nr = filterModel->rowCount(parent);
+
+  for (int r = 0; r < nr; ++r) {
+    auto ind = filterModel->index(r, 0, parent);
+
+    ItemPath path;
+
+    itemPath(ind, path);
+
+    if (itemMatch(stateData_.topItem, path))
+      stateData.topIndex = ind;
+
+    if (! filterModel->hasChildren(ind))
+      continue;
+
+    if (pd != stateData.expandPaths.end()) {
+      if (hasPath(path)) {
+        setExpanded(ind, true);
+
+      //std::cerr << "Restore : "; printPath(path);
+      }
+    }
+
+    restoreState1(ind, stateData, depth + 1);
+  }
+}
+
+void
+CQPropertyViewTree::
+itemPath(const QModelIndex &ind, ItemPath &path) const
+{
+  auto *filterModel = this->filterModel();
+
+  if (ind.parent().isValid())
+    itemPath(ind.parent(), path);
+
+  QString str = filterModel->data(ind, Qt::DisplayRole).toString();
+
+  path.push_back(str);
+}
+
+#if 0
+void
+CQPropertyViewTree::
+printPath(const ItemPath &path) const
+{
+  std::cerr << path.join("|").toStdString() << "\n";
+}
+#endif
 
 //---
 
