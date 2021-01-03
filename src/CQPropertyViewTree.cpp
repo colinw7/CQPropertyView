@@ -14,8 +14,33 @@
 #include <iostream>
 
 CQPropertyViewTree::
+CQPropertyViewTree(QWidget *parent) :
+ QTreeView(parent), model_(new CQPropertyViewModel)
+{
+  init();
+
+  modelAllocated_ = true;
+}
+
+CQPropertyViewTree::
 CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
  QTreeView(parent), model_(model)
+{
+  init();
+}
+
+CQPropertyViewTree::
+~CQPropertyViewTree()
+{
+  if (modelAllocated_)
+    delete model_;
+
+  delete filter_;
+}
+
+void
+CQPropertyViewTree::
+init()
 {
   setObjectName("propertyView");
 
@@ -80,12 +105,6 @@ CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model) :
 
   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
           this, SLOT(customContextMenuSlot(const QPoint&)));
-}
-
-CQPropertyViewTree::
-~CQPropertyViewTree()
-{
-  delete filter_;
 }
 
 void

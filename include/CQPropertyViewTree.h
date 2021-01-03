@@ -25,6 +25,7 @@ class CQPropertyViewTree : public QTreeView {
   typedef std::vector<QObject *>            Objs;
 
  public:
+  CQPropertyViewTree(QWidget *parent);
   CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model);
 
   virtual ~CQPropertyViewTree();
@@ -136,6 +137,8 @@ class CQPropertyViewTree : public QTreeView {
   void updateDirtySlot();
 
  protected:
+  void init();
+
   void copyAt(const QPoint &p, bool html) const;
 
   bool selectObject(CQPropertyViewItem *item, const QObject *obj);
@@ -189,6 +192,7 @@ class CQPropertyViewTree : public QTreeView {
 
  private:
   CQPropertyViewModel*    model_          { nullptr };
+  bool                    modelAllocated_ { false };
   CQPropertyViewFilter*   filter_         { nullptr };
   CQPropertyViewDelegate* delegate_       { nullptr };
   bool                    itemMenu_       { false };
