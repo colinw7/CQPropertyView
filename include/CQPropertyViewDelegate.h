@@ -25,22 +25,23 @@ class CQPropertyViewDelegate : public QItemDelegate {
 
   // Override to create editor
   QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option,
-                        const QModelIndex &index) const;
+                        const QModelIndex &index) const override;
 
   // Override to get content from editor
-  void setEditorData(QWidget *editor, const QModelIndex &index) const;
+  void setEditorData(QWidget *editor, const QModelIndex &index) const override;
 
-  void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
+  void setModelData(QWidget *editor, QAbstractItemModel *model,
+                    const QModelIndex &index) const override;
 
   void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option,
-                            const QModelIndex &index) const;
+                            const QModelIndex &index) const override;
 
   void paint(QPainter *painter, const QStyleOptionViewItem &option,
-             const QModelIndex &index) const;
+             const QModelIndex &index) const override;
 
   CQPropertyViewItem *getModelItem(const QModelIndex &index) const;
 
-  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index ) const;
+  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index ) const override;
 
   QWidget *createEdit(QWidget *parent, const QString &text) const;
 
@@ -79,7 +80,7 @@ class CQPropertyViewDelegate : public QItemDelegate {
   // get editor index
   QModelIndex getEditorIndex() const { return editorIndex_; }
 
-  bool eventFilter(QObject *obj, QEvent *event);
+  bool eventFilter(QObject *obj, QEvent *event) override;
 
  private:
   using WidgetP = QPointer<QWidget>;
