@@ -20,6 +20,11 @@ class CQPropertyViewMgr {
 
  ~CQPropertyViewMgr();
 
+  template<typename T>
+  void addTypeT(const QString &name) {
+    addType(name, new T);
+  }
+
   void addType(const QString &name, CQPropertyViewType *type);
 
   CQPropertyViewType *getType(const QString &name) const;
