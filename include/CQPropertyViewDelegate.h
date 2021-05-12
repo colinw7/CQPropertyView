@@ -68,6 +68,9 @@ class CQPropertyViewDelegate : public QItemDelegate {
   void drawString(QPainter *painter, const QStyleOptionViewItem &option,
                   const QString &str, const QModelIndex &index, const ItemState &itemState) const;
 
+  void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect,
+                   const QString &str) const override;
+;
   //---
 
   // get/set is editing

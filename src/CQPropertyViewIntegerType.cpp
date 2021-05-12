@@ -2,7 +2,7 @@
 #include <CQPropertyViewItem.h>
 #include <CQPropertyViewDelegate.h>
 #include <CQPropertyView.h>
-#include <QSpinBox>
+#include <CQIntegerSpin.h>
 #include <cassert>
 
 CQPropertyViewIntegerType::
@@ -45,7 +45,7 @@ QWidget *
 CQPropertyViewIntegerEditor::
 createEdit(QWidget *parent)
 {
-  auto *spin = new QSpinBox(parent);
+  auto *spin = new CQIntegerSpin(parent);
 
   auto *item = CQPropertyViewMgrInst->editItem();
 
@@ -67,7 +67,7 @@ void
 CQPropertyViewIntegerEditor::
 connect(QWidget *w, QObject *obj, const char *method)
 {
-  auto *spin = qobject_cast<QSpinBox *>(w);
+  auto *spin = qobject_cast<CQIntegerSpin *>(w);
   assert(spin);
 
   QObject::connect(spin, SIGNAL(valueChanged(int)), obj, method);
@@ -77,7 +77,7 @@ QVariant
 CQPropertyViewIntegerEditor::
 getValue(QWidget *w)
 {
-  auto *spin = qobject_cast<QSpinBox *>(w);
+  auto *spin = qobject_cast<CQIntegerSpin *>(w);
   assert(spin);
 
   return QVariant(spin->value());
@@ -87,7 +87,7 @@ void
 CQPropertyViewIntegerEditor::
 setValue(QWidget *w, const QVariant &var)
 {
-  auto *spin = qobject_cast<QSpinBox *>(w);
+  auto *spin = qobject_cast<CQIntegerSpin *>(w);
   assert(spin);
 
   int i = var.toInt();

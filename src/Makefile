@@ -866,7 +866,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../include/CQPropertyView.h
+		../include/CQPropertyView.h \
+		../../CQUtil/include/CQIntegerSpin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewIntegerType.o CQPropertyViewIntegerType.cpp
 
 ../obj/CQPropertyViewPointFType.o: CQPropertyViewPointFType.cpp ../include/CQPropertyViewPointFType.h \
@@ -937,6 +938,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../include/CQPropertyView.h \
+		../../CQUtil/include/CQSlider.h \
+		../../CQUtil/include/CQComboSlider.h \
 		../../CQUtil/include/CQRealSpin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewRealType.o CQPropertyViewRealType.cpp
 

@@ -143,6 +143,7 @@ paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &
 
     //QItemDelegate::paint(painter, option1, index);
   }
+  // property value
   else if (index.column() == 1) {
     if (itemState.inside)
       item->setInside(true);
@@ -231,7 +232,7 @@ drawCheckInside(QPainter *painter, const QStyleOptionViewItem &option,
   rect1.setCoords(x, option.rect.top(), option.rect.right(), option.rect.bottom());
 
   //painter->drawText(x, y, (checked ? "true" : "false"));
-  QItemDelegate::drawDisplay(painter, option, rect1, checked ? "true" : "false");
+  drawDisplay(painter, option, rect1, checked ? "true" : "false");
 }
 
 void
@@ -263,7 +264,7 @@ drawColor(QPainter *painter, const QStyleOptionViewItem &option,
   rect1.setCoords(x, option.rect.top(), option.rect.right(), option.rect.bottom());
 
 //painter->drawText(x, y, c.name());
-  QItemDelegate::drawDisplay(painter, option, rect1, c.name());
+  drawDisplay(painter, option, rect1, c.name());
 }
 
 void
@@ -271,6 +272,8 @@ CQPropertyViewDelegate::
 drawFont(QPainter *painter, const QStyleOptionViewItem &option,
          const QFont &f, const QModelIndex &index, const ItemState &itemState) const
 {
+  static QString previewStr("Abc");
+
   drawBackground(painter, option, index, itemState);
 
   QRect rect = option.rect;
@@ -285,7 +288,7 @@ drawFont(QPainter *painter, const QStyleOptionViewItem &option,
   QFontMetrics fm1(f1);
   QFontMetrics fm2(f2);
 
-  int fw = fm1.width("Abc");
+  int fw = fm1.width(previewStr);
   int fh = fm1.height();
 
   if (fh > rect.height()) {
@@ -293,7 +296,7 @@ drawFont(QPainter *painter, const QStyleOptionViewItem &option,
 
     fm1 = QFontMetrics(f1);
 
-    fw = fm1.width("Abc");
+    fw = fm1.width(previewStr);
   }
 
   int x1 = rect.left();
@@ -307,7 +310,7 @@ drawFont(QPainter *painter, const QStyleOptionViewItem &option,
 
   painter->setPen(fg);
 
-  painter->drawText(x1, y1, "Abc");
+  painter->drawText(x1, y1, previewStr);
 
   painter->restore();
 
@@ -319,7 +322,7 @@ drawFont(QPainter *painter, const QStyleOptionViewItem &option,
   rect1.setCoords(x2, option.rect.top(), option.rect.right(), option.rect.bottom());
 
 //painter->drawText(x2, y2, f.toString());
-  QItemDelegate::drawDisplay(painter, option, rect1, f.toString());
+  drawDisplay(painter, option, rect1, f.toString());
 }
 
 void
@@ -337,7 +340,7 @@ drawPoint(QPainter *painter, const QStyleOptionViewItem &option,
 
   QString str = QString("%1 %2").arg(p.x()).arg(p.y());
 
-  QItemDelegate::drawDisplay(painter, option, rect, str);
+  drawDisplay(painter, option, rect, str);
 }
 
 void
@@ -355,7 +358,7 @@ drawSize(QPainter *painter, const QStyleOptionViewItem &option,
 
   QString str = QString("%1 %2").arg(s.width()).arg(s.height());
 
-  QItemDelegate::drawDisplay(painter, option, rect, str);
+  drawDisplay(painter, option, rect, str);
 }
 
 void
@@ -374,7 +377,7 @@ drawRect(QPainter *painter, const QStyleOptionViewItem &option,
   QString str = QString("{%1 %2} {%3 %4}").arg(r.left ()).arg(r.top   ()).
                                            arg(r.right()).arg(r.bottom());
 
-  QItemDelegate::drawDisplay(painter, option, rect, str);
+  drawDisplay(painter, option, rect, str);
 }
 
 #if 0
@@ -393,7 +396,7 @@ drawAngle(QPainter *painter, const QStyleOptionViewItem &option,
 
   QString str = QString("%1").arg(a.degrees());
 
-  QItemDelegate::drawDisplay(painter, option, rect, str);
+  drawDisplay(painter, option, rect, str);
 }
 #endif
 
@@ -414,12 +417,20 @@ drawString(QPainter *painter, const QStyleOptionViewItem &option, const QString 
     option1.palette.setColor(QPalette::WindowText, c);
     option1.palette.setColor(QPalette::Text      , c);
 
-    QItemDelegate::drawDisplay(painter, option1, rect, str);
+    drawDisplay(painter, option1, rect, str);
   }
   else
-    QItemDelegate::drawDisplay(painter, option, rect, str);
+    drawDisplay(painter, option, rect, str);
 
   //painter->fillRect(option.rect, Qt::red);
+}
+
+void
+CQPropertyViewDelegate::
+drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect,
+            const QString &str) const
+{
+  QItemDelegate::drawDisplay(painter, option, rect, str);
 }
 
 bool
