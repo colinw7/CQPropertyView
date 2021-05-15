@@ -237,7 +237,7 @@ QString
 CQPropertyViewItem::
 aliasName() const
 {
-  QString name = this->alias();
+  auto name = this->alias();
 
   if (name == "")
     name = this->name();
@@ -254,7 +254,7 @@ path(const QString &sep, bool alias, CQPropertyViewItem *root) const
   const auto *item = this;
 
   while (item) {
-    QString name = (alias ? item->aliasName() : item->name());
+    auto name = (alias ? item->aliasName() : item->name());
 
     if (name.length()) {
       if (path.length())
@@ -283,7 +283,7 @@ click()
   if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
-  QVariant var = this->data();
+  auto var = this->data();
 
   if (propInfo.isEnumType())
     return false;
@@ -313,7 +313,7 @@ getEditorData() const
   if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
-  QVariant var = this->data();
+  auto var = this->data();
 
   if (propInfo.isEnumType()) {
     int value = var.toInt();
@@ -339,7 +339,7 @@ createEditor(QWidget *parent)
   if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
-  QVariant var = this->data();
+  auto var = this->data();
 
   if (propInfo.isEnumType()) {
     int value = var.toInt();
@@ -365,9 +365,9 @@ createEditor(QWidget *parent)
     editor->connect(widget_, this, SLOT(updateValue()));
   }
   else if (propInfo.isEnumType()) {
-    QString valueStr = var.toString();
+    auto valueStr = var.toString();
 
-    const QStringList &names = propInfo.enumNames();
+    const auto &names = propInfo.enumNames();
 
     auto *combo = new QComboBox(parent);
 
@@ -458,7 +458,7 @@ setEditorData(const QVariant &value)
   CQUtil::PropInfo propInfo;
 
   if (object() && CQUtil::getPropInfo(object(), name(), &propInfo) && propInfo.isWritable()) {
-    QString typeName = propInfo.typeName();
+    auto typeName = propInfo.typeName();
 
     auto *type = CQPropertyViewMgrInst->getType(typeName);
 
@@ -468,7 +468,7 @@ setEditorData(const QVariant &value)
       }
     }
     else if (propInfo.isEnumType()) {
-      QString name = CQUtil::variantToString(value);
+      auto name = CQUtil::variantToString(value);
 
       int ind;
 
@@ -511,7 +511,7 @@ updateValue()
     editor = CQPropertyViewMgrInst->getEditor(typeName);
 
   if      (editor) {
-    QVariant var = editor->getValue(widget_);
+    auto var = editor->getValue(widget_);
 
     setEditorData(var);
   }
@@ -519,7 +519,7 @@ updateValue()
     auto *combo = qobject_cast<QComboBox *>(widget_);
     assert(combo);
 
-    QString text = combo->currentText();
+    auto text = combo->currentText();
 
     setEditorData(text);
   }
@@ -529,20 +529,20 @@ updateValue()
 
     check->setText(check->isChecked() ? "true" : "false");
 
-    QString text = (check->isChecked() ? "1" : "0");
+    auto text = (check->isChecked() ? "1" : "0");
 
     setEditorData(text);
   }
   else if (propInfo.type() == QVariant::UserType) {
-    QString text = getDefaultValue();
+    auto text = getDefaultValue();
 
-    QVariant var = this->data();
+    auto var = this->data();
 
     if (CQUtil::userVariantFromString(var, text))
       setEditorData(var);
   }
   else {
-    QString text = getDefaultValue();
+    auto text = getDefaultValue();
 
     setEditorData(text);
   }
@@ -663,7 +663,7 @@ QString
 CQPropertyViewItem::
 nameTip(bool html) const
 {
-  QString tip = path(".", /*alias*/true);
+  auto tip = path(".", /*alias*/true);
 
   if (! object())
     return tip;
@@ -688,7 +688,7 @@ valueTip(bool html) const
   if (! object())
     return "";
 
-  QString tip = calcTip();
+  auto tip = calcTip();
 
   if (html) {
     CQPropertyViewItemTableTip tableTip;
@@ -710,7 +710,7 @@ addCommonType(CQPropertyViewItemTableTip &tableTip) const
   if (desc() != "")
     tableTip.addRow("Description", desc());
 
-  QString userTypeName = this->userTypeName();
+  auto userTypeName = this->userTypeName();
 
   if (userTypeName != "")
     tableTip.addRow("Type", userTypeName);
@@ -732,7 +732,7 @@ calcTip() const
   if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
-  QVariant var = this->data();
+  auto var = this->data();
 
   auto *type = CQPropertyViewMgrInst->getType(typeName);
 
@@ -773,7 +773,7 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
   if (object() && CQUtil::getPropInfo(object(), name(), &propInfo))
     typeName = propInfo.typeName();
 
-  QVariant var = this->data();
+  auto var = this->data();
 
   auto *type = CQPropertyViewMgrInst->getType(typeName);
 
@@ -837,7 +837,7 @@ enumValueToString(const CQUtil::PropInfo &propInfo, int value, QString &str) con
 {
   return CQUtil::getPropInfoEnumValueName(propInfo, value, str);
 #if 0
-  const QStringList &names = propInfo.enumNames();
+  const auto &names = propInfo.enumNames();
 
   if (ind < 0 || ind >= names.count())
     return false;
@@ -856,7 +856,7 @@ enumStringToValue(const CQUtil::PropInfo &propInfo, const QString &str, int &val
 {
   return CQUtil::getPropInfoEnumNameValue(propInfo, str, value);
 #if 0
-  const QStringList &names = propInfo.enumNames();
+  const auto &names = propInfo.enumNames();
 
   for (int i = 0; i < names.size(); ++i) {
     if (str == names[i]) {
@@ -874,9 +874,9 @@ QString
 CQPropertyViewItem::
 userTypeName() const
 {
-  QString typeName = this->typeName();
+  auto typeName = this->typeName();
 
-  QString userTypeName = CQPropertyViewMgrInst->userName(typeName);
+  auto userTypeName = CQPropertyViewMgrInst->userName(typeName);
 
   if (userTypeName != "")
     return userTypeName;

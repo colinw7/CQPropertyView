@@ -87,8 +87,8 @@ createEdit(QWidget *parent)
   auto *item = CQPropertyViewMgrInst->editItem();
 
   if (item) {
-    QVariant vmin = item->minValue();
-    QVariant vmax = item->maxValue();
+    auto vmin = item->minValue();
+    auto vmax = item->maxValue();
 
     if (vmin.isValid()) { bool ok; double r = vmin.toDouble(&ok); if (ok) min_ = r; }
     if (vmax.isValid()) { bool ok; double r = vmax.toDouble(&ok); if (ok) max_ = r; }

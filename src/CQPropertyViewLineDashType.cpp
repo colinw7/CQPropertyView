@@ -33,9 +33,9 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
 
   CLineDash dash = value.value<CLineDash>();
 
-  QIcon icon = CQLineDash::dashIcon(dash);
+  auto icon = CQLineDash::dashIcon(dash);
 
-  QString str = dash.toString().c_str();
+  auto str = QString(dash.toString().c_str());
 
   QFontMetrics fm(option.font);
 
@@ -43,7 +43,7 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
 
   //---
 
-  QRect irect = option.rect;
+  auto irect = option.rect;
 
   irect.setLeft(irect.left() + w + 2*margin());
 
@@ -51,7 +51,7 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
 
   //--
 
-  QStyleOptionViewItem option1 = option;
+  auto option1 = option;
 
   option1.rect.setRight(option1.rect.left() + w + 2*margin());
 
@@ -62,7 +62,7 @@ QString
 CQPropertyViewLineDashType::
 tip(const QVariant &value) const
 {
-  QString str = value.value<CLineDash>().toString().c_str();
+  auto str = QString(value.value<CLineDash>().toString().c_str());
 
   return str;
 }

@@ -66,7 +66,7 @@ setEditorData(QWidget *, const QModelIndex &index) const
   auto *item = view_->getModelItem(index);
   assert(item);
 
-  QVariant var = item->data();
+  auto var = item->data();
 
   if (var.isNull()) {
     //std::cerr << "Failed to get model data" << std::endl;
@@ -87,7 +87,7 @@ setModelData(QWidget *, QAbstractItemModel *model, const QModelIndex &index) con
   auto *item = view_->getModelItem(index);
   assert(item);
 
-  QVariant var = item->getEditorData();
+  auto var = item->getEditorData();
 
   model->setData(index, var);
 }
@@ -118,7 +118,7 @@ paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &
 
   //---
 
-  QStyleOptionViewItem option1 = option;
+  auto option1 = option;
 
   //---
 
@@ -137,7 +137,7 @@ paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &
 
   // property name
   if      (index.column() == 0) {
-    QString label = item->aliasName();
+    auto label = item->aliasName();
 
     drawString(painter, option, label, index, itemState);
 
@@ -162,7 +162,8 @@ QSize
 CQPropertyViewDelegate::
 sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-  QSize size = QItemDelegate::sizeHint(option, index);
+  // TODO: add item->sizeHint() virtual
+  auto size = QItemDelegate::sizeHint(option, index);
 
   size.setHeight(size.height() + 2);
 
@@ -188,8 +189,8 @@ createEdit(QWidget *parent, const QString &text) const
   edit->setReadOnly(true);
 
   // set background of preview text to window background
-  QPalette plt = QApplication::palette();
-  QColor bgColor = plt.color(QPalette::Window);
+  auto plt = QApplication::palette();
+  auto bgColor = plt.color(QPalette::Window);
   QString styleStr;
   styleStr.sprintf("background: #%2x%2x%2x", bgColor.red(), bgColor.green(), bgColor.blue());
   edit->setStyleSheet(styleStr);
@@ -214,7 +215,7 @@ drawCheckInside(QPainter *painter, const QStyleOptionViewItem &option,
 
   Qt::CheckState checkState = (checked ? Qt::Checked : Qt::Unchecked);
 
-  QRect rect = option.rect;
+  auto rect = option.rect;
 
   rect.setWidth(option.rect.height());
 
@@ -242,7 +243,7 @@ drawColor(QPainter *painter, const QStyleOptionViewItem &option,
 {
   drawBackground(painter, option, index, itemState);
 
-  QRect rect = option.rect;
+  auto rect = option.rect;
 
   rect.setWidth(option.rect.height());
 
@@ -276,14 +277,14 @@ drawFont(QPainter *painter, const QStyleOptionViewItem &option,
 
   drawBackground(painter, option, index, itemState);
 
-  QRect rect = option.rect;
+  auto rect = option.rect;
 
   rect.setWidth(option.rect.height());
 
   rect.adjust(0, 1, -3, -2);
 
-  QFont f1 = f;
-  QFont f2 = painter->font();
+  auto f1 = f;
+  auto f2 = painter->font();
 
   QFontMetrics fm1(f1);
   QFontMetrics fm2(f2);
@@ -306,7 +307,7 @@ drawFont(QPainter *painter, const QStyleOptionViewItem &option,
 
   painter->setFont(f1);
 
-  QColor fg = view_->palette().color(QPalette::Text);
+  auto fg = view_->palette().color(QPalette::Text);
 
   painter->setPen(fg);
 
@@ -332,13 +333,13 @@ drawPoint(QPainter *painter, const QStyleOptionViewItem &option,
 {
   drawBackground(painter, option, index, itemState);
 
-  QRect rect = option.rect;
+  auto rect = option.rect;
 
   //rect.setWidth(option.rect.height());
 
   //QFontMetrics fm(painter->font());
 
-  QString str = QString("%1 %2").arg(p.x()).arg(p.y());
+  auto str = QString("%1 %2").arg(p.x()).arg(p.y());
 
   drawDisplay(painter, option, rect, str);
 }
@@ -350,13 +351,13 @@ drawSize(QPainter *painter, const QStyleOptionViewItem &option,
 {
   drawBackground(painter, option, index, itemState);
 
-  QRect rect = option.rect;
+  auto rect = option.rect;
 
   //rect.setWidth(option.rect.height());
 
   //QFontMetrics fm(painter->font());
 
-  QString str = QString("%1 %2").arg(s.width()).arg(s.height());
+  auto str = QString("%1 %2").arg(s.width()).arg(s.height());
 
   drawDisplay(painter, option, rect, str);
 }
@@ -368,14 +369,14 @@ drawRect(QPainter *painter, const QStyleOptionViewItem &option,
 {
   drawBackground(painter, option, index, itemState);
 
-  QRect rect = option.rect;
+  auto rect = option.rect;
 
   //rect.setWidth(option.rect.height());
 
   //QFontMetrics fm(painter->font());
 
-  QString str = QString("{%1 %2} {%3 %4}").arg(r.left ()).arg(r.top   ()).
-                                           arg(r.right()).arg(r.bottom());
+  auto str = QString("{%1 %2} {%3 %4}").arg(r.left ()).arg(r.top   ()).
+                                        arg(r.right()).arg(r.bottom());
 
   drawDisplay(painter, option, rect, str);
 }
@@ -388,13 +389,13 @@ drawAngle(QPainter *painter, const QStyleOptionViewItem &option,
 {
   drawBackground(painter, option, index, itemState);
 
-  QRect rect = option.rect;
+  auto rect = option.rect;
 
   //rect.setWidth(option.rect.height());
 
   //QFontMetrics fm(painter->font());
 
-  QString str = QString("%1").arg(a.degrees());
+  auto str = QString("%1").arg(a.degrees());
 
   drawDisplay(painter, option, rect, str);
 }
@@ -407,12 +408,12 @@ drawString(QPainter *painter, const QStyleOptionViewItem &option, const QString 
 {
   drawBackground(painter, option, index, itemState);
 
-  QRect rect = option.rect;
+  auto rect = option.rect;
 
   if (itemState.inside) {
-    QStyleOptionViewItem option1 = option;
+    auto option1 = option;
 
-    QColor c = QColor(100, 100, 200);
+    auto c = QColor(100, 100, 200);
 
     option1.palette.setColor(QPalette::WindowText, c);
     option1.palette.setColor(QPalette::Text      , c);

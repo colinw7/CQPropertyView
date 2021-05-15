@@ -21,7 +21,7 @@ filterAcceptsRow(int row, const QModelIndex &parent) const
 
   auto *model = view_->propertyModel();
 
-  QModelIndex child = model->index(row, 0, parent);
+  auto child = model->index(row, 0, parent);
 
   auto *item = view_->getModelItem(child, /*map*/false);
   if (! item) return false;
@@ -85,7 +85,7 @@ anyChildMatch(const QModelIndex &parent) const
   auto *model = view_->propertyModel();
 
   for (int i = 0; i < model->rowCount(parent); ++i) {
-    QModelIndex child = model->index(i, 0, parent);
+    auto child = model->index(i, 0, parent);
 
     auto *item = view_->getModelItem(child, /*map*/false);
     assert(item);
@@ -113,7 +113,7 @@ expandMatches()
   std::vector<QModelIndex> inds;
 
   for (const auto &ind : expand_) {
-    QModelIndex ind1 = filterModel->mapFromSource(ind);
+    auto ind1 = filterModel->mapFromSource(ind);
 
     inds.push_back(ind1);
   }

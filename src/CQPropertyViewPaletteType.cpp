@@ -28,7 +28,7 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
      const QStyleOptionViewItem &option, const QModelIndex &index,
      const QVariant &value, const ItemState &itemState)
 {
-  QString str = CQUtil::paletteToString(value.value<QPalette>());
+  auto str = CQUtil::paletteToString(value.value<QPalette>());
 
   delegate->drawString(painter, option, str, index, itemState);
 }
@@ -83,7 +83,7 @@ setValue(QWidget *w, const QVariant &var)
   auto *chooser = qobject_cast<CQPaletteChooser *>(w);
   assert(chooser);
 
-  QString str = var.toString();
+  auto str = var.toString();
 
   chooser->setPaletteDef(str);
 }

@@ -35,7 +35,7 @@ QString
 CQPropertyViewSizeFType::
 tip(const QVariant &value) const
 {
-  QSizeF s = value.value<QSizeF>();
+  auto s = value.value<QSizeF>();
 
   return QString("%1 %2").arg(s.width()).arg(s.height());
 }
@@ -79,7 +79,7 @@ getValue(QWidget *w)
   auto *edit = qobject_cast<CQPoint2DEdit *>(w);
   assert(edit);
 
-  QPointF p = edit->getQValue();
+  auto p = edit->getQValue();
 
   return QSizeF(p.x(), p.y());
 }
@@ -91,7 +91,7 @@ setValue(QWidget *w, const QVariant &var)
   auto *edit = qobject_cast<CQPoint2DEdit *>(w);
   assert(edit);
 
-  QSizeF s = var.toSizeF();
+  auto s = var.toSizeF();
 
   edit->setValue(QPointF(s.width(), s.height()));
 }

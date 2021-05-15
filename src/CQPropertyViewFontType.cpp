@@ -83,7 +83,7 @@ setValue(QWidget *w, const QVariant &var)
   auto *edit = qobject_cast<CQFontEdit *>(w);
   assert(edit);
 
-  QString str = var.toString();
+  auto str = var.toString();
 
   edit->setFontName(str);
 }

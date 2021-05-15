@@ -35,7 +35,7 @@ QString
 CQPropertyViewRectFType::
 tip(const QVariant &value) const
 {
-  QRectF r = value.value<QRectF>();
+  auto r = value.value<QRectF>();
 
   return QString("{%1 %2} {%3 %4}").arg(r.left()).arg(r.top()).arg(r.right()).arg(r.bottom());
 }
@@ -73,7 +73,7 @@ getValue(QWidget *w)
   auto *edit = qobject_cast<CQBBox2DEdit *>(w);
   assert(edit);
 
-  QRectF rect = edit->getQValue();
+  auto rect = edit->getQValue();
 
   return rect;
 }
@@ -85,7 +85,7 @@ setValue(QWidget *w, const QVariant &var)
   auto *edit = qobject_cast<CQBBox2DEdit *>(w);
   assert(edit);
 
-  QRectF rect = var.toRectF();
+  auto rect = var.toRectF();
 
   edit->setValue(rect);
 }

@@ -127,7 +127,7 @@ index(int row, int column, const QModelIndex &parent) const
 
   auto *childItem = itemChild(parentItem, row);
 
-  QModelIndex ind = createIndex(row, column, childItem);
+  auto ind = createIndex(row, column, childItem);
 
   assert(this->item(ind) == childItem);
 
@@ -159,7 +159,7 @@ parent(const QModelIndex &index) const
 
   for (const auto &child : itemChildren(parentParent)) {
     if (child == parent) {
-      QModelIndex ind = createIndex(i, 0, parent);
+      auto ind = createIndex(i, 0, parent);
 
       assert(this->item(ind) == parent);
 
@@ -201,10 +201,9 @@ addProperty(const QString &path, QObject *object, const QString &name, const QSt
 {
   beginResetModel();
 
-  QStringList pathParts = path.split('/', QString::SkipEmptyParts);
+  auto pathParts = path.split('/', QString::SkipEmptyParts);
 
-  CQPropertyViewItem *parentItem =
-    hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/true);
+  auto *parentItem = hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/true);
 
   auto *item = new CQPropertyViewItem(this, parentItem, object, name);
 
@@ -225,8 +224,7 @@ bool
 CQPropertyViewModel::
 setProperty(QObject *object, const QString &path, const QVariant &value)
 {
-  CQPropertyViewItem *item =
-    propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/true);
+  auto *item = propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/true);
 
   if (! item)
     return false;
@@ -234,8 +232,8 @@ setProperty(QObject *object, const QString &path, const QVariant &value)
   if (! item->setData(value))
     return false;
 
-  QModelIndex ind1 = indexFromItem(item, 0);
-  QModelIndex ind2 = indexFromItem(item, 1);
+  auto ind1 = indexFromItem(item, 0);
+  auto ind2 = indexFromItem(item, 1);
 
   emit dataChanged(ind1, ind2);
 
@@ -246,7 +244,7 @@ bool
 CQPropertyViewModel::
 getProperty(const QObject *object, const QString &path, QVariant &value) const
 {
-  const CQPropertyViewItem *item =
+  const auto *item =
     propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/true);
 
   if (! item)
@@ -261,7 +259,7 @@ bool
 CQPropertyViewModel::
 getTclProperty(const QObject *object, const QString &path, QVariant &value) const
 {
-  const CQPropertyViewItem *item =
+  const auto *item =
     propertyItem(object, path, '.', /*create*/false, /*alias*/true, /*hidden*/true);
 
   if (! item)
@@ -278,10 +276,9 @@ removeProperties(const QString &path, QObject *)
 {
   beginResetModel();
 
-  QStringList pathParts = path.split('/', QString::SkipEmptyParts);
+  auto pathParts = path.split('/', QString::SkipEmptyParts);
 
-  CQPropertyViewItem *item =
-    hierItem(pathParts, /*create*/false, /*alias*/false, /*hidden*/true);
+  auto *item = hierItem(pathParts, /*create*/false, /*alias*/false, /*hidden*/true);
 
   if (item && item->parent())
     item->parent()->removeChild(item);
@@ -293,9 +290,8 @@ void
 CQPropertyViewModel::
 hideProperty(const QString &path, const QObject *object)
 {
-  CQPropertyViewItem *item =
-    propertyItem(const_cast<QObject *>(object), path, '/',
-                 /*create*/false, /*alias*/false, /*hidden*/true);
+  auto *item = propertyItem(const_cast<QObject *>(object), path, '/',
+                            /*create*/false, /*alias*/false, /*hidden*/true);
   if (! item) return;
 
   item->setHidden(true);
@@ -339,10 +335,9 @@ void
 CQPropertyViewModel::
 setObjectRoot(const QString &path, QObject *obj)
 {
-  QStringList pathParts = path.split('/', QString::SkipEmptyParts);
+  auto pathParts = path.split('/', QString::SkipEmptyParts);
 
-  CQPropertyViewItem *item =
-    hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/true);
+  auto *item = hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/true);
 
   assert(item->root() == nullptr || item->root() == obj);
 
@@ -382,7 +377,7 @@ itemNames(CQPropertyViewItem *rootItem, const QObject *object,
     if (! hidden && item->isHidden())
       return;
 
-    QString name = item->path(".", /*alias*/true, rootItem);
+    auto name = item->path(".", /*alias*/true, rootItem);
 
     names.push_back(name);
   }
@@ -442,7 +437,7 @@ propertyItem(const QObject *object, const QString &path, QChar splitChar,
   if (! item)
     return nullptr;
 
-  QStringList strs = path.split(splitChar);
+  auto strs = path.split(splitChar);
 
   return const_cast<CQPropertyViewModel *>(this)->
            hierItem(const_cast<CQPropertyViewItem *>(item), strs, create, alias, hidden);
@@ -458,7 +453,7 @@ propertyItem(QObject *object, const QString &path, QChar splitChar,
   if (! item)
     return nullptr;
 
-  QStringList strs = path.split(splitChar);
+  auto strs = path.split(splitChar);
 
   return hierItem(item, strs, create, alias, hidden);
 }
@@ -486,7 +481,7 @@ hierItem(CQPropertyViewItem *parentItem, const QStringList &pathParts,
   if (pathParts.empty())
     return parentItem;
 
-  const QString &path = pathParts[0];
+  const auto &path = pathParts[0];
 
   if (path.length() == 0)
     return nullptr;
@@ -598,9 +593,9 @@ indexFromItem(CQPropertyViewItem *item, int column) const
 
   for (int i = 0; num; ++i) {
     if (itemChild(parentItem, i) == item) {
-      QModelIndex parentInd = indexFromItem(parentItem, 0);
+      auto parentInd = indexFromItem(parentItem, 0);
 
-      QModelIndex ind = index(i, column, parentInd);
+      auto ind = index(i, column, parentInd);
 
       return ind;
     }
@@ -682,8 +677,8 @@ getChangedItemNameValues(CQPropertyViewItem *rootItem, const QObject *obj,
       if (obj && item->object() != obj)
         continue;
 
-      QString initStr = item->initStr();
-      QString dataStr = item->dataStr();
+      auto initStr = item->initStr();
+      auto dataStr = item->dataStr();
 
       if (initStr != dataStr)
         addNameValue(rootItem, item, nameValues, tcl);
@@ -696,7 +691,7 @@ CQPropertyViewModel::
 addNameValue(CQPropertyViewItem *rootItem, CQPropertyViewItem *item,
              NameValues &nameValues, bool tcl) const
 {
-  QString path = item->path(".", /*alias*/true, rootItem);
+  auto path = item->path(".", /*alias*/true, rootItem);
 
   if (tcl)
     nameValues[path] = item->tclData();

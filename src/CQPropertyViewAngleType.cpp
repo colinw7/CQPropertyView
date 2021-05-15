@@ -28,7 +28,7 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
      const QStyleOptionViewItem &option, const QModelIndex &index,
      const QVariant &value, const ItemState &itemState)
 {
-  QString str = value.value<CAngle>().toString().c_str();
+  auto str = QString(value.value<CAngle>().toString().c_str());
 
   str += "\u00b0";
 
@@ -39,7 +39,7 @@ QString
 CQPropertyViewAngleType::
 tip(const QVariant &value) const
 {
-  QString str = value.value<CAngle>().toString().c_str();
+  auto str = QString(value.value<CAngle>().toString().c_str());
 
   str += "\u00b0";
 

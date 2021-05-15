@@ -35,7 +35,7 @@ QString
 CQPropertyViewPointFType::
 tip(const QVariant &value) const
 {
-  QPointF p = value.value<QPointF>();
+  auto p = value.value<QPointF>();
 
   return QString("%1 %2").arg(p.x()).arg(p.y());
 }
@@ -89,7 +89,7 @@ setValue(QWidget *w, const QVariant &var)
   auto *edit = qobject_cast<CQPoint2DEdit *>(w);
   assert(edit);
 
-  QPointF p = var.toPointF();
+  auto p = var.toPointF();
 
   edit->setValue(p);
 }

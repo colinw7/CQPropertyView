@@ -259,7 +259,7 @@ setCurrentProperty(QObject *object, const QString &path)
   if (! item)
     return false;
 
-  QModelIndex ind = indexFromItem(item, 0, /*map*/true);
+  auto ind = indexFromItem(item, 0, /*map*/true);
 
   if (! ind.isValid())
     return false;
@@ -328,7 +328,7 @@ void
 CQPropertyViewTree::
 expandSelected()
 {
-  QModelIndexList indices = this->selectedIndexes();
+  auto indices = this->selectedIndexes();
 
   for (int i = 0; i < indices.length(); ++i) {
     auto *item = getModelItem(indices[i]);
@@ -349,7 +349,7 @@ void
 CQPropertyViewTree::
 getSelectedObjects(Objs &objs)
 {
-  QModelIndexList indices = this->selectedIndexes();
+  auto indices = this->selectedIndexes();
 
   for (int i = 0; i < indices.length(); ++i) {
     auto *item = getModelItem(indices[i]);
@@ -561,7 +561,7 @@ itemPath(const QModelIndex &ind, ItemPath &path) const
   if (ind.parent().isValid())
     itemPath(ind.parent(), path);
 
-  QString str = filterModel->data(ind, Qt::DisplayRole).toString();
+  auto str = filterModel->data(ind, Qt::DisplayRole).toString();
 
   path.push_back(str);
 }
@@ -610,7 +610,7 @@ void
 CQPropertyViewTree::
 search(const QString &text)
 {
-  QString searchStr = text;
+  auto searchStr = text;
 
   if (searchStr.length() && searchStr[searchStr.length() - 1] != '*')
     searchStr += "*";
@@ -667,7 +667,7 @@ void
 CQPropertyViewTree::
 searchItemTree(CQPropertyViewItem *item, const QRegExp &regexp, Items &items)
 {
-  QString itemText = item->aliasName();
+  auto itemText = item->aliasName();
 
   if (regexp.exactMatch(itemText))
     items.push_back(item);
@@ -730,10 +730,10 @@ CQPropertyViewTree::
 itemSelectionSlot()
 {
   // filter model indices
-  QModelIndexList indices = this->selectedIndexes();
+  auto indices = this->selectedIndexes();
   if (indices.empty()) return;
 
-  QModelIndex ind = indices[0];
+  auto ind = indices[0];
 
   assert(ind.model() == filter_);
 
@@ -761,7 +761,7 @@ getModelItem(const QModelIndex &ind, bool map) const
 
     assert(! ok);
 
-    QModelIndex ind1 = filter_->mapToSource(ind);
+    auto ind1 = filter_->mapToSource(ind);
 
     auto *item1 = model_->item(ind1);
 
@@ -919,7 +919,7 @@ mouseMoveEvent(QMouseEvent *me)
   if (! isMouseHighlight())
     return;
 
-  QModelIndex ind = indexAt(me->pos());
+  auto ind = indexAt(me->pos());
 
   if (ind.isValid()) {
     auto *item = getModelItem(ind);
@@ -958,7 +958,7 @@ CQPropertyViewTree::
 keyPressEvent(QKeyEvent *ke)
 {
   if (ke->matches(QKeySequence::Copy)) {
-    QPoint p = QCursor::pos();
+    auto p = QCursor::pos();
 
     copyAt(p, /*html*/false);
   }
@@ -992,7 +992,7 @@ void
 CQPropertyViewTree::
 scrollToItem(CQPropertyViewItem *item)
 {
-  QModelIndex ind = indexFromItem(item, 0, /*map*/true);
+  auto ind = indexFromItem(item, 0, /*map*/true);
 
   if (ind.isValid())
     scrollTo(ind);
@@ -1004,7 +1004,7 @@ selectItem(CQPropertyViewItem *item, bool selected)
 {
   auto *sm = this->selectionModel();
 
-  QModelIndex ind = indexFromItem(item, 0, /*map*/true);
+  auto ind = indexFromItem(item, 0, /*map*/true);
 
   if (ind.isValid()) {
     if (selected) {
@@ -1020,7 +1020,7 @@ void
 CQPropertyViewTree::
 expandItem(CQPropertyViewItem *item)
 {
-  QModelIndex ind = indexFromItem(item, 0, /*map*/true);
+  auto ind = indexFromItem(item, 0, /*map*/true);
 
   if (ind.isValid())
     setExpanded(ind, true);
@@ -1030,7 +1030,7 @@ void
 CQPropertyViewTree::
 collapseItem(CQPropertyViewItem *item)
 {
-  QModelIndex ind = indexFromItem(item, 0, /*map*/true);
+  auto ind = indexFromItem(item, 0, /*map*/true);
 
   if (ind.isValid())
     setExpanded(ind, false);
@@ -1040,7 +1040,7 @@ void
 CQPropertyViewTree::
 editItem(CQPropertyViewItem *item)
 {
-  QModelIndex ind = indexFromItem(item, 1, /*map*/true);
+  auto ind = indexFromItem(item, 1, /*map*/true);
 
   if (ind.isValid())
     edit(ind);
@@ -1057,7 +1057,7 @@ void
 CQPropertyViewTree::
 copyAt(const QPoint &p, bool html) const
 {
-  QModelIndex ind = indexAt(viewport()->mapFromGlobal(p));
+  auto ind = indexAt(viewport()->mapFromGlobal(p));
 
   if (ind.isValid()) {
     auto *item = getModelItem(ind);
@@ -1083,12 +1083,12 @@ void
 CQPropertyViewTree::
 printSlot() const
 {
-  QModelIndexList indices = this->selectionModel()->selectedRows();
+  auto indices = this->selectionModel()->selectedRows();
 
   for (int i = 0; i < indices.length(); ++i) {
     auto *item = getModelItem(indices[i]);
 
-    QString path = item->path(".", /*alias*/true);
+    auto path = item->path(".", /*alias*/true);
 
     std::cerr << path.toStdString() << "=" << item->dataStr().toStdString() << "\n";
   }
@@ -1126,7 +1126,7 @@ closeCurrentEditor()
   delegate_->setModelData(editor, model(), delegate_->getEditorIndex());
 
   // turn off edit triggers so we don't start a new editor
-  QAbstractItemView::EditTriggers triggers = editTriggers();
+  auto triggers = editTriggers();
 
   setEditTriggers(QAbstractItemView::NoEditTriggers);
 
@@ -1152,7 +1152,7 @@ QModelIndex
 CQPropertyViewTree::
 indexFromItem(CQPropertyViewItem *item, int column, bool map) const
 {
-  QModelIndex ind = model_->indexFromItem(item, column);
+  auto ind = model_->indexFromItem(item, column);
 
   if (! ind.isValid())
     return QModelIndex();

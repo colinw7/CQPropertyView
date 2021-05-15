@@ -18,7 +18,7 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
      const QStyleOptionViewItem &option, const QModelIndex &index,
      const QVariant &value, const ItemState &itemState)
 {
-  QString str = CQPropertyViewUtil::variantToString(value);
+  auto str = CQPropertyViewUtil::variantToString(value);
 
   delegate->drawString(painter, option, str, index, itemState);
 }
