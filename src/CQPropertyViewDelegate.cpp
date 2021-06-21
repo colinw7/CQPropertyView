@@ -249,13 +249,11 @@ drawColor(QPainter *painter, const QStyleOptionViewItem &option,
 
   rect.adjust(0, 1, -3, -2);
 
-  painter->fillRect(rect, QBrush(c));
+  painter->setBrush(QBrush(c));
+  painter->setPen(QColor(Qt::black)); // TODO: contrast border
 
-  painter->setPen(QColor(0,0,0)); // TODO: contrast border
-
+//painter->fillRect(rect, QBrush(c));
   painter->drawRect(rect);
-
-//QFontMetrics fm(painter->font());
 
   int x = rect.right() + 2;
 //int y = rect.top() + fm.ascent();
@@ -264,7 +262,6 @@ drawColor(QPainter *painter, const QStyleOptionViewItem &option,
 
   rect1.setCoords(x, option.rect.top(), option.rect.right(), option.rect.bottom());
 
-//painter->drawText(x, y, c.name());
   drawDisplay(painter, option, rect1, c.name());
 }
 
