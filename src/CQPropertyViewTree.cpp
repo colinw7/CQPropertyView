@@ -81,6 +81,7 @@ init()
 
   //--
 
+  // Set Item Delegate
   delegate_ = new CQPropertyViewDelegate(this);
 
   setItemDelegate(delegate_);
@@ -90,9 +91,13 @@ init()
 
   //--
 
+  // handle click (for bool check box)
   connect(this, SIGNAL(clicked(const QModelIndex &)),
           this, SLOT(itemClickedSlot(const QModelIndex &)));
 
+  //---
+
+  // handle selection
   auto *sm = this->selectionModel();
 
   if (sm)
@@ -101,6 +106,7 @@ init()
 
   //---
 
+  // add menu
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),

@@ -223,16 +223,12 @@ drawCheckInside(QPainter *painter, const QStyleOptionViewItem &option,
 
   QItemDelegate::drawCheck(painter, option, rect, checkState);
 
-  QFontMetrics fm(painter->font());
-
   int x = rect.right() + 4;
-//int y = rect.top() + fm.ascent();
 
   QRect rect1;
 
   rect1.setCoords(x, option.rect.top(), option.rect.right(), option.rect.bottom());
 
-  //painter->drawText(x, y, (checked ? "true" : "false"));
   drawDisplay(painter, option, rect1, checked ? "true" : "false");
 }
 
@@ -256,7 +252,6 @@ drawColor(QPainter *painter, const QStyleOptionViewItem &option,
   painter->drawRect(rect);
 
   int x = rect.right() + 2;
-//int y = rect.top() + fm.ascent();
 
   QRect rect1;
 
@@ -284,7 +279,7 @@ drawFont(QPainter *painter, const QStyleOptionViewItem &option,
   auto f2 = painter->font();
 
   QFontMetrics fm1(f1);
-  QFontMetrics fm2(f2);
+//QFontMetrics fm2(f2);
 
   int fw = fm1.width(previewStr);
   int fh = fm1.height();
