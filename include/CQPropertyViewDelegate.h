@@ -70,7 +70,7 @@ class CQPropertyViewDelegate : public QItemDelegate {
 
   void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect,
                    const QString &str) const override;
-;
+
   //---
 
   // get/set is editing
