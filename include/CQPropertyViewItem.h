@@ -2,11 +2,14 @@
 #define CQPropertyViewItem_H
 
 #include <CQUtil.h>
+#include <CSafeIndex.h>
+
 #include <QObject>
 #include <QPointer>
 #include <QStyleOptionViewItem>
 #include <QString>
 #include <QVariant>
+
 #include <vector>
 #include <cassert>
 
@@ -31,7 +34,7 @@ class CQPropertyViewItem : public QObject {
   Q_PROPERTY(bool    dirty    READ isDirty    WRITE setDirty   )
 
  public:
-  typedef std::vector<CQPropertyViewItem *> Children;
+  using Children = std::vector<CQPropertyViewItem *>;
 
  public:
   CQPropertyViewItem(CQPropertyViewModel *model, CQPropertyViewItem *parent,
@@ -60,17 +63,13 @@ class CQPropertyViewItem : public QObject {
   //---
 
   // get number of children
-  int numChildren() const { return children_.size(); }
+  int numChildren() const { return int(children_.size()); }
 
   //! get children
   const Children &children() const { return children_; }
 
   // get child
-  CQPropertyViewItem *child(int i) const {
-    assert(i >= 0 && i < numChildren());
-
-    return children()[i];
-  }
+  CQPropertyViewItem *child(int i) const { return CUtil::safeIndex(children_, i); }
 
   //---
 
@@ -83,17 +82,13 @@ class CQPropertyViewItem : public QObject {
   //---
 
   //! get number of visible children
-  int numVisibleChildren() const { return visibleChildren().size(); }
+  int numVisibleChildren() const { return int(visibleChildren().size()); }
 
   //! get visible children
   const Children &visibleChildren() const;
 
   //! get visible child
-  CQPropertyViewItem *visibleChild(int i) const {
-   assert(i >= 0 && i < numVisibleChildren());
-
-    return visibleChildren()[i];
-  }
+  CQPropertyViewItem *visibleChild(int i) const { return CUtil::safeIndex(visibleChildren(), i); }
 
   //! invalidate cached visible children
   void invalidateVisible();
