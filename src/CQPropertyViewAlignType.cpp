@@ -28,7 +28,7 @@ draw(CQPropertyViewItem *, const CQPropertyViewDelegate *delegate, QPainter *pai
      const QStyleOptionViewItem &option, const QModelIndex &index,
      const QVariant &value, const ItemState &itemState)
 {
-  auto str = CQAlignEdit::toString((Qt::Alignment) value.toInt());
+  auto str = CQAlignEdit::toString(static_cast<Qt::Alignment>(value.toInt()));
 
   delegate->drawString(painter, option, str, index, itemState);
 }
@@ -37,7 +37,7 @@ QString
 CQPropertyViewAlignType::
 tip(const QVariant &value) const
 {
-  return CQAlignEdit::toString((Qt::Alignment) value.toInt());
+  return CQAlignEdit::toString(static_cast<Qt::Alignment>(value.toInt()));
 }
 
 //------
@@ -85,5 +85,5 @@ setValue(QWidget *w, const QVariant &var)
 
   int i = var.toInt();
 
-  edit->setAlign((Qt::Alignment) i);
+  edit->setAlign(static_cast<Qt::Alignment>(i));
 }

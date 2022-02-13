@@ -17,7 +17,7 @@ class CQPropertyViewModel : public QAbstractItemModel {
   Q_PROPERTY(bool autoUpdate READ isAutoUpdate WRITE setAutoUpdate)
 
  public:
-  using NameValues = std::map<QString,QVariant>;
+  using NameValues = std::map<QString, QVariant>;
   using Items      = std::vector<CQPropertyViewItem *>;
 
  public:

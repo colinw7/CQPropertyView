@@ -508,6 +508,7 @@ compiler_moc_header_clean:
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewItem.h -o .moc/moc_CQPropertyViewItem.cpp
@@ -586,6 +587,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../include/CQPropertyView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewDelegate.o CQPropertyViewDelegate.cpp
 
@@ -622,7 +624,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
-		../../CQUtil/include/CQUtilMeta.h
+		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewFilter.o CQPropertyViewFilter.cpp
 
 ../obj/CQPropertyViewItem.o: CQPropertyViewItem.cpp ../include/CQPropertyViewItem.h \
@@ -653,6 +656,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../include/CQPropertyViewModel.h \
 		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
@@ -689,7 +693,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CSize2D.h \
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
-		../../CQUtil/include/CQUtilMeta.h
+		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewModel.o CQPropertyViewModel.cpp
 
 ../obj/CQPropertyViewTree.o: CQPropertyViewTree.cpp ../include/CQPropertyViewTree.h \
@@ -724,6 +729,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../../CQUtil/include/CQHeaderView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewTree.o CQPropertyViewTree.cpp
 
@@ -759,6 +765,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../../CQUtil/include/CQAlignEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewAlignType.o CQPropertyViewAlignType.cpp
 
@@ -794,6 +801,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../include/CQPropertyViewTree.h \
 		../../CQUtil/include/CQColorEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewColorType.o CQPropertyViewColorType.cpp
@@ -830,6 +838,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../include/CQPropertyViewTree.h \
 		../../CQUtil/include/CQFontEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewFontType.o CQPropertyViewFontType.cpp
@@ -866,6 +875,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../include/CQPropertyView.h \
 		../../CQUtil/include/CQIntegerSpin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewIntegerType.o CQPropertyViewIntegerType.cpp
@@ -902,6 +912,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../../CQUtil/include/CQPoint2DEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewPointFType.o CQPropertyViewPointFType.cpp
 
@@ -937,6 +948,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../include/CQPropertyView.h \
 		../../CQUtil/include/CQSlider.h \
 		../../CQUtil/include/CQComboSlider.h \
@@ -975,6 +987,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../../CQUtil/include/CQBBox2DEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewRectFType.o CQPropertyViewRectFType.cpp
 
@@ -1010,6 +1023,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../../CQUtil/include/CQPoint2DEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewSizeFType.o CQPropertyViewSizeFType.cpp
 
@@ -1043,6 +1057,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
 		../include/CQPropertyViewUtil.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewType.o CQPropertyViewType.cpp
 

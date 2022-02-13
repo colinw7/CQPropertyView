@@ -693,10 +693,14 @@ addNameValue(CQPropertyViewItem *rootItem, CQPropertyViewItem *item,
 {
   auto path = item->path(".", /*alias*/true, rootItem);
 
+  QVariant var;
+
   if (tcl)
-    nameValues[path] = item->tclData();
+    var = item->tclData();
   else
-    nameValues[path] = item->dataStr();
+    var = item->dataStr();
+
+  nameValues[path] = var;
 }
 
 //-----

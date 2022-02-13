@@ -45,8 +45,8 @@ class CQPropertyViewMgr {
   CQPropertyViewMgr();
 
  private:
-  using Types       = std::map<QString,CQPropertyViewType *>;
-  using UserNameMap = std::map<QString,QString>;
+  using Types       = std::map<QString, CQPropertyViewType *>;
+  using UserNameMap = std::map<QString, QString>;
 
   Types                       types_;
   UserNameMap                 userNameMap_;
