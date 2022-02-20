@@ -548,7 +548,7 @@ objectItem(CQPropertyViewItem *parent, const QObject *obj) const
     auto *item = itemChild(parent, i);
 
     // explicit root for object
-    if      (item->root() == obj)
+    if (item->root() == obj)
       return item;
 
     // matching item's root is highest null object parent
