@@ -61,10 +61,14 @@ INCLUDEPATH += \
 . \
 ../include \
 ../../CQUtil/include \
-../../CMath/include \
-../../CImageLib/include \
+../../CConfig/include \
 ../../CFont/include \
+../../CImageLib/include \
+../../CMath/include \
 ../../CFile/include \
+../../CFileUtil/include \
 ../../CStrUtil/include \
+../../CRegExp/include \
+../../CGlob/include \
 ../../CUtil/include \
 ../../COS/include \
