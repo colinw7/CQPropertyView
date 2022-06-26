@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -fPIC -Wall -W -D_REENTRANT $(DEFINES)
 CXXFLAGS      = -pipe -std=c++14 -O2 -fPIC -std=gnu++11 -Wall -W -D_REENTRANT $(DEFINES)
-INCPATH       = -I. -I. -I../include -I../../CQUtil/include -I../../CMath/include -I../../CImageLib/include -I../../CFont/include -I../../CFile/include -I../../CStrUtil/include -I../../CUtil/include -I../../COS/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtSvg -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I.moc -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -I. -I. -I../include -I../../CQUtil/include -I../../CConfig/include -I../../CFont/include -I../../CImageLib/include -I../../CMath/include -I../../CFile/include -I../../CFileUtil/include -I../../CStrUtil/include -I../../CRegExp/include -I../../CGlob/include -I../../CUtil/include -I../../COS/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtSvg -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I.moc -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -473,12 +473,12 @@ compiler_moc_header_clean:
 .moc/moc_CQPropertyViewDelegate.cpp: ../include/CQPropertyViewDelegate.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewDelegate.h -o .moc/moc_CQPropertyViewDelegate.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CConfig/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CFileUtil/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CRegExp/include -I/home/colinw/git/CGlob/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewDelegate.h -o .moc/moc_CQPropertyViewDelegate.cpp
 
 .moc/moc_CQPropertyViewFilter.cpp: ../include/CQPropertyViewFilter.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewFilter.h -o .moc/moc_CQPropertyViewFilter.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CConfig/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CFileUtil/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CRegExp/include -I/home/colinw/git/CGlob/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewFilter.h -o .moc/moc_CQPropertyViewFilter.cpp
 
 .moc/moc_CQPropertyViewItem.cpp: ../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
@@ -509,19 +509,20 @@ compiler_moc_header_clean:
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewItem.h -o .moc/moc_CQPropertyViewItem.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CConfig/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CFileUtil/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CRegExp/include -I/home/colinw/git/CGlob/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewItem.h -o .moc/moc_CQPropertyViewItem.cpp
 
 .moc/moc_CQPropertyViewModel.cpp: ../include/CQPropertyViewModel.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewModel.h -o .moc/moc_CQPropertyViewModel.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CConfig/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CFileUtil/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CRegExp/include -I/home/colinw/git/CGlob/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewModel.h -o .moc/moc_CQPropertyViewModel.cpp
 
 .moc/moc_CQPropertyViewTree.cpp: ../include/CQPropertyViewTree.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewTree.h -o .moc/moc_CQPropertyViewTree.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/colinw/git/CQPropertyView/src/.moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/src -I/home/colinw/git/CQPropertyView/include -I/home/colinw/git/CQUtil/include -I/home/colinw/git/CConfig/include -I/home/colinw/git/CFont/include -I/home/colinw/git/CImageLib/include -I/home/colinw/git/CMath/include -I/home/colinw/git/CFile/include -I/home/colinw/git/CFileUtil/include -I/home/colinw/git/CStrUtil/include -I/home/colinw/git/CRegExp/include -I/home/colinw/git/CGlob/include -I/home/colinw/git/CUtil/include -I/home/colinw/git/COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../include/CQPropertyViewTree.h -o .moc/moc_CQPropertyViewTree.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -588,6 +589,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../include/CQPropertyView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewDelegate.o CQPropertyViewDelegate.cpp
 
@@ -625,7 +627,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../../CUtil/include/CSafeIndex.h
+		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewFilter.o CQPropertyViewFilter.cpp
 
 ../obj/CQPropertyViewItem.o: CQPropertyViewItem.cpp ../include/CQPropertyViewItem.h \
@@ -657,6 +660,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../include/CQPropertyViewModel.h \
 		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
@@ -694,7 +698,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CMath/include/CMatrix2D.h \
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
-		../../CUtil/include/CSafeIndex.h
+		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewModel.o CQPropertyViewModel.cpp
 
 ../obj/CQPropertyViewTree.o: CQPropertyViewTree.cpp ../include/CQPropertyViewTree.h \
@@ -730,6 +735,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../../CQUtil/include/CQHeaderView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewTree.o CQPropertyViewTree.cpp
 
@@ -766,6 +772,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../../CQUtil/include/CQAlignEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewAlignType.o CQPropertyViewAlignType.cpp
 
@@ -802,6 +809,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../include/CQPropertyViewTree.h \
 		../../CQUtil/include/CQColorEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewColorType.o CQPropertyViewColorType.cpp
@@ -839,6 +847,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../include/CQPropertyViewTree.h \
 		../../CQUtil/include/CQFontEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewFontType.o CQPropertyViewFontType.cpp
@@ -876,6 +885,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../include/CQPropertyView.h \
 		../../CQUtil/include/CQIntegerSpin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewIntegerType.o CQPropertyViewIntegerType.cpp
@@ -913,6 +923,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../../CQUtil/include/CQPoint2DEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewPointFType.o CQPropertyViewPointFType.cpp
 
@@ -949,6 +960,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../include/CQPropertyView.h \
 		../../CQUtil/include/CQSlider.h \
 		../../CQUtil/include/CQComboSlider.h \
@@ -988,6 +1000,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../../CQUtil/include/CQBBox2DEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewRectFType.o CQPropertyViewRectFType.cpp
 
@@ -1024,6 +1037,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../../CQUtil/include/CQPoint2DEdit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewSizeFType.o CQPropertyViewSizeFType.cpp
 
@@ -1058,6 +1072,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
 		../include/CQPropertyViewUtil.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewType.o CQPropertyViewType.cpp
 
