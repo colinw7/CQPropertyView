@@ -1,18 +1,19 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CQPropertyViewModel.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.8)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../../include/CQPropertyViewModel.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'CQPropertyViewModel.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.8. It"
+#error "This file was generated using the moc from 5.15.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -73,7 +74,7 @@ void CQPropertyViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         auto *_t = static_cast<CQPropertyViewModel *>(_o);
-        Q_UNUSED(_t)
+        (void)_t;
         switch (_id) {
         case 0: _t->valueChanged((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         default: ;
@@ -91,7 +92,7 @@ void CQPropertyViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty) {
         auto *_t = static_cast<CQPropertyViewModel *>(_o);
-        Q_UNUSED(_t)
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
         case 0: *reinterpret_cast< bool*>(_v) = _t->isShowHidden(); break;
@@ -100,7 +101,7 @@ void CQPropertyViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         }
     } else if (_c == QMetaObject::WriteProperty) {
         auto *_t = static_cast<CQPropertyViewModel *>(_o);
-        Q_UNUSED(_t)
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
         case 0: _t->setShowHidden(*reinterpret_cast< bool*>(_v)); break;
@@ -113,7 +114,7 @@ void CQPropertyViewModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
 }
 
 QT_INIT_METAOBJECT const QMetaObject CQPropertyViewModel::staticMetaObject = { {
-    &QAbstractItemModel::staticMetaObject,
+    QMetaObject::SuperData::link<QAbstractItemModel::staticMetaObject>(),
     qt_meta_stringdata_CQPropertyViewModel.data,
     qt_meta_data_CQPropertyViewModel,
     qt_static_metacall,
@@ -172,7 +173,7 @@ int CQPropertyViewModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void CQPropertyViewModel::valueChanged(QObject * _t1, const QString & _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

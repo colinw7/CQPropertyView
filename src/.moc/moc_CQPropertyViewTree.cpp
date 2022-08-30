@@ -1,18 +1,19 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CQPropertyViewTree.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.8)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../../include/CQPropertyViewTree.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'CQPropertyViewTree.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.8. It"
+#error "This file was generated using the moc from 5.15.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -170,7 +171,7 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         auto *_t = static_cast<CQPropertyViewTree *>(_o);
-        Q_UNUSED(_t)
+        (void)_t;
         switch (_id) {
         case 0: _t->valueChanged((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 1: _t->itemClicked((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
@@ -257,7 +258,7 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty) {
         auto *_t = static_cast<CQPropertyViewTree *>(_o);
-        Q_UNUSED(_t)
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
         case 0: *reinterpret_cast< bool*>(_v) = _t->isItemMenu(); break;
@@ -268,7 +269,7 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         }
     } else if (_c == QMetaObject::WriteProperty) {
         auto *_t = static_cast<CQPropertyViewTree *>(_o);
-        Q_UNUSED(_t)
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
         case 0: _t->setItemMenu(*reinterpret_cast< bool*>(_v)); break;
@@ -283,7 +284,7 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
 }
 
 QT_INIT_METAOBJECT const QMetaObject CQPropertyViewTree::staticMetaObject = { {
-    &QTreeView::staticMetaObject,
+    QMetaObject::SuperData::link<QTreeView::staticMetaObject>(),
     qt_meta_stringdata_CQPropertyViewTree.data,
     qt_meta_data_CQPropertyViewTree,
     qt_static_metacall,
@@ -342,28 +343,28 @@ int CQPropertyViewTree::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void CQPropertyViewTree::valueChanged(QObject * _t1, const QString & _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void CQPropertyViewTree::itemClicked(QObject * _t1, const QString & _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void CQPropertyViewTree::itemSelected(QObject * _t1, const QString & _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
 void CQPropertyViewTree::menuExec(QObject * _t1, const QPoint & _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 

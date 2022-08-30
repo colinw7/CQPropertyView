@@ -201,7 +201,7 @@ addProperty(const QString &path, QObject *object, const QString &name, const QSt
 {
   beginResetModel();
 
-  auto pathParts = path.split('/', QString::SkipEmptyParts);
+  auto pathParts = path.split('/', Qt::SkipEmptyParts);
 
   auto *parentItem = hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/true);
 
@@ -276,7 +276,7 @@ removeProperties(const QString &path, QObject *)
 {
   beginResetModel();
 
-  auto pathParts = path.split('/', QString::SkipEmptyParts);
+  auto pathParts = path.split('/', Qt::SkipEmptyParts);
 
   auto *item = hierItem(pathParts, /*create*/false, /*alias*/false, /*hidden*/true);
 
@@ -335,7 +335,7 @@ void
 CQPropertyViewModel::
 setObjectRoot(const QString &path, QObject *obj)
 {
-  auto pathParts = path.split('/', QString::SkipEmptyParts);
+  auto pathParts = path.split('/', Qt::SkipEmptyParts);
 
   auto *item = hierItem(pathParts, /*create*/true, /*alias*/false, /*hidden*/true);
 
