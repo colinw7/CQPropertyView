@@ -239,19 +239,22 @@ drawColor(QPainter *painter, const QStyleOptionViewItem &option,
 {
   drawBackground(painter, option, index, itemState);
 
+  int margin = qApp->style()->pixelMetric(QStyle::PM_HeaderMargin);
+
   auto rect = option.rect;
 
   rect.setWidth(option.rect.height());
 
   rect.adjust(0, 1, -3, -2);
 
+  rect.setLeft(rect.left() + margin);
+
   painter->setBrush(QBrush(c));
   painter->setPen(QColor(Qt::black)); // TODO: contrast border
 
-//painter->fillRect(rect, QBrush(c));
   painter->drawRect(rect);
 
-  int x = rect.right() + 2;
+  int x = rect.right() + margin;
 
   QRect rect1;
 
