@@ -16,7 +16,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -fPIC -Wall -Wextra -D_REENTRANT $(DEFINES)
-CXXFLAGS      = -pipe -std=c++14 -O2 -fPIC -std=gnu++11 -Wall -Wextra -D_REENTRANT $(DEFINES)
+CXXFLAGS      = -pipe -std=c++17 -O2 -fPIC -std=gnu++11 -Wall -Wextra -D_REENTRANT $(DEFINES)
 INCPATH       = -I. -I. -I../include -I../../CQUtil/include -I../../CConfig/include -I../../CFont/include -I../../CImageLib/include -I../../CMath/include -I../../CFile/include -I../../CFileUtil/include -I../../CStrUtil/include -I../../CRegExp/include -I../../CGlob/include -I../../CUtil/include -I../../COS/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I.moc -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -456,7 +456,7 @@ compiler_moc_predefs_make_all: .moc/moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) .moc/moc_predefs.h
 .moc/moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -pipe -std=c++14 -O2 -fPIC -std=gnu++11 -Wall -Wextra -dM -E -o .moc/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -pipe -std=c++17 -O2 -fPIC -std=gnu++11 -Wall -Wextra -dM -E -o .moc/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: .moc/moc_CQPropertyViewDelegate.cpp .moc/moc_CQPropertyViewFilter.cpp .moc/moc_CQPropertyViewItem.cpp .moc/moc_CQPropertyViewModel.cpp .moc/moc_CQPropertyViewTree.cpp
 compiler_moc_header_clean:

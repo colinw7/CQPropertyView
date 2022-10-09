@@ -2,6 +2,7 @@
 #include <CQPropertyViewItem.h>
 #include <CQPropertyViewDelegate.h>
 #include <CQLineDash.h>
+#include <CQUtilLineDash.h>
 #include <QPainter>
 
 CQPropertyViewLineDashType::

@@ -375,7 +375,7 @@ bool
 CQPropertyViewTree::
 isShowHidden() const
 {
-  return model_->isShowHidden();
+  return (model_ && model_->isShowHidden());
 }
 
 void

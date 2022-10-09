@@ -2,6 +2,7 @@
 #include <CQPropertyViewItem.h>
 #include <CQPropertyViewDelegate.h>
 #include <CQAngleSpinBox.h>
+#include <CQUtilAngle.h>
 
 CQPropertyViewAngleType::
 CQPropertyViewAngleType()
