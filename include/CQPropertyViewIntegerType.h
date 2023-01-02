@@ -30,13 +30,13 @@ class CQPropertyViewIntegerEditor : public CQPropertyViewEditorFactory {
  public:
   CQPropertyViewIntegerEditor(int min=INT_MIN, int max=INT_MAX, int step=1);
 
-  QWidget *createEdit(QWidget *parent);
+  QWidget *createEdit(QWidget *parent) override;
 
-  void connect(QWidget *w, QObject *obj, const char *method);
+  void connect(QWidget *w, QObject *obj, const char *method) override;
 
-  QVariant getValue(QWidget *w);
+  QVariant getValue(QWidget *w) override;
 
-  void setValue(QWidget *w, const QVariant &var);
+  void setValue(QWidget *w, const QVariant &var) override;
 
  private:
   int min_  { INT_MIN };
