@@ -473,31 +473,6 @@ compiler_moc_header_clean:
 
 .moc/moc_CQPropertyViewItem.cpp: ../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
@@ -553,31 +528,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewModel.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
@@ -592,31 +542,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewModel.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h
@@ -624,31 +549,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 
 ../obj/CQPropertyViewItem.o: CQPropertyViewItem.cpp ../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
@@ -663,31 +563,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 ../obj/CQPropertyViewModel.o: CQPropertyViewModel.cpp ../include/CQPropertyViewModel.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h
@@ -699,31 +574,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
@@ -736,31 +586,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
@@ -773,31 +598,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
@@ -811,31 +611,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
@@ -849,31 +624,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
@@ -887,35 +637,11 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
-		../../CQUtil/include/CQPoint2DEdit.h
+		../../CQUtil/include/CQPoint2DEdit.h \
+		../../CMath/include/CPoint2D.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewPointFType.o CQPropertyViewPointFType.cpp
 
 ../obj/CQPropertyViewRealType.o: CQPropertyViewRealType.cpp ../include/CQPropertyViewRealType.h \
@@ -924,31 +650,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
@@ -964,35 +665,19 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
+		../../CQUtil/include/CQUtilMeta.h \
+		../../CUtil/include/CSafeIndex.h \
+		../../CUtil/include/CSafeCast.h \
+		../../CQUtil/include/CQBBox2DEdit.h \
 		../../CMath/include/CBBox2D.h \
+		../../CMath/include/CMathGen.h \
+		../../CMath/include/CIPoint2D.h \
+		../../CMath/include/CPoint2D.h \
 		../../CMath/include/CVector2D.h \
 		../../CMath/include/CMathUtil.h \
 		../../COS/include/COSNaN.h \
 		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
-		../../CQUtil/include/CQUtilMeta.h \
-		../../CUtil/include/CSafeIndex.h \
-		../../CUtil/include/CSafeCast.h \
-		../../CQUtil/include/CQBBox2DEdit.h
+		../../CMath/include/CISize2D.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewRectFType.o CQPropertyViewRectFType.cpp
 
 ../obj/CQPropertyViewSizeFType.o: CQPropertyViewSizeFType.cpp ../include/CQPropertyViewSizeFType.h \
@@ -1001,66 +686,17 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
-		../../CQUtil/include/CQPoint2DEdit.h
+		../../CQUtil/include/CQPoint2DEdit.h \
+		../../CMath/include/CPoint2D.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewSizeFType.o CQPropertyViewSizeFType.cpp
 
 ../obj/CQPropertyViewType.o: CQPropertyViewType.cpp ../include/CQPropertyViewType.h \
 		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewItem.h \
 		../../CQUtil/include/CQUtil.h \
-		../../CUtil/include/CEvent.h \
-		../../CMath/include/CIPoint2D.h \
-		../../CUtil/include/CKeyType.h \
-		../../CUtil/include/CRGBA.h \
-		../../CUtil/include/CRGB.h \
-		../../CUtil/include/CRGBName.h \
-		../../CUtil/include/CLineDash.h \
-		../../CUtil/include/CILineDash.h \
-		../../CMath/include/CAngle.h \
-		../../CFont/include/CFontStyle.h \
-		../../CUtil/include/CFlags.h \
-		../../CUtil/include/CLineCapType.h \
-		../../CUtil/include/CLineJoinType.h \
-		../../CMath/include/CIBBox2D.h \
-		../../CMath/include/CISize2D.h \
-		../../CMath/include/CIVector2D.h \
-		../../CMath/include/CMathGen.h \
-		../../CMath/include/CPoint2D.h \
-		../../CMath/include/CBBox2D.h \
-		../../CMath/include/CVector2D.h \
-		../../CMath/include/CMathUtil.h \
-		../../COS/include/COSNaN.h \
-		../../CMath/include/CSize2D.h \
-		../../CMath/include/CMatrix2D.h \
-		../../CUtil/include/CAlignType.h \
 		../../CQUtil/include/CQUtilMeta.h \
 		../../CUtil/include/CSafeIndex.h \
 		../../CUtil/include/CSafeCast.h \
