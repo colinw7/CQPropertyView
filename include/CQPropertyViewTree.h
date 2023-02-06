@@ -8,6 +8,7 @@ class CQPropertyViewModel;
 class CQPropertyViewItem;
 class CQPropertyViewFilter;
 class CQPropertyViewDelegate;
+class CQHeaderView;
 
 /*!
  * \brief Property view tree view
@@ -19,6 +20,7 @@ class CQPropertyViewTree : public QTreeView {
   Q_PROPERTY(bool showHidden     READ isShowHidden     WRITE setShowHidden    )
   Q_PROPERTY(bool mouseHighlight READ isMouseHighlight WRITE setMouseHighlight)
   Q_PROPERTY(bool resizeOnShow   READ isResizeOnShow   WRITE setResizeOnShow  )
+  Q_PROPERTY(bool resizeOnExpand READ isResizeOnExpand WRITE setResizeOnExpand)
 
  public:
   typedef std::vector<CQPropertyViewItem *> Items;
@@ -61,6 +63,9 @@ class CQPropertyViewTree : public QTreeView {
 
   bool isResizeOnShow() const { return resizeOnShow_; }
   void setResizeOnShow(bool b) { resizeOnShow_ = b; }
+
+  bool isResizeOnExpand() const { return resizeOnExpand_; }
+  void setResizeOnExpand(bool b) { resizeOnExpand_ = b; }
 
   void setMouseInd(const QModelIndex &i);
   void unsetMouseInd();
@@ -125,6 +130,8 @@ class CQPropertyViewTree : public QTreeView {
   void modelResetSlot();
 
   void itemClickedSlot(const QModelIndex &index);
+
+  void expandSlot(const QModelIndex &);
 
   void itemSelectionSlot();
 
@@ -191,6 +198,7 @@ class CQPropertyViewTree : public QTreeView {
 //void printPath(const ItemPath &path) const;
 
  private:
+  CQHeaderView*           header_         { nullptr };
   CQPropertyViewModel*    model_          { nullptr };
   bool                    modelAllocated_ { false };
   CQPropertyViewFilter*   filter_         { nullptr };
@@ -198,6 +206,7 @@ class CQPropertyViewTree : public QTreeView {
   bool                    itemMenu_       { false };
   bool                    mouseHighlight_ { false };
   bool                    resizeOnShow_   { true };
+  bool                    resizeOnExpand_ { true };
   bool                    hasMouseInd_    { false };
   bool                    shown_          { false };
   QModelIndex             mouseInd_;

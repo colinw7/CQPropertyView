@@ -63,7 +63,9 @@ init()
 
   //--
 
-  setHeader(new CQHeaderView(this));
+  header_ = new CQHeaderView(this);
+
+  setHeader(header_);
 
   header()->setStretchLastSection(true);
 //header()->setSectionResizeMode(QHeaderView::Interactive);
@@ -94,6 +96,9 @@ init()
   // handle click (for bool check box)
   connect(this, SIGNAL(clicked(const QModelIndex &)),
           this, SLOT(itemClickedSlot(const QModelIndex &)));
+
+  connect(this, SIGNAL(expanded(const QModelIndex &)),
+          this, SLOT(expandSlot(const QModelIndex &)));
 
   //---
 
@@ -729,6 +734,16 @@ itemClickedSlot(const QModelIndex &index)
   getItemData(item, obj, path);
 
   emit itemClicked(obj, path);
+}
+
+void
+CQPropertyViewTree::
+expandSlot(const QModelIndex &)
+{
+  // auto fit on child expand
+  //header_->fitAllSlot();
+  if (isResizeOnExpand())
+    resizeColumns();
 }
 
 void
