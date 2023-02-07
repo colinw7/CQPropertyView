@@ -44,7 +44,7 @@ class CQPropertyViewEditorMgr {
   CQPropertyViewEditorFactory *getEditor(const QString &typeName) const;
 
  private:
-  typedef std::map<QString, CQPropertyViewEditorFactory *> Editors;
+  using Editors = std::map<QString, CQPropertyViewEditorFactory *>;
 
   Editors editors_;
 };

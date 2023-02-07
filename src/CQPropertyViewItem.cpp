@@ -293,7 +293,7 @@ click()
       //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
     }
 
-    emit valueChanged(object(), name());
+    Q_EMIT valueChanged(object(), name());
 
     return true;
   }
@@ -489,7 +489,7 @@ setEditorData(const QVariant &value)
       }
     }
 
-    emit valueChanged(object(), name());
+    Q_EMIT valueChanged(object(), name());
   }
 }
 

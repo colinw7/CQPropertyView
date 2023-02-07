@@ -212,11 +212,11 @@ class CQPropertyViewItem : public QObject {
 
   bool isHierHidden() const;
 
- signals:
+ Q_SIGNALS:
   //! emitted when value changed
   void valueChanged(QObject *obj, const QString &name);
 
- private slots:
+ private Q_SLOTS:
   //! called when the editor widget is changed
   void updateValue();
 

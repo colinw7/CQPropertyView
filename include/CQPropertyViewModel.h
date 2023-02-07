@@ -145,7 +145,7 @@ class CQPropertyViewModel : public QAbstractItemModel {
   void addNameValue(CQPropertyViewItem *rootItem, CQPropertyViewItem *item,
                     NameValues &nameValues, bool tcl=false) const;
 
- signals:
+ Q_SIGNALS:
   void valueChanged(QObject *, const QString &);
 
  private:

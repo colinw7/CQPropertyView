@@ -23,8 +23,8 @@ class CQPropertyViewTree : public QTreeView {
   Q_PROPERTY(bool resizeOnExpand READ isResizeOnExpand WRITE setResizeOnExpand)
 
  public:
-  typedef std::vector<CQPropertyViewItem *> Items;
-  typedef std::vector<QObject *>            Objs;
+  using Items = std::vector<CQPropertyViewItem *>;
+  using Objs  = std::vector<QObject *>;
 
  public:
   CQPropertyViewTree(QWidget *parent);
@@ -95,7 +95,7 @@ class CQPropertyViewTree : public QTreeView {
 
   CQPropertyViewItem *menuItem() const { return menuItem_; }
 
- signals:
+ Q_SIGNALS:
   void valueChanged(QObject *, const QString &);
 
   void itemClicked( QObject *obj, const QString &path);
@@ -106,7 +106,7 @@ class CQPropertyViewTree : public QTreeView {
   void startUpdate();
   void endUpdate();
 
- public slots:
+ public Q_SLOTS:
   void redraw();
 
   void expandAll();
@@ -126,7 +126,7 @@ class CQPropertyViewTree : public QTreeView {
 
   void closeEditorSlot();
 
- protected slots:
+ protected Q_SLOTS:
   void modelResetSlot();
 
   void itemClickedSlot(const QModelIndex &index);

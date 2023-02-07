@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CQPropertyViewTree_t {
-    QByteArrayData data[39];
-    char stringdata0[458];
+    QByteArrayData data[41];
+    char stringdata0[484];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -60,17 +60,19 @@ QT_MOC_LITERAL(24, 242, 14), // "modelResetSlot"
 QT_MOC_LITERAL(25, 257, 15), // "itemClickedSlot"
 QT_MOC_LITERAL(26, 273, 11), // "QModelIndex"
 QT_MOC_LITERAL(27, 285, 5), // "index"
-QT_MOC_LITERAL(28, 291, 17), // "itemSelectionSlot"
-QT_MOC_LITERAL(29, 309, 21), // "customContextMenuSlot"
-QT_MOC_LITERAL(30, 331, 3), // "pos"
-QT_MOC_LITERAL(31, 335, 8), // "QWidget*"
-QT_MOC_LITERAL(32, 344, 34), // "QAbstractItemDelegate::EndEdi..."
-QT_MOC_LITERAL(33, 379, 14), // "autoUpdateSlot"
-QT_MOC_LITERAL(34, 394, 15), // "updateDirtySlot"
-QT_MOC_LITERAL(35, 410, 8), // "itemMenu"
-QT_MOC_LITERAL(36, 419, 10), // "showHidden"
-QT_MOC_LITERAL(37, 430, 14), // "mouseHighlight"
-QT_MOC_LITERAL(38, 445, 12) // "resizeOnShow"
+QT_MOC_LITERAL(28, 291, 10), // "expandSlot"
+QT_MOC_LITERAL(29, 302, 17), // "itemSelectionSlot"
+QT_MOC_LITERAL(30, 320, 21), // "customContextMenuSlot"
+QT_MOC_LITERAL(31, 342, 3), // "pos"
+QT_MOC_LITERAL(32, 346, 8), // "QWidget*"
+QT_MOC_LITERAL(33, 355, 34), // "QAbstractItemDelegate::EndEdi..."
+QT_MOC_LITERAL(34, 390, 14), // "autoUpdateSlot"
+QT_MOC_LITERAL(35, 405, 15), // "updateDirtySlot"
+QT_MOC_LITERAL(36, 421, 8), // "itemMenu"
+QT_MOC_LITERAL(37, 430, 10), // "showHidden"
+QT_MOC_LITERAL(38, 441, 14), // "mouseHighlight"
+QT_MOC_LITERAL(39, 456, 12), // "resizeOnShow"
+QT_MOC_LITERAL(40, 469, 14) // "resizeOnExpand"
 
     },
     "CQPropertyViewTree\0valueChanged\0\0"
@@ -81,11 +83,12 @@ QT_MOC_LITERAL(38, 445, 12) // "resizeOnShow"
     "filter\0search\0text\0copySlot\0printSlot\0"
     "printChangedSlot\0closeEditorSlot\0"
     "modelResetSlot\0itemClickedSlot\0"
-    "QModelIndex\0index\0itemSelectionSlot\0"
-    "customContextMenuSlot\0pos\0QWidget*\0"
-    "QAbstractItemDelegate::EndEditHint\0"
+    "QModelIndex\0index\0expandSlot\0"
+    "itemSelectionSlot\0customContextMenuSlot\0"
+    "pos\0QWidget*\0QAbstractItemDelegate::EndEditHint\0"
     "autoUpdateSlot\0updateDirtySlot\0itemMenu\0"
-    "showHidden\0mouseHighlight\0resizeOnShow"
+    "showHidden\0mouseHighlight\0resizeOnShow\0"
+    "resizeOnExpand"
 };
 #undef QT_MOC_LITERAL
 
@@ -95,40 +98,41 @@ static const uint qt_meta_data_CQPropertyViewTree[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
-       4,  190, // properties
+      25,   14, // methods
+       5,  198, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,  134,    2, 0x06 /* Public */,
-       3,    2,  139,    2, 0x06 /* Public */,
-       6,    2,  144,    2, 0x06 /* Public */,
-       7,    2,  149,    2, 0x06 /* Public */,
-       9,    0,  154,    2, 0x06 /* Public */,
-      10,    0,  155,    2, 0x06 /* Public */,
+       1,    2,  139,    2, 0x06 /* Public */,
+       3,    2,  144,    2, 0x06 /* Public */,
+       6,    2,  149,    2, 0x06 /* Public */,
+       7,    2,  154,    2, 0x06 /* Public */,
+       9,    0,  159,    2, 0x06 /* Public */,
+      10,    0,  160,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      11,    0,  156,    2, 0x0a /* Public */,
-      12,    0,  157,    2, 0x0a /* Public */,
-      13,    0,  158,    2, 0x0a /* Public */,
-      14,    0,  159,    2, 0x0a /* Public */,
-      15,    1,  160,    2, 0x0a /* Public */,
-      16,    1,  163,    2, 0x0a /* Public */,
-      18,    1,  166,    2, 0x0a /* Public */,
-      20,    0,  169,    2, 0x0a /* Public */,
-      21,    0,  170,    2, 0x0a /* Public */,
-      22,    0,  171,    2, 0x0a /* Public */,
-      23,    0,  172,    2, 0x0a /* Public */,
-      24,    0,  173,    2, 0x09 /* Protected */,
-      25,    1,  174,    2, 0x09 /* Protected */,
-      28,    0,  177,    2, 0x09 /* Protected */,
-      29,    1,  178,    2, 0x09 /* Protected */,
-      23,    2,  181,    2, 0x09 /* Protected */,
-      33,    1,  186,    2, 0x09 /* Protected */,
-      34,    0,  189,    2, 0x09 /* Protected */,
+      11,    0,  161,    2, 0x0a /* Public */,
+      12,    0,  162,    2, 0x0a /* Public */,
+      13,    0,  163,    2, 0x0a /* Public */,
+      14,    0,  164,    2, 0x0a /* Public */,
+      15,    1,  165,    2, 0x0a /* Public */,
+      16,    1,  168,    2, 0x0a /* Public */,
+      18,    1,  171,    2, 0x0a /* Public */,
+      20,    0,  174,    2, 0x0a /* Public */,
+      21,    0,  175,    2, 0x0a /* Public */,
+      22,    0,  176,    2, 0x0a /* Public */,
+      23,    0,  177,    2, 0x0a /* Public */,
+      24,    0,  178,    2, 0x09 /* Protected */,
+      25,    1,  179,    2, 0x09 /* Protected */,
+      28,    1,  182,    2, 0x09 /* Protected */,
+      29,    0,  185,    2, 0x09 /* Protected */,
+      30,    1,  186,    2, 0x09 /* Protected */,
+      23,    2,  189,    2, 0x09 /* Protected */,
+      34,    1,  194,    2, 0x09 /* Protected */,
+      35,    0,  197,    2, 0x09 /* Protected */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QObjectStar, QMetaType::QString,    2,    2,
@@ -152,17 +156,19 @@ static const uint qt_meta_data_CQPropertyViewTree[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 26,   27,
+    QMetaType::Void, 0x80000000 | 26,    2,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QPoint,   30,
-    QMetaType::Void, 0x80000000 | 31, 0x80000000 | 32,    2,    2,
+    QMetaType::Void, QMetaType::QPoint,   31,
+    QMetaType::Void, 0x80000000 | 32, 0x80000000 | 33,    2,    2,
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void,
 
  // properties: name, type, flags
-      35, QMetaType::Bool, 0x00095103,
       36, QMetaType::Bool, 0x00095103,
       37, QMetaType::Bool, 0x00095103,
       38, QMetaType::Bool, 0x00095103,
+      39, QMetaType::Bool, 0x00095103,
+      40, QMetaType::Bool, 0x00095103,
 
        0        // eod
 };
@@ -192,17 +198,18 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 16: _t->closeEditorSlot(); break;
         case 17: _t->modelResetSlot(); break;
         case 18: _t->itemClickedSlot((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 19: _t->itemSelectionSlot(); break;
-        case 20: _t->customContextMenuSlot((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
-        case 21: _t->closeEditorSlot((*reinterpret_cast< QWidget*(*)>(_a[1])),(*reinterpret_cast< QAbstractItemDelegate::EndEditHint(*)>(_a[2]))); break;
-        case 22: _t->autoUpdateSlot((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 23: _t->updateDirtySlot(); break;
+        case 19: _t->expandSlot((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 20: _t->itemSelectionSlot(); break;
+        case 21: _t->customContextMenuSlot((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 22: _t->closeEditorSlot((*reinterpret_cast< QWidget*(*)>(_a[1])),(*reinterpret_cast< QAbstractItemDelegate::EndEditHint(*)>(_a[2]))); break;
+        case 23: _t->autoUpdateSlot((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 24: _t->updateDirtySlot(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 21:
+        case 22:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -265,6 +272,7 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 1: *reinterpret_cast< bool*>(_v) = _t->isShowHidden(); break;
         case 2: *reinterpret_cast< bool*>(_v) = _t->isMouseHighlight(); break;
         case 3: *reinterpret_cast< bool*>(_v) = _t->isResizeOnShow(); break;
+        case 4: *reinterpret_cast< bool*>(_v) = _t->isResizeOnExpand(); break;
         default: break;
         }
     } else if (_c == QMetaObject::WriteProperty) {
@@ -276,6 +284,7 @@ void CQPropertyViewTree::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 1: _t->setShowHidden(*reinterpret_cast< bool*>(_v)); break;
         case 2: _t->setMouseHighlight(*reinterpret_cast< bool*>(_v)); break;
         case 3: _t->setResizeOnShow(*reinterpret_cast< bool*>(_v)); break;
+        case 4: _t->setResizeOnExpand(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
     } else if (_c == QMetaObject::ResetProperty) {
@@ -312,29 +321,29 @@ int CQPropertyViewTree::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 25;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 25;
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyDesignable) {
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyScriptable) {
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyStored) {
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyEditable) {
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::QueryPropertyUser) {
-        _id -= 4;
+        _id -= 5;
     }
 #endif // QT_NO_PROPERTIES
     return _id;

@@ -608,11 +608,11 @@ updateDirtySlot()
   if (! model_)
     return;
 
-  emit startUpdate();
+  Q_EMIT startUpdate();
 
   model_->updateDirty();
 
-  emit endUpdate();
+  Q_EMIT endUpdate();
 }
 
 //---
@@ -733,7 +733,7 @@ itemClickedSlot(const QModelIndex &index)
 
   getItemData(item, obj, path);
 
-  emit itemClicked(obj, path);
+  Q_EMIT itemClicked(obj, path);
 }
 
 void
@@ -765,7 +765,7 @@ itemSelectionSlot()
 
   getItemData(item, obj, path);
 
-  emit itemSelected(obj, path);
+  Q_EMIT itemSelected(obj, path);
 }
 
 CQPropertyViewItem *
@@ -930,7 +930,7 @@ void
 CQPropertyViewTree::
 showContextMenu(QObject *obj, const QPoint &globalPos)
 {
-  emit menuExec(obj, globalPos);
+  Q_EMIT menuExec(obj, globalPos);
 }
 
 void

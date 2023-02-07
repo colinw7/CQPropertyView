@@ -46,8 +46,8 @@ class CQPropertyViewFilter : public QSortFilterProxyModel {
   bool itemMatch(CQPropertyViewItem *item) const;
 
  private:
-  typedef std::map<QModelIndex, bool> IndexMatches;
-  typedef std::set<QModelIndex>       ExpandInds;
+  using IndexMatches = std::map<QModelIndex, bool>;
+  using ExpandInds   = std::set<QModelIndex>;
 
   CQPropertyViewTree*  view_        { nullptr };
   QString              filter_;

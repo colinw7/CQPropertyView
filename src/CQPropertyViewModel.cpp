@@ -99,7 +99,7 @@ setData(const QModelIndex &index, const QVariant &value, int role)
     else if (index.column() == 1) {
       item->setData(value);
 
-      emit dataChanged(index, index);
+      Q_EMIT dataChanged(index, index);
 
       return true;
     }
@@ -235,7 +235,7 @@ setProperty(QObject *object, const QString &path, const QVariant &value)
   auto ind1 = indexFromItem(item, 0);
   auto ind2 = indexFromItem(item, 1);
 
-  emit dataChanged(ind1, ind2);
+  Q_EMIT dataChanged(ind1, ind2);
 
   return true;
 }
