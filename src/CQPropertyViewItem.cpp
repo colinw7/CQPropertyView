@@ -3,6 +3,7 @@
 #include <CQPropertyViewDelegate.h>
 #include <CQPropertyViewEditor.h>
 #include <CQPropertyView.h>
+#include <CQPropertyViewTree.h>
 #include <CQPropertyViewType.h>
 #include <CQPropertyViewUtil.h>
 #include <CQUtil.h>
@@ -416,6 +417,8 @@ createEditor(QWidget *parent)
 
     widget_ = createDefaultEdit(parent, valueStr);
   }
+
+  model_->tree()->initEditor(widget_);
 
   return widget_;
 }

@@ -83,7 +83,18 @@ setValue(QWidget *w, const QVariant &var)
   auto *edit = qobject_cast<CQAlignEdit *>(w);
   assert(edit);
 
-  int i = var.toInt();
+  Qt::Alignment align = Qt::AlignCenter;
 
-  edit->setAlign(static_cast<Qt::Alignment>(i));
+  if (var.type() == QVariant::String) {
+    if (! CQUtil::stringToAlign(var.toString(), align))
+      align = Qt::AlignCenter;
+  }
+  else {
+    bool ok;
+    int i = var.toInt(&ok);
+    if (ok)
+      align = static_cast<Qt::Alignment>(i);
+  }
+
+  edit->setAlign(align);
 }

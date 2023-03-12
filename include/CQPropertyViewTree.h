@@ -95,6 +95,8 @@ class CQPropertyViewTree : public QTreeView {
 
   CQPropertyViewItem *menuItem() const { return menuItem_; }
 
+  virtual void initEditor(QWidget *) { }
+
  Q_SIGNALS:
   void valueChanged(QObject *, const QString &);
 

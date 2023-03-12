@@ -556,6 +556,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 		../include/CQPropertyViewDelegate.h \
 		../include/CQPropertyViewEditor.h \
 		../include/CQPropertyView.h \
+		../include/CQPropertyViewTree.h \
 		../include/CQPropertyViewType.h \
 		../include/CQPropertyViewUtil.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ../obj/CQPropertyViewItem.o CQPropertyViewItem.cpp

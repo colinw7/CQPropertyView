@@ -28,6 +28,7 @@ class CQPropertyViewModel : public QAbstractItemModel {
 
   //---
 
+  CQPropertyViewTree *tree() const { return tree_; }
   void setTree(CQPropertyViewTree *tree) { tree_ = tree; }
 
   //---
