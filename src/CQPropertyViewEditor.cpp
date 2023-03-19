@@ -35,6 +35,6 @@ getEditor(const QString &typeName) const
 
   if (p != editors_.end())
     return (*p).second;
-  else
-    return 0;
+
+  return nullptr;
 }
