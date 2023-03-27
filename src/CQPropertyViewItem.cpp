@@ -6,6 +6,8 @@
 #include <CQPropertyViewTree.h>
 #include <CQPropertyViewType.h>
 #include <CQPropertyViewUtil.h>
+
+#include <CQFlagsCombo.h>
 #include <CQUtil.h>
 
 #include <QLineEdit>
@@ -319,10 +321,15 @@ getEditorData() const
   if (propInfo.isEnumType()) {
     int value = var.toInt();
 
-    QString str;
+    if (propInfo.isFlagType()) {
+      var = value;
+    }
+    else {
+      QString str;
 
-    if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
-      var = str;
+      if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
+        var = str;
+    }
   }
 
   return var;
@@ -343,12 +350,16 @@ createEditor(QWidget *parent)
   auto var = this->data();
 
   if (propInfo.isEnumType()) {
-    int value = var.toInt();
+    if (propInfo.isFlagType()) {
+    }
+    else {
+      int value = var.toInt();
 
-    QString str;
+      QString str;
 
-    if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
-      var = str;
+      if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
+        var = str;
+    }
   }
 
   auto *editor = editor_;
@@ -366,27 +377,42 @@ createEditor(QWidget *parent)
     editor->connect(widget_, this, SLOT(updateValue()));
   }
   else if (propInfo.isEnumType()) {
-    auto valueStr = var.toString();
+    if (propInfo.isFlagType()) {
+      auto *combo = CQUtil::makeWidget<CQFlagsCombo>(parent, "combo");
 
-    const auto &names = propInfo.enumNames();
+      for (const auto &name : propInfo.enumNames()) {
+        int value = 0; (void) propInfo.enumNameValue(name, value);
 
-    auto *combo = new QComboBox(parent);
+        combo->addItem(name, value);
+      }
 
-    combo->setObjectName("combo");
+      auto value = var.toInt();
 
-    combo->addItems(names);
-    combo->setCurrentIndex(combo->findText(valueStr));
+      combo->setValue(value);
 
-    connect(combo, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(updateValue()));
+      connect(combo, SIGNAL(valueChanged(uint)), this, SLOT(updateValue()));
 
-    widget_ = combo;
+      widget_ = combo;
+    }
+    else {
+      auto *combo = CQUtil::makeWidget<QComboBox>(parent, "combo");
+
+      auto valueStr = var.toString();
+
+      const auto &names = propInfo.enumNames();
+
+      combo->addItems(names);
+      combo->setCurrentIndex(combo->findText(valueStr));
+
+      connect(combo, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(updateValue()));
+
+      widget_ = combo;
+    }
   }
   // bool - create toggle
   // TODO: use button press (no need to edit) see CQCheckTree.cpp
   else if (typeName == "bool") {
-    auto *check = new QCheckBox(parent);
-
-    check->setObjectName("check");
+    auto *check = CQUtil::makeWidget<QCheckBox>(parent, "check");
 
     check->setChecked(var.toBool());
 
@@ -428,9 +454,7 @@ CQPropertyViewItem::
 createDefaultEdit(QWidget *parent, const QString &valueStr)
 {
   if (values().length()) {
-    auto *combo = new QComboBox(parent);
-
-    combo->setObjectName("combo");
+    auto *combo = CQUtil::makeWidget<QComboBox>(parent, "combo");
 
     combo->addItems(values());
     combo->setCurrentIndex(combo->findText(valueStr));
@@ -440,9 +464,7 @@ createDefaultEdit(QWidget *parent, const QString &valueStr)
     return combo;
   }
   else {
-    auto *edit = new QLineEdit(parent);
-
-    edit->setObjectName("edit");
+    auto *edit = CQUtil::makeWidget<QLineEdit>(parent, "edit");
 
     edit->setText(valueStr);
 
@@ -471,19 +493,26 @@ setEditorData(const QVariant &value)
       }
     }
     else if (propInfo.isEnumType()) {
-      auto name = CQUtil::variantToString(value);
-
-      int ind;
-
-      if (CQUtil::getPropInfoEnumNameValue(propInfo, name, ind)) {
-        QVariant v(ind);
-
-        if (! this->setData(v)) {
+      if (propInfo.isFlagType()) {
+        if (! this->setData(value)) {
           //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
         }
       }
       else {
-        //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
+        auto name = CQUtil::variantToString(value);
+
+        int ind;
+
+        if (CQUtil::getPropInfoEnumNameValue(propInfo, name, ind)) {
+          QVariant v(ind);
+
+          if (! this->setData(v)) {
+            //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
+          }
+        }
+        else {
+          //std::cerr << "Failed to set property " << name().toStdString() << std::endl;
+        }
       }
     }
     else {
@@ -519,12 +548,22 @@ updateValue()
     setEditorData(var);
   }
   else if (propInfo.isEnumType()) {
-    auto *combo = qobject_cast<QComboBox *>(widget_);
-    assert(combo);
+    if (propInfo.isFlagType()) {
+      auto *combo = qobject_cast<CQFlagsCombo *>(widget_);
+      assert(combo);
 
-    auto text = combo->currentText();
+      auto value = combo->value();
 
-    setEditorData(text);
+      setEditorData(QVariant(int(value)));
+    }
+    else {
+      auto *combo = qobject_cast<QComboBox *>(widget_);
+      assert(combo);
+
+      auto text = combo->currentText();
+
+      setEditorData(text);
+    }
   }
   else if (typeName == "bool") {
     auto *check = qobject_cast<QCheckBox *>(widget_);
@@ -750,8 +789,14 @@ calcTip() const
 
     QString str;
 
-    if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
-      return str;
+    if (propInfo.isFlagType()) {
+      if (CQUtil::getPropInfoEnumFlagValueName(propInfo, value, str))
+        return str;
+    }
+    else {
+      if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
+        return str;
+    }
   }
   else if (var.type() == QVariant::UserType) {
     QString str;
@@ -796,8 +841,16 @@ paint(const CQPropertyViewDelegate *delegate, QPainter *painter,
 
     QString str;
 
-    if (CQUtil::getPropInfoEnumValueName(propInfo, value, str))
-      delegate->drawString(painter, option, str, index, itemState);
+    if (propInfo.isFlagType()) {
+      if (! CQUtil::getPropInfoEnumFlagValueName(propInfo, value, str))
+        return false;
+    }
+    else {
+      if (! CQUtil::getPropInfoEnumValueName(propInfo, value, str))
+        return false;
+    }
+
+    delegate->drawString(painter, option, str, index, itemState);
   }
   else if (var.type() == QVariant::UserType) {
     QString str;
