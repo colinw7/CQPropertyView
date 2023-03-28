@@ -383,7 +383,10 @@ createEditor(QWidget *parent)
       for (const auto &name : propInfo.enumNames()) {
         int value = 0; (void) propInfo.enumNameValue(name, value);
 
-        combo->addItem(name, value);
+        if (value)
+          combo->addItem(name, value);
+        else
+          combo->setZeroName(name);
       }
 
       auto value = var.toInt();
