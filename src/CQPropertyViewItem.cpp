@@ -81,7 +81,7 @@ CQPropertyViewItem(CQPropertyViewModel *model, CQPropertyViewItem *parent,
   else
     editable_ = false;
 
-  initValue_ = data();
+  setInitValue();
 }
 
 CQPropertyViewItem::
@@ -92,6 +92,13 @@ CQPropertyViewItem::
 }
 
 //---
+
+void
+CQPropertyViewItem::
+setInitValue()
+{
+  initValue_ = data();
+}
 
 void
 CQPropertyViewItem::

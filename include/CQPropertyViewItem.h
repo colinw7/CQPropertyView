@@ -6,7 +6,6 @@
 
 #include <QObject>
 #include <QPointer>
-#include <QStyleOptionViewItem>
 #include <QString>
 #include <QVariant>
 
@@ -17,6 +16,8 @@ class CQPropertyViewModel;
 class CQPropertyViewDelegate;
 class CQPropertyViewEditorFactory;
 class CQPropertyViewItemTableTip;
+
+class QStyleOptionViewItem;
 class QPainter;
 class QWidget;
 
@@ -41,6 +42,10 @@ class CQPropertyViewItem : public QObject {
                      QObject *object, const QString &name);
 
  ~CQPropertyViewItem();
+
+  //---
+
+  void setInitValue();
 
   //---
 

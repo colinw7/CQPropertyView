@@ -4,6 +4,9 @@
 #include <QTreeView>
 #include <QAbstractItemDelegate>
 
+#include <map>
+#include <vector>
+
 class CQPropertyViewModel;
 class CQPropertyViewItem;
 class CQPropertyViewFilter;

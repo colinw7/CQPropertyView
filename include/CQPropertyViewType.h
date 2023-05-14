@@ -22,7 +22,10 @@ class QVariant;
  */
 class CQPropertyViewType {
  public:
-  using ItemState = CQPropertyViewDelegate::ItemState;
+  using EditorFactory = CQPropertyViewEditorFactory;
+  using ViewDelegate  = CQPropertyViewDelegate;
+  using ViewItem      = CQPropertyViewItem;
+  using ItemState     = ViewDelegate::ItemState;
 
  public:
   CQPropertyViewType() { }
@@ -36,11 +39,11 @@ class CQPropertyViewType {
 
   //---
 
-  virtual CQPropertyViewEditorFactory *getEditor() const = 0;
+  virtual EditorFactory *getEditor() const = 0;
 
-  virtual bool setEditorData(CQPropertyViewItem *item, const QVariant &value);
+  virtual bool setEditorData(ViewItem *item, const QVariant &value);
 
-  virtual void draw(CQPropertyViewItem *item, const CQPropertyViewDelegate *delegate,
+  virtual void draw(ViewItem *item, const ViewDelegate *delegate,
                     QPainter *painter, const QStyleOptionViewItem &option,
                     const QModelIndex &index, const QVariant &value,
                     const ItemState &itemState);

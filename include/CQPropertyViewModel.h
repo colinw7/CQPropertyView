@@ -2,6 +2,8 @@
 #define CQPropertyViewModel_H
 
 #include <QAbstractItemModel>
+
+#include <map>
 #include <vector>
 
 class CQPropertyViewTree;
