@@ -30,7 +30,7 @@ class CQPropertyViewTree : public QTreeView {
   using Objs  = std::vector<QObject *>;
 
  public:
-  CQPropertyViewTree(QWidget *parent);
+  CQPropertyViewTree(QWidget *parent=nullptr);
   CQPropertyViewTree(QWidget *parent, CQPropertyViewModel *model);
 
   virtual ~CQPropertyViewTree();
