@@ -92,6 +92,14 @@ getType(const QString &name) const
   return (*p).second;
 }
 
+void
+CQPropertyViewMgr::
+typeNames(QStringList &names) const
+{
+  for (const auto &pt : types_)
+    names.push_back(pt.first);
+}
+
 CQPropertyViewEditorFactory *
 CQPropertyViewMgr::
 getEditor(const QString &name) const
