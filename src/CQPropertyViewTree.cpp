@@ -909,7 +909,7 @@ addStandardMenuItems(QMenu *menu)
 
   //---
 
-  if (model()) {
+  if (model_) {
     menu->addSeparator();
 
     (void) addCheckAction("Auto Update", model_->isAutoUpdate(), SLOT(autoUpdateSlot(bool)));
